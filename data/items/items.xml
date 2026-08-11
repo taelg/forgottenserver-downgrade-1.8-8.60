@@ -1,7 +1,49 @@
 <?xml version='1.0' encoding='utf-8'?>
 <items>
 	
+
 	
+	<item id="3566" article="a" name="camisetão velho">
+		<attribute key="description" value="The robe is artfully embroidered" />
+		<attribute key="armor" value="1" />
+		<attribute key="weight" value="2600" />
+		<attribute key="script" value="moveevent">
+			<attribute key="slot" value="armor" />
+		</attribute>
+		<attribute key="classification" value="1" />
+	</item>
+	<item id="22087" article="a" name="pano velho">
+		<attribute key="showAttributes" value="1" />
+		<attribute key="armor" value="6" />
+		<attribute key="weight" value="1300" />
+		<attribute key="script" value="moveevent">
+			<attribute key="slot" value="legs" />
+		</attribute>
+		<attribute key="classification" value="2" />
+	</item>
+	<item id="3291" article="a" name="faquinha">
+		<attribute key="classification" value="2" />		
+		<attribute key="weaponType" value="wand" />
+		<attribute key="shootType" value="smallstone" />
+		<attribute key="range" value="1" />
+		<attribute key="weight" value="1900" />
+		<attribute key="script" value="moveevent;weapon">
+		<attribute key="wandType" value="earth" />
+		<attribute key="level" value="1" />
+		<attribute key="mana" value="1" />
+		<attribute key="fromDamage" value="2" />
+		<attribute key="toDamage" value="5" />
+		<attribute key="slot" value="hand" />
+		</attribute>
+	</item>
+	<item id="3003" article="a" name="corda">	
+		<attribute key="weight" value="1800" />	
+		<attribute key="description" value="Importante pra não ficar preso em buracos."/>
+	</item>
+
+
+
+
 	<item id="1" name="water" />
 	<item id="2" name="wine" />
 	<item id="3" name="beer" />
@@ -5564,9 +5606,6 @@
 	<item id="3002" article="a" name="voodoo doll">
 		<attribute key="weight" value="650" />
 	</item>
-	<item id="3003" article="a" name="rope">
-		<attribute key="weight" value="1800" />
-	</item>
 	<item id="3004" article="a" name="wedding ring">
 		<attribute key="weight" value="40" />
 		<attribute key="script" value="moveevent">
@@ -7360,17 +7399,6 @@
 		<attribute key="attack" value="9" />
 		<attribute key="defense" value="7" />
 		<attribute key="weight" value="1020" />
-		<attribute key="script" value="moveevent;weapon">
-			<attribute key="weaponType" value="sword" />
-			<attribute key="slot" value="hand" />
-		</attribute>
-	</item>
-	<item id="3291" article="a" name="knife">
-		<attribute key="classification" value="2" />
-		<attribute key="weaponType" value="sword" />
-		<attribute key="attack" value="5" />
-		<attribute key="defense" value="5" />
-		<attribute key="weight" value="420" />
 		<attribute key="script" value="moveevent;weapon">
 			<attribute key="weaponType" value="sword" />
 			<attribute key="slot" value="hand" />
@@ -9872,15 +9900,6 @@
 	<item id="3565" article="a" name="cape">
 		<attribute key="armor" value="1" />
 		<attribute key="weight" value="3200" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="armor" />
-		</attribute>
-		<attribute key="classification" value="1" />
-	</item>
-	<item id="3566" article="a" name="red robe">
-		<attribute key="description" value="The robe is artfully embroidered" />
-		<attribute key="armor" value="1" />
-		<attribute key="weight" value="2600" />
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="armor" />
 		</attribute>
@@ -39618,16 +39637,6 @@
 		<attribute key="script" value="moveevent">
 			<attribute key="level" value="60" />
 			<attribute key="slot" value="feet" />
-		</attribute>
-		<attribute key="classification" value="2" />
-	</item>
-	<item id="22087" article="a" name="wereboar loincloth">
-		<attribute key="description" value="They offer little protection but will at least provide some comfort and warmth" />
-		<attribute key="showAttributes" value="1" />
-		<attribute key="armor" value="6" />
-		<attribute key="weight" value="1300" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="legs" />
 		</attribute>
 		<attribute key="classification" value="2" />
 	</item>

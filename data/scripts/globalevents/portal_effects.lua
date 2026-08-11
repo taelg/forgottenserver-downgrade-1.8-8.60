@@ -1,13 +1,8 @@
 local portalEffects = GlobalEvent("PortalEffects")
 function portalEffects.onThink(interval)
     local effects = {
-        {position = Position(997, 995, 7),  text = "Forge",        effect = 31, color = TEXTCOLOR_BLUE, configKey = configKeys.FORGE_SYSTEM_ENABLED},
-        {position = Position(1003, 995, 7), text = "Imbuements",   effect = 30, color = TEXTCOLOR_RED, configKey = configKeys.IMBUEMENT_SYSTEM_ENABLED},
-        {position = Position(997, 998, 7),  text = "Dungeon",      effect = 30, color = TEXTCOLOR_PURPLE},
-        {position = Position(1003, 998, 7), text = "Sala de Boss", effect = 30, color = TEXTCOLOR_LIGHTGREEN},
-        {position = Position(1003, 1001, 7),  text = "Trainer",      effect = 31, color = TEXTCOLOR_BLUE},
-		{position = Position(997, 1001, 7),  text = "Roullete",     effect = 30, color = TEXTCOLOR_LIGHTGREEN},
-    }
+		{position = Position(1000, 1000, 7),  text = "Bem vindo ao OTzinho!",     effect = 30, color = TEXTCOLOR_LIGHTGREEN},
+    } --TEXTCOLOR_BLUE, TEXTCOLOR_RED, TEXTCOLOR_PURPLE, TEXTCOLOR_LIGHTGREEN
 
     for i = 1, #effects do
         local settings = effects[i]

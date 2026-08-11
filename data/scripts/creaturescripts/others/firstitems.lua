@@ -6,21 +6,16 @@ local config = {
 		},
 	},
 
-	[VOCATION.ID.SORCERER] = {
+	--Tael (no voc items)
+	[1] = {
 		items = {
-			{ 3059, 1 }, -- spellbook
-			{ 3074, 1 }, -- wand of vortex
-			{ 7991, 1 }, -- magician's robe
-			{ 7992, 1 }, -- mage hat
-			{ 3362, 1 }, -- studded legs
-			{ 3552, 1 }, -- leather boots
-			{ 3572, 1 }, -- scarf
+			{ 3291, 1 }, -- faca de cozinha
+			{ 3566, 1 }, -- Camisetão
+			{ 22087, 1 }, -- Pano velho
 		},
 
 		container = {
 			{ 3003, 1 }, -- rope
-			{ 5710, 1 }, -- light shovel
-			{ 268, 10 }, -- mana potion
 		},
 	},
 
@@ -125,7 +120,7 @@ function firstItems.onLogin(player)
 		end
 	end
 
-	local backpack = player:addItem(2854) or player:addItem(1987)
+	local backpack = player:addItem(2853) or player:addItem(1987)
 	if not backpack then
 		return true
 	end
