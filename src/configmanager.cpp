@@ -10,13 +10,14 @@
 #include "logger.h"
 #include "lua.hpp"
 #include "luascript.h"
+#include "map.h"
 #include "monster.h"
 #include "pugicast.h"
 #include "tools.h"
 
+#include <charconv>
 #include <fmt/format.h>
 #include <fstream>
-#include <charconv>
 
 #if LUA_VERSION_NUM >= 502
 #undef lua_strlen
@@ -172,7 +173,6 @@ TextColor_t getGlobalTextColor(lua_State* L, const char* identifier, TextColor_t
 	lua_pop(L, 1);
 	return color;
 }
-
 
 float getGlobalFloat(lua_State* L, const char* identifier, const float defaultValue = 0.0f)
 {
@@ -426,8 +426,7 @@ bool ConfigManager::load()
 	booleans[Boolean::ALLOW_AUTO_ATTACK_WITHOUT_EXHAUSTION] =
 	    getGlobalBoolean(L, "allowAutoAttackWithoutExhaustion", true);
 	booleans[Boolean::POTION_CAN_EXHAUST_ITEM] = getGlobalBoolean(L, "exhaustItemAtUsePotion", true);
-	booleans[Boolean::SEPARATE_RING_NECKLACE_EXHAUSTION] =
-	    getGlobalBoolean(L, "separateRingNecklaceExhaustion", true);
+	booleans[Boolean::SEPARATE_RING_NECKLACE_EXHAUSTION] = getGlobalBoolean(L, "separateRingNecklaceExhaustion", true);
 	booleans[Boolean::ACCOUNT_MANAGER] = getGlobalBoolean(L, "accountManager", false);
 	booleans[Boolean::NAMELOCK_MANAGER] = getGlobalBoolean(L, "namelockManager", false);
 	booleans[Boolean::START_CHOOSEVOC] = getGlobalBoolean(L, "newPlayerChooseVoc", false);
@@ -471,8 +470,7 @@ bool ConfigManager::load()
 	booleans[Boolean::FONTICAK_CLIENT_ONLY] = getGlobalBoolean(L, "fonticakClientOnly", false);
 	booleans[Boolean::ASTRA_ITEM_STATE_ENABLED] = getGlobalBoolean(L, "astraItemStateEnabled", false);
 	booleans[Boolean::HIRELING_SYSTEM_ENABLED] = getGlobalBoolean(L, "hirelingSystemEnabled", false);
-	booleans[Boolean::ASTRA_HIRELING_PROTOCOL_ENABLED] =
-	    getGlobalBoolean(L, "astraHirelingProtocolEnabled", false);
+	booleans[Boolean::ASTRA_HIRELING_PROTOCOL_ENABLED] = getGlobalBoolean(L, "astraHirelingProtocolEnabled", false);
 	booleans[Boolean::COLORIZED_LOOT_VALUE] = getGlobalBoolean(L, "enableColorizedLootValue", false);
 	booleans[Boolean::ITEM_TIER_DISPLAY] = getGlobalBoolean(L, "enableItemTierDisplay", false);
 	booleans[Boolean::ITEM_UPGRADE_CLASSIFICATION] = getGlobalBoolean(L, "enableItemUpgradeClassification", false);
@@ -515,11 +513,15 @@ bool ConfigManager::load()
 	booleans[Boolean::CLEAVE_SYSTEM_ENABLED] = getGlobalBoolean(L, "cleavesystem", true);
 	booleans[Boolean::CHARACTER_BAZAAR_ENABLED] = getGlobalBoolean(L, "characterBazaarEnabled", false);
 
-	integers[Integer::CLEAVE_DEFAULT_PERCENT] = std::clamp<int64_t>(getGlobalInteger(L, "cleaveDefaultPercent", 30), 0, 100);
+	integers[Integer::CLEAVE_DEFAULT_PERCENT] =
+	    std::clamp<int64_t>(getGlobalInteger(L, "cleaveDefaultPercent", 30), 0, 100);
 	integers[Integer::CLEAVE_FIST_PERCENT] = std::clamp<int64_t>(getGlobalInteger(L, "cleaveFistPercent", 20), 0, 100);
-	integers[Integer::CHARACTER_BAZAAR_MIN_LEVEL] = std::max<int64_t>(1, getGlobalInteger(L, "characterBazaarMinLevel", 50));
-	integers[Integer::CHARACTER_BAZAAR_MIN_PRICE] = std::max<int64_t>(1, getGlobalInteger(L, "characterBazaarMinPrice", 100));
-	integers[Integer::CHARACTER_BAZAAR_AUCTION_FEE] = std::max<int64_t>(0, getGlobalInteger(L, "characterBazaarAuctionFee", 50));
+	integers[Integer::CHARACTER_BAZAAR_MIN_LEVEL] =
+	    std::max<int64_t>(1, getGlobalInteger(L, "characterBazaarMinLevel", 50));
+	integers[Integer::CHARACTER_BAZAAR_MIN_PRICE] =
+	    std::max<int64_t>(1, getGlobalInteger(L, "characterBazaarMinPrice", 100));
+	integers[Integer::CHARACTER_BAZAAR_AUCTION_FEE] =
+	    std::max<int64_t>(0, getGlobalInteger(L, "characterBazaarAuctionFee", 50));
 	integers[Integer::CHARACTER_BAZAAR_COMMISSION_PERCENT] =
 	    std::clamp<int64_t>(getGlobalInteger(L, "characterBazaarCommissionPercent", 10), 0, 100);
 	integers[Integer::CHARACTER_BAZAAR_MIN_DURATION_HOURS] =
@@ -673,17 +675,20 @@ bool ConfigManager::load()
 	integers[Integer::STRESS_TEST_MIXED_COUNT] = getGlobalInteger(L, "stressTestMixedCount", 10000);
 	integers[Integer::STRESS_TEST_CANCEL_COUNT] = getGlobalInteger(L, "stressTestCancelCount", 10000);
 	integers[Integer::STRESS_TEST_CONCURRENT_PUSH_COUNT] = getGlobalInteger(L, "stressTestConcurrentPushCount", 10000);
-	integers[Integer::STRESS_TEST_CONCURRENT_SCHEDULE_COUNT] = getGlobalInteger(L, "stressTestConcurrentScheduleCount", 10000);
+	integers[Integer::STRESS_TEST_CONCURRENT_SCHEDULE_COUNT] =
+	    getGlobalInteger(L, "stressTestConcurrentScheduleCount", 10000);
 	integers[Integer::STRESS_TEST_HEAP_ORDER_COUNT] = getGlobalInteger(L, "stressTestHeapOrderCount", 5000);
 	integers[Integer::STRESS_TEST_UNIQUE_IDS_COUNT] = getGlobalInteger(L, "stressTestUniqueIdsCount", 10000);
 	integers[Integer::STRESS_TEST_MOVE_ONLY_COUNT] = getGlobalInteger(L, "stressTestMoveOnlyCount", 1000);
 	integers[Integer::STRESS_TEST_EXPIRATION_COUNT] = getGlobalInteger(L, "stressTestExpirationCount", 10000);
 	integers[Integer::STRESS_TEST_BURST_COUNT] = getGlobalInteger(L, "stressTestBurstCount", 10000);
 	integers[Integer::STRESS_TEST_CONCURRENT_PUSH_THREADS] = getGlobalInteger(L, "stressTestConcurrentPushThreads", 8);
-	integers[Integer::STRESS_TEST_CONCURRENT_SCHEDULE_THREADS] = getGlobalInteger(L, "stressTestConcurrentScheduleThreads", 8);
+	integers[Integer::STRESS_TEST_CONCURRENT_SCHEDULE_THREADS] =
+	    getGlobalInteger(L, "stressTestConcurrentScheduleThreads", 8);
 	integers[Integer::STRESS_TEST_UNIQUE_IDS_THREADS] = getGlobalInteger(L, "stressTestUniqueIdsThreads", 8);
 	integers[Integer::STRESS_TEST_REENTRANCY_COUNT] = getGlobalInteger(L, "stressTestReentrancyCount", 1000);
-	integers[Integer::STRESS_TEST_SHUTDOWN_PENDING_COUNT] = getGlobalInteger(L, "stressTestShutdownPendingCount", 10000);
+	integers[Integer::STRESS_TEST_SHUTDOWN_PENDING_COUNT] =
+	    getGlobalInteger(L, "stressTestShutdownPendingCount", 10000);
 	integers[Integer::STRESS_TEST_CANCEL_EXTERNAL_COUNT] = getGlobalInteger(L, "stressTestCancelExternalCount", 10000);
 	integers[Integer::STRESS_TEST_CANCEL_EXTERNAL_THREADS] = getGlobalInteger(L, "stressTestCancelExternalThreads", 8);
 	integers[Integer::STRESS_TEST_EXCEPTION_COUNT] = getGlobalInteger(L, "stressTestExceptionCount", 10000);
@@ -700,9 +705,8 @@ bool ConfigManager::load()
 	floats[COMBAT_CHAIN_SKILL_FORMULA_WANDS_AND_RODS] = getGlobalFloat(L, "combatChainSkillFormulaWandsAndRods", 1.0f);
 	floats[POWER_LAW_EXPONENT] = getGlobalFloat(L, "powerLawExponent", 0.3f);
 	if (floats[POWER_LAW_EXPONENT] <= 0.0f) {
-		LOG_WARN(fmt::format(
-		    "[Warning - ConfigManager::load] powerLawExponent ({}) is <= 0, using default 0.3f",
-		    floats[POWER_LAW_EXPONENT]));
+		LOG_WARN(fmt::format("[Warning - ConfigManager::load] powerLawExponent ({}) is <= 0, using default 0.3f",
+		                     floats[POWER_LAW_EXPONENT]));
 		floats[POWER_LAW_EXPONENT] = 0.3f;
 	}
 
@@ -718,7 +722,8 @@ bool ConfigManager::load()
 	integers[Integer::MAX_ALLOWED_ON_A_DUMMY] = getGlobalInteger(L, "maxAllowedOnADummy", 5);
 	integers[Integer::RATE_EXERCISE_TRAINING_SPEED] = getGlobalInteger(L, "rateExerciseTrainingSpeed", 1.0);
 	integers[Integer::OFFLINE_TRAINING_THRESHOLD] = getGlobalInteger(L, "offlineTrainingThreshold", 600);
-	integers[Integer::BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN] = getGlobalInteger(L, "bossDefaultTimeToFightAgain", 20 * 60 * 60);
+	integers[Integer::BOSS_DEFAULT_TIME_TO_FIGHT_AGAIN] =
+	    getGlobalInteger(L, "bossDefaultTimeToFightAgain", 20 * 60 * 60);
 	integers[Integer::BOSS_DEFAULT_TIME_TO_DEFEAT] = getGlobalInteger(L, "bossDefaultTimeToDefeat", 10 * 60);
 
 	integers[Integer::STATS_DUMP_INTERVAL] = getGlobalInteger(L, "statsDumpInterval", 30);
@@ -780,13 +785,44 @@ bool ConfigManager::load()
 	integers[Integer::CONNECTION_RATE_LIMIT_MS] = getGlobalInteger(L, "connectionRateLimitMS", 500);
 
 	// Reactor Limits
-	integers[Integer::REACTOR_MAX_TASKS_PER_CYCLE] =
-	    std::clamp<int64_t>(getGlobalInteger(L, "reactorMaxTasksPerCycle", 1000),
-	                        0, std::numeric_limits<uint32_t>::max());
+	integers[Integer::REACTOR_MAX_TASKS_PER_CYCLE] = std::clamp<int64_t>(
+	    getGlobalInteger(L, "reactorMaxTasksPerCycle", 1000), 0, std::numeric_limits<uint32_t>::max());
 	integers[Integer::REACTOR_TIME_BUDGET_MS] =
 	    std::clamp<int64_t>(getGlobalInteger(L, "reactorTimeBudgetMS", 25), 0, 1000);
 	integers[Integer::REACTOR_MAX_INBOX_SIZE] =
 	    std::clamp<int64_t>(getGlobalInteger(L, "reactorMaxInboxSize", 200000), 1, 10'000'000);
+
+	// ---------------------------------------------------------------------------
+	// Viewport (in tiles) - loaded from config.lua to allow adjusting the visible
+	// map size without recompiling. Defaults match the classic 8.6 protocol.
+	//   clientViewportX/Y : half-size of the map sent to the client.
+	//                        Full map size = (clientViewport*2) + 2 tiles per axis
+	//                        (classic 18x14 with defaults 8/6).
+	//   viewportX/Y       : internal range used for combat/creature/spectator logic.
+	//                        Must always be >= clientViewport* + 1.
+	// ---------------------------------------------------------------------------
+	{
+		const int64_t minClientX = 4, minClientY = 4;
+		// Cap the full map to 32x22 tiles (matches the OTCv8 non-classic range).
+		// Full map = (clientViewport*2)+2, so 15 -> 32 and 10 -> 22.
+		const int64_t maxClientX = 15, maxClientY = 10;
+
+		int64_t clientX = std::clamp<int64_t>(getGlobalInteger(L, "clientViewportX", 8), minClientX, maxClientX);
+		int64_t clientY = std::clamp<int64_t>(getGlobalInteger(L, "clientViewportY", 6), minClientY, maxClientY);
+
+		// Sanity: viewport must be >= clientViewport + 1
+		int64_t vpX = std::clamp<int64_t>(getGlobalInteger(L, "viewportX", clientX + 1), clientX + 1, maxClientX + 1);
+		int64_t vpY = std::clamp<int64_t>(getGlobalInteger(L, "viewportY", clientY + 1), clientY + 1, maxClientY + 1);
+
+		Map::maxClientViewportX = static_cast<int32_t>(clientX);
+		Map::maxClientViewportY = static_cast<int32_t>(clientY);
+		Map::maxViewportX = static_cast<int32_t>(std::max<int64_t>(vpX, clientX + 1));
+		Map::maxViewportY = static_cast<int32_t>(std::max<int64_t>(vpY, clientY + 1));
+
+		LOG_INFO(fmt::format("[ConfigManager] Viewport set to client {0}x{1} (full {2}x{3} tiles), internal {4}x{5}",
+		                     Map::maxClientViewportX, Map::maxClientViewportY, (Map::maxClientViewportX * 2) + 2,
+		                     (Map::maxClientViewportY * 2) + 2, Map::maxViewportX, Map::maxViewportY));
+	}
 
 	loaded = true;
 	// ownedL destructor calls lua_close via LuaStateDeleter

@@ -14,8 +14,10 @@
 
 class Creature;
 
-struct PositionHasher {
-	std::size_t operator()(const Position& pos) const {
+struct PositionHasher
+{
+	std::size_t operator()(const Position& pos) const
+	{
 		std::size_t h = 0;
 		hash_combine(h, pos.x);
 		hash_combine(h, pos.y);
@@ -57,8 +59,8 @@ public:
 	AStarNode& GetNode(uint16_t nodeIdx);
 	const AStarNode& GetNode(uint16_t nodeIdx) const;
 
-	static int_fast32_t GetMapWalkCost(const AStarNode &node, const Position &neighborPos);
-	static int_fast32_t GetTileWalkCost(const Creature &creature, const Tile* tile);
+	static int_fast32_t GetMapWalkCost(const AStarNode& node, const Position& neighborPos);
+	static int_fast32_t GetTileWalkCost(const Creature& creature, const Tile* tile);
 
 private:
 	void SiftUp(uint16_t pos);
@@ -173,7 +175,8 @@ private:
 	friend class QTreeNode;
 };
 
-enum class MapLoadStatus : uint8_t {
+enum class MapLoadStatus : uint8_t
+{
 	SKIPPED,
 	LOADED,
 	FAILED,
@@ -186,11 +189,14 @@ enum class MapLoadStatus : uint8_t {
 class Map
 {
 public:
-	static constexpr int32_t maxViewportX = 11; // min value: maxClientViewportX + 1
-	static constexpr int32_t maxViewportY = 11; // min value: maxClientViewportY + 1
-	static constexpr int32_t maxClientViewportX = 8;
-	static constexpr int32_t maxClientViewportY = 6;
-
+	// Viewport dimensions (in tiles). These are runtime values loaded from config.lua
+	// via ConfigManager::load() (see configmanager.cpp). Defaults match the classic 8.6
+	// protocol (maxClientViewportX=8, maxClientViewportY=6). maxViewport must always be
+	// >= maxClientViewport + 1.
+	static int32_t maxViewportX;
+	static int32_t maxViewportY;
+	static int32_t maxClientViewportX;
+	static int32_t maxClientViewportY;
 
 	uint32_t clean() const;
 
@@ -224,10 +230,7 @@ public:
 
 	void setBasicTile(uint16_t x, uint16_t y, uint8_t z, const BasicTile* basicTile);
 	void setBasicTile(uint16_t x, uint16_t y, uint8_t z, const std::shared_ptr<BasicTile>& basicTile);
-	void setBasicTile(const Position& pos, const BasicTile* basicTile)
-	{
-		setBasicTile(pos.x, pos.y, pos.z, basicTile);
-	}
+	void setBasicTile(const Position& pos, const BasicTile* basicTile) { setBasicTile(pos.x, pos.y, pos.z, basicTile); }
 	void setBasicTile(const Position& pos, const std::shared_ptr<BasicTile>& basicTile)
 	{
 		setBasicTile(pos.x, pos.y, pos.z, basicTile);
@@ -338,7 +341,8 @@ private:
 
 	QTreeLeafNode* getOrCreateLeaf(uint16_t x, uint16_t y);
 	void forEachBasicFloorBlock(
-	    const std::function<void(uint16_t, uint16_t, uint8_t, const std::array<uint32_t, FLOOR_SIZE * FLOOR_SIZE>&)>& visitor) const;
+	    const std::function<void(uint16_t, uint16_t, uint8_t, const std::array<uint32_t, FLOOR_SIZE * FLOOR_SIZE>&)>&
+	        visitor) const;
 	void setBasicFloorBlock(uint16_t baseX, uint16_t baseY, uint8_t z,
 	                        const std::array<uint32_t, FLOOR_SIZE * FLOOR_SIZE>& ids);
 

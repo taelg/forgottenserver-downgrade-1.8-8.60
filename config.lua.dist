@@ -309,6 +309,23 @@ mapCacheMode = "auto" -- "auto" or "off"
 mapCacheDirectory = "data/cache/maps"
 mapAuthor = "Skyyzyy"
 
+-- Viewport (in tiles) - size of the map area sent to clients.
+-- Adjust these to change the visible area WITHOUT recompiling.
+--
+-- clientViewportX / clientViewportY : half-size of the map sent to the client.
+--      Full map size = (clientViewport*2) + 2 tiles per axis.
+--      Classic 8.6 = 8 / 6  -> 18 x 14 tiles
+--      Suggested safe  = 10 / 8 -> 22 x 18 tiles
+-- viewportX / viewportY : internal range for combat/creature/spectator logic.
+--      Must ALWAYS be >= clientViewport + 1. If unset, defaults to clientViewport + 1.
+--
+-- NOTE: The full map size is sent for up to 5 floors at once, so costs grow
+-- roughly with the square of these values (bandwidth + CPU).
+clientViewportX = 8
+clientViewportY = 6
+--viewportX = 9
+--viewportY = 7
+
 -- Market
 marketOfferDuration = 30 * 24 * 60 * 60
 premiumToCreateMarketOffer = true

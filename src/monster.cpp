@@ -10,8 +10,8 @@
 #include "game.h"
 #include "iologindata.h"
 #include "logger.h"
-#include "player.h"
 #include "performance_metrics.h"
+#include "player.h"
 #include "scriptmanager.h"
 #include "spells.h"
 
@@ -53,76 +53,81 @@ std::unique_ptr<Monster> Monster::createMonster(const std::string& name)
 }
 
 namespace monster_level {
-	struct Config {
-		float bonusDmg = 0.0f;
-		float bonusSpeed = 0.0f;
-		float bonusHP = 0.0f;
-		struct SkullRange { int32_t min = 0; int32_t max = 0; };
-		SkullRange whiteRange = {1, 99};
-		SkullRange redRange = {100, 499};
-		SkullRange blackRange = {500, 2000};
+struct Config
+{
+	float bonusDmg = 0.0f;
+	float bonusSpeed = 0.0f;
+	float bonusHP = 0.0f;
+	struct SkullRange
+	{
+		int32_t min = 0;
+		int32_t max = 0;
 	};
+	SkullRange whiteRange = {1, 99};
+	SkullRange redRange = {100, 499};
+	SkullRange blackRange = {500, 2000};
+};
 
-	static Config config;
+static Config config;
 
-	Skulls_t getSkullByLevel(int32_t lvl)
-	{
-		if (lvl >= config.whiteRange.min && lvl <= config.whiteRange.max) {
-			return SKULL_WHITE;
-		}
-		if (lvl >= config.redRange.min && lvl <= config.redRange.max) {
-			return SKULL_RED;
-		}
-		if (lvl >= config.blackRange.min && lvl <= config.blackRange.max) {
-			return SKULL_BLACK;
-		}
-		return SKULL_NONE;
+Skulls_t getSkullByLevel(int32_t lvl)
+{
+	if (lvl >= config.whiteRange.min && lvl <= config.whiteRange.max) {
+		return SKULL_WHITE;
 	}
-
-	bool setSkullRange(Skulls_t skull, int32_t minLevel, int32_t maxLevel)
-	{
-		if (minLevel > maxLevel) {
-			return false;
-		}
-
-		switch (skull) {
-			case SKULL_WHITE:
-				config.whiteRange = {minLevel, maxLevel};
-				return true;
-			case SKULL_RED:
-				config.redRange = {minLevel, maxLevel};
-				return true;
-			case SKULL_BLACK:
-				config.blackRange = {minLevel, maxLevel};
-				return true;
-			default:
-				return false;
-		}
+	if (lvl >= config.redRange.min && lvl <= config.redRange.max) {
+		return SKULL_RED;
 	}
+	if (lvl >= config.blackRange.min && lvl <= config.blackRange.max) {
+		return SKULL_BLACK;
+	}
+	return SKULL_NONE;
+}
 
-	bool setBonus(const std::string& type, float value)
-	{
-		if (!std::isfinite(value)) {
-			return false;
-		}
-
-		if (type == "damage") {
-			config.bonusDmg = value;
-			return true;
-		} else if (type == "speed") {
-			config.bonusSpeed = value;
-			return true;
-		} else if (type == "health") {
-			config.bonusHP = value;
-			return true;
-		}
+bool setSkullRange(Skulls_t skull, int32_t minLevel, int32_t maxLevel)
+{
+	if (minLevel > maxLevel) {
 		return false;
 	}
 
-	float getBonusDamage() { return config.bonusDmg; }
-	float getBonusSpeed() { return config.bonusSpeed; }
-	float getBonusHealth() { return config.bonusHP; }
+	switch (skull) {
+		case SKULL_WHITE:
+			config.whiteRange = {minLevel, maxLevel};
+			return true;
+		case SKULL_RED:
+			config.redRange = {minLevel, maxLevel};
+			return true;
+		case SKULL_BLACK:
+			config.blackRange = {minLevel, maxLevel};
+			return true;
+		default:
+			return false;
+	}
 }
+
+bool setBonus(const std::string& type, float value)
+{
+	if (!std::isfinite(value)) {
+		return false;
+	}
+
+	if (type == "damage") {
+		config.bonusDmg = value;
+		return true;
+	} else if (type == "speed") {
+		config.bonusSpeed = value;
+		return true;
+	} else if (type == "health") {
+		config.bonusHP = value;
+		return true;
+	}
+	return false;
+}
+
+float getBonusDamage() { return config.bonusDmg; }
+float getBonusSpeed() { return config.bonusSpeed; }
+float getBonusHealth() { return config.bonusHP; }
+} // namespace monster_level
 
 Skulls_t Monster::getSkull() const
 {
@@ -161,7 +166,8 @@ void Monster::setFiendish(bool v)
 	g_game.updateCreatureSkull(this);
 }
 
-Monster::Monster(const std::shared_ptr<MonsterType>& mType) : Creature(), nameDescription(mType->nameDescription), mType(mType)
+Monster::Monster(const std::shared_ptr<MonsterType>& mType) :
+    Creature(), nameDescription(mType->nameDescription), mType(mType)
 {
 	defaultOutfit = mType->info.outfit;
 	currentOutfit = mType->info.outfit;
@@ -182,9 +188,9 @@ Monster::Monster(const std::shared_ptr<MonsterType>& mType) : Creature(), nameDe
 
 		float bonusHP = monster_level::getBonusHealth();
 		if (bonusHP != 0.0f) {
-			const int64_t newHealthMax = static_cast<int64_t>(healthMax) +
-			                             static_cast<int64_t>(
-			                                 std::round(static_cast<double>(healthMax) * bonusHP * level));
+			const int64_t newHealthMax =
+			    static_cast<int64_t>(healthMax) +
+			    static_cast<int64_t>(std::round(static_cast<double>(healthMax) * bonusHP * level));
 			healthMax = static_cast<int32_t>(std::clamp(newHealthMax, static_cast<int64_t>(1),
 			                                            static_cast<int64_t>(std::numeric_limits<int32_t>::max())));
 			health = healthMax;
@@ -192,9 +198,9 @@ Monster::Monster(const std::shared_ptr<MonsterType>& mType) : Creature(), nameDe
 
 		float bonusSpeed = monster_level::getBonusSpeed();
 		if (bonusSpeed != 0.0f) {
-			const int64_t newSpeed = static_cast<int64_t>(baseSpeed) +
-			                         static_cast<int64_t>(
-			                             std::round(static_cast<double>(baseSpeed) * bonusSpeed * level));
+			const int64_t newSpeed =
+			    static_cast<int64_t>(baseSpeed) +
+			    static_cast<int64_t>(std::round(static_cast<double>(baseSpeed) * bonusSpeed * level));
 			baseSpeed = static_cast<uint32_t>(std::clamp(newSpeed, static_cast<int64_t>(0),
 			                                             static_cast<int64_t>(std::numeric_limits<uint32_t>::max())));
 		}
@@ -626,8 +632,8 @@ bool Monster::isValidKnownFriend(const std::shared_ptr<Creature>& creature) cons
 
 bool Monster::isValidKnownTarget(const std::shared_ptr<Creature>& creature) const
 {
-	if (!creature || creature->isRemoved() || creature->isDead() || !creature->isAttackable() ||
-	    !creature->getTile() || !canSee(creature->getPosition()) || !canSeeCreature(creature.get()) ||
+	if (!creature || creature->isRemoved() || creature->isDead() || !creature->isAttackable() || !creature->getTile() ||
+	    !canSee(creature->getPosition()) || !canSeeCreature(creature.get()) ||
 	    (!isFamiliar() && creature->getZone() == ZONE_PROTECTION)) {
 		return false;
 	}
@@ -650,23 +656,18 @@ bool Monster::pruneInvalidTargetState()
 	}
 
 	const size_t oldFriendCount = friendList.size();
-	std::erase_if(friendList,
-	              [this](const auto& weakRef) { return !isValidKnownFriend(weakRef.lock()); });
+	std::erase_if(friendList, [this](const auto& weakRef) { return !isValidKnownFriend(weakRef.lock()); });
 	const size_t oldTargetCount = targetList.size();
-	std::erase_if(targetList,
-	              [this](const auto& weakRef) { return !isValidKnownTarget(weakRef.lock()); });
+	std::erase_if(targetList, [this](const auto& weakRef) { return !isValidKnownTarget(weakRef.lock()); });
 	bool changed = friendList.size() != oldFriendCount || targetList.size() != oldTargetCount;
 	if (metricsEnabled) {
-		g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::FriendsPruned,
-		                                       oldFriendCount - friendList.size());
-		g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::TargetsPruned,
-		                                       oldTargetCount - targetList.size());
+		g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::FriendsPruned, oldFriendCount - friendList.size());
+		g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::TargetsPruned, oldTargetCount - targetList.size());
 	}
 
 	const auto isKnownTarget = [this](const Creature* creature) {
-		return std::any_of(targetList.begin(), targetList.end(), [creature](const auto& weakRef) {
-			return weakRef.lock().get() == creature;
-		});
+		return std::any_of(targetList.begin(), targetList.end(),
+		                   [creature](const auto& weakRef) { return weakRef.lock().get() == creature; });
 	};
 
 	if (auto attacked = attackedCreature.lock()) {
@@ -683,7 +684,8 @@ bool Monster::pruneInvalidTargetState()
 
 	if (auto follow = followCreature.lock()) {
 		auto master = getMaster();
-		const bool followsLiveMaster = isSummon() && master && follow == master && !master->isRemoved() && !master->isDead();
+		const bool followsLiveMaster =
+		    isSummon() && master && follow == master && !master->isRemoved() && !master->isDead();
 		if (!followsLiveMaster && (!isKnownTarget(follow.get()) || !isValidKnownTarget(follow))) {
 			setFollowCreature(nullptr);
 			changed = true;
@@ -722,13 +724,13 @@ void Monster::updateTargetListAfterMovement(const Position& oldPosition, const P
 	const size_t friendCount = friendList.size();
 	SpectatorVec spectators;
 
-	constexpr int32_t viewRangeX = Map::maxClientViewportX + 1;
-	constexpr int32_t viewRangeY = Map::maxClientViewportY + 1;
+	const int32_t viewRangeX = Map::maxClientViewportX + 1;
+	const int32_t viewRangeY = Map::maxClientViewportY + 1;
 	const auto shiftedPosition = [&newPosition](int32_t offsetX, int32_t offsetY) {
-		const int32_t x = std::clamp<int32_t>(static_cast<int32_t>(newPosition.x) + offsetX, 0,
-		                                      std::numeric_limits<uint16_t>::max());
-		const int32_t y = std::clamp<int32_t>(static_cast<int32_t>(newPosition.y) + offsetY, 0,
-		                                      std::numeric_limits<uint16_t>::max());
+		const int32_t x =
+		    std::clamp<int32_t>(static_cast<int32_t>(newPosition.x) + offsetX, 0, std::numeric_limits<uint16_t>::max());
+		const int32_t y =
+		    std::clamp<int32_t>(static_cast<int32_t>(newPosition.y) + offsetY, 0, std::numeric_limits<uint16_t>::max());
 		return Position{static_cast<uint16_t>(x), static_cast<uint16_t>(y), newPosition.z};
 	};
 	const auto addEdgeSpectators = [&spectators](const Position& center, int32_t rangeX, int32_t rangeY) {
@@ -764,15 +766,9 @@ void Monster::updateTargetListAfterMovement(const Position& oldPosition, const P
 	}
 }
 
-void Monster::clearTargetList()
-{
-	targetList.clear();
-}
+void Monster::clearTargetList() { targetList.clear(); }
 
-void Monster::clearFriendList()
-{
-	friendList.clear();
-}
+void Monster::clearFriendList() { friendList.clear(); }
 
 void Monster::onCreatureFound(Creature* creature, bool pushFront /* = false*/, bool refreshIdle /* = true*/)
 {
@@ -824,7 +820,6 @@ void Monster::onCreatureEnter(Creature* creature)
 		onCreatureFound(creature, true);
 	}
 }
-
 
 bool Monster::hasPlayerNearby(int32_t range /* = 20*/) const
 {
@@ -1013,10 +1008,7 @@ bool Monster::isOpponent(const Creature* creature) const
 	return canAttackByFaction(creature);
 }
 
-bool Monster::isFamiliar() const
-{
-	return isSummon() && getEmblem() == GUILDEMBLEM_ALLY;
-}
+bool Monster::isFamiliar() const { return isSummon() && getEmblem() == GUILDEMBLEM_ALLY; }
 
 void Monster::onCreatureLeave(Creature* creature)
 {
@@ -1280,7 +1272,8 @@ bool Monster::searchTarget(TargetSearchType_t searchType /*= TARGETSEARCH_DEFAUL
 			}
 
 			auto follow = followCreature.lock();
-			if (follow.get() != target.get() && isTarget(target.get()) && isPlayerTarget(target) && selectTarget(target.get())) {
+			if (follow.get() != target.get() && isTarget(target.get()) && isPlayerTarget(target) &&
+			    selectTarget(target.get())) {
 				return true;
 			}
 		}
@@ -1341,9 +1334,8 @@ bool Monster::selectBlockerTarget()
 void Monster::onFollowCreatureComplete(const Creature* creature)
 {
 	if (creature) {
-		auto it = std::find_if(targetList.begin(), targetList.end(), [creature](const auto& weakRef) {
-			return weakRef.lock().get() == creature;
-		});
+		auto it = std::find_if(targetList.begin(), targetList.end(),
+		                       [creature](const auto& weakRef) { return weakRef.lock().get() == creature; });
 		if (it != targetList.end()) {
 			auto weakRef = std::move(*it);
 			targetList.erase(it);
@@ -1376,16 +1368,14 @@ int32_t Monster::getHealingCombatValue(CombatType_t combatType) const
 	return it->second;
 }
 
-uint16_t Monster::getCriticalChance() const
-{
-	return mType->info.critChance;
-}
+uint16_t Monster::getCriticalChance() const { return mType->info.critChance; }
 
 BlockType_t Monster::blockHit(const std::shared_ptr<Creature>& attacker, CombatType_t combatType, int32_t& damage,
                               bool checkDefense /* = false*/, bool checkArmor /* = false*/, bool field /* = false */,
                               bool ignoreResistances /* = false */, CombatOrigin origin /* = ORIGIN_NONE */)
 {
-	BlockType_t blockType = Creature::blockHit(attacker, combatType, damage, checkDefense, checkArmor, field, ignoreResistances, origin);
+	BlockType_t blockType =
+	    Creature::blockHit(attacker, combatType, damage, checkDefense, checkArmor, field, ignoreResistances, origin);
 
 	if (damage != 0) {
 		int32_t elementMod = 0;
@@ -1484,7 +1474,7 @@ bool Monster::selectTarget(Creature* creature)
 	}
 
 	auto it = std::find_if(targetList.begin(), targetList.end(),
-		[creature](const std::weak_ptr<Creature>& w) { return w.lock().get() == creature; });
+	                       [creature](const std::weak_ptr<Creature>& w) { return w.lock().get() == creature; });
 	if (it == targetList.end()) {
 		// Target not found in our target list.
 		return false;
@@ -1540,8 +1530,7 @@ bool Monster::shouldBeIdle() const
 		return false;
 	}
 
-	return std::ranges::none_of(conditions,
-	                            [](const auto& condition) { return condition->isAggressive(); });
+	return std::ranges::none_of(conditions, [](const auto& condition) { return condition->isAggressive(); });
 }
 
 void Monster::updateIdleStatus()
@@ -1550,7 +1539,7 @@ void Monster::updateIdleStatus()
 	if (g_performanceMetrics.isEnabled()) {
 		g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::RefreshCalls);
 		g_performanceMetrics.recordMonsterIdle(idle ? MonsterIdleMetric::DecisionTrue
-		                                                : MonsterIdleMetric::DecisionFalse);
+		                                            : MonsterIdleMetric::DecisionFalse);
 
 		if (!idle) {
 			if (isSummon()) {
@@ -1562,9 +1551,9 @@ void Monster::updateIdleStatus()
 					return target && isFactionCombatTarget(target.get());
 				});
 				g_performanceMetrics.recordMonsterIdle(factionTarget ? MonsterIdleMetric::BlockedByFaction
-				                                                        : MonsterIdleMetric::BlockedByTarget);
+				                                                     : MonsterIdleMetric::BlockedByTarget);
 				g_performanceMetrics.recordMonsterActiveReason(factionTarget ? MonsterActiveReason::FactionTarget
-				                                                               : MonsterActiveReason::TargetList);
+				                                                             : MonsterActiveReason::TargetList);
 			} else {
 				g_performanceMetrics.recordMonsterIdle(MonsterIdleMetric::BlockedByCondition);
 				g_performanceMetrics.recordMonsterActiveReason(MonsterActiveReason::AggressiveCondition);
@@ -1584,10 +1573,7 @@ void Monster::updateIdleStatus()
 	setIdle(idle);
 }
 
-void Monster::onAddCondition(ConditionType_t)
-{
-	updateIdleStatus();
-}
+void Monster::onAddCondition(ConditionType_t) { updateIdleStatus(); }
 
 void Monster::onEndCondition(ConditionType_t type)
 {
@@ -1815,7 +1801,8 @@ void Monster::doAttacking(uint32_t interval)
 
 				// Check after cast — this is the only place state can actually change
 				auto currentTarget = attackedCreature.lock();
-				if (isRemoved() || isDead() || !currentTarget || currentTarget->isRemoved() || currentTarget->isDead()) {
+				if (isRemoved() || isDead() || !currentTarget || currentTarget->isRemoved() ||
+				    currentTarget->isDead()) {
 					attackedCreature.reset();
 					return;
 				}
@@ -1938,7 +1925,8 @@ void Monster::onThinkTarget(uint32_t interval)
 
 					if (mType->info.changeTargetChance >= uniform_random(1, 100)) {
 						const targetStrategies_t& strategies = mType->info.targetStrategies;
-						uint32_t totalWeight = strategies.nearest + strategies.health + strategies.damage + strategies.random;
+						uint32_t totalWeight =
+						    strategies.nearest + strategies.health + strategies.damage + strategies.random;
 						if (totalWeight > 0) {
 							uint32_t roll = uniform_random(1, totalWeight);
 							uint32_t currentWeight = 0;
@@ -2175,7 +2163,8 @@ void Monster::pushItems(Tile* tile)
 					if (g_game.internalRemoveItem(item) != RETURNVALUE_NOERROR) {
 						continue;
 					}
-					if (std::find(effectInstances.begin(), effectInstances.end(), itemInstanceId) == effectInstances.end()) {
+					if (std::find(effectInstances.begin(), effectInstances.end(), itemInstanceId) ==
+					    effectInstances.end()) {
 						effectInstances.push_back(itemInstanceId);
 					}
 					++removeCount;
@@ -2225,7 +2214,8 @@ void Monster::pushCreatures(Tile* tile)
 				monster->changeHealth(-monster->getHealth());
 				monster->setDropLoot(false);
 				uint32_t monsterInstanceId = monster->getInstanceID();
-				if (std::find(effectInstances.begin(), effectInstances.end(), monsterInstanceId) == effectInstances.end()) {
+				if (std::find(effectInstances.begin(), effectInstances.end(), monsterInstanceId) ==
+				    effectInstances.end()) {
 					effectInstances.push_back(monsterInstanceId);
 				}
 				removeCount++;
@@ -2347,8 +2337,8 @@ bool Monster::getDanceStep(const Position& creaturePos, Direction& direction, bo
 			bool result = true;
 
 			if (keepAttack) {
-				result =
-				    (!canDoAttackNow || canUseAttack(Position(creaturePos.x, creaturePos.y - 1, creaturePos.z), attacked.get()));
+				result = (!canDoAttackNow ||
+				          canUseAttack(Position(creaturePos.x, creaturePos.y - 1, creaturePos.z), attacked.get()));
 			}
 
 			if (result) {
@@ -2363,8 +2353,8 @@ bool Monster::getDanceStep(const Position& creaturePos, Direction& direction, bo
 			bool result = true;
 
 			if (keepAttack) {
-				result =
-				    (!canDoAttackNow || canUseAttack(Position(creaturePos.x, creaturePos.y + 1, creaturePos.z), attacked.get()));
+				result = (!canDoAttackNow ||
+				          canUseAttack(Position(creaturePos.x, creaturePos.y + 1, creaturePos.z), attacked.get()));
 			}
 
 			if (result) {
@@ -2379,8 +2369,8 @@ bool Monster::getDanceStep(const Position& creaturePos, Direction& direction, bo
 			bool result = true;
 
 			if (keepAttack) {
-				result =
-				    (!canDoAttackNow || canUseAttack(Position(creaturePos.x + 1, creaturePos.y, creaturePos.z), attacked.get()));
+				result = (!canDoAttackNow ||
+				          canUseAttack(Position(creaturePos.x + 1, creaturePos.y, creaturePos.z), attacked.get()));
 			}
 
 			if (result) {
@@ -2395,8 +2385,8 @@ bool Monster::getDanceStep(const Position& creaturePos, Direction& direction, bo
 			bool result = true;
 
 			if (keepAttack) {
-				result =
-				    (!canDoAttackNow || canUseAttack(Position(creaturePos.x - 1, creaturePos.y, creaturePos.z), attacked.get()));
+				result = (!canDoAttackNow ||
+				          canUseAttack(Position(creaturePos.x - 1, creaturePos.y, creaturePos.z), attacked.get()));
 			}
 
 			if (result) {
@@ -2743,8 +2733,7 @@ void Monster::death(Creature*)
 				contrubutionScore += healingDone;
 			}
 			const double lootRate = reward_boss::calculateLootRate(
-			    contrubutionScore, totalScore, contributors,
-			    ConfigManager::getFloat(ConfigManager::REWARD_BASE_RATE));
+			    contrubutionScore, totalScore, contributors, ConfigManager::getFloat(ConfigManager::REWARD_BASE_RATE));
 			auto player = g_game.getPlayerByGUID(playerId);
 			auto rewardItem = Item::CreateItem(ITEM_REWARD_CONTAINER);
 			if (!rewardItem) {
@@ -2757,7 +2746,7 @@ void Monster::death(Creature*)
 			rewardContainer->setIntAttr(ITEM_ATTRIBUTE_DATE, currentTime);
 			rewardContainer->setIntAttr(ITEM_ATTRIBUTE_REWARDID, getMonster()->getID());
 			bool hasLoot = false;
-			
+
 			std::unordered_map<uint16_t, uint32_t> stackableCounts;
 			std::vector<std::shared_ptr<Item>> pendingItems;
 

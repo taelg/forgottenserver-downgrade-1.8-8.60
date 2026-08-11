@@ -3,25 +3,26 @@
 
 #include "otpch.h"
 
+#include "protocolgame.h"
+
 #include "actions.h"
 #include "astraclient.h"
-#include "fonticakclient.h"
 #include "ban.h"
 #include "character_bazaar.h"
 #include "configmanager.h"
 #include "creatureevent.h"
+#include "familiar.h"
+#include "fonticakclient.h"
 #include "game.h"
-#include "iologindata.h"
-#include "save_manager.h"
+#include "imbuement.h"
 #include "instance_utils.h"
+#include "iologindata.h"
+#include "logger.h"
 #include "monster.h"
 #include "monsters.h"
 #include "outputmessage.h"
 #include "player.h"
-#include "protocolgame.h"
-#include "imbuement.h"
-#include "familiar.h"
-#include "logger.h"
+#include "save_manager.h"
 #include "scheduler.h"
 #include "scriptmanager.h"
 #include "spells.h"
@@ -45,9 +46,7 @@ namespace {
 // 0x3C is reserved for native ZoneId weather on negotiated custom clients.
 constexpr uint8_t ZONE_WEATHER_OPCODE = 0x3C;
 constexpr uint8_t ZONE_WEATHER_PACKET_VERSION = 1;
-constexpr std::array<uint8_t, 8> DLL_WEATHER_SERVER_MAGIC = {
-	0xD7, 0x2B, 0x91, 0x4E, 0xC3, 0x68, 0xAF, 0x15
-};
+constexpr std::array<uint8_t, 8> DLL_WEATHER_SERVER_MAGIC = {0xD7, 0x2B, 0x91, 0x4E, 0xC3, 0x68, 0xAF, 0x15};
 constexpr uint8_t DLL_WEATHER_PROTOCOL_VERSION = 2;
 constexpr uint32_t DLL_WEATHER_BUILD_ID = 20260719;
 constexpr uint32_t DLL_WEATHER_LOGIN_MAGIC = 0x4C44575A; // "ZWDL"
@@ -157,7 +156,8 @@ StoreOutfitOfferMap loadStoreOutfitOffers()
 			}
 
 			const auto addons = static_cast<uint8_t>(addonValue);
-			const auto maleLookType = static_cast<uint16_t>(offerNode.attribute("value").as_uint(offerNode.attribute("eid").as_uint()));
+			const auto maleLookType =
+			    static_cast<uint16_t>(offerNode.attribute("value").as_uint(offerNode.attribute("eid").as_uint()));
 			const auto femaleLookType = static_cast<uint16_t>(offerNode.attribute("femalevalue").as_uint());
 
 			addLookType(maleLookType, offerId, addons);
@@ -342,8 +342,7 @@ bool hasHirelingOutfitMarker(const uint8_t* payload)
 
 bool isHirelingOutfitRequestPacket(const NetworkMessage& msg, bool isAstraClient)
 {
-	if (!canUseAstraHirelingProtocol(isAstraClient) ||
-	    getUnreadBytes(msg) != HIRELING_OUTFIT_REQUEST_SIZE) {
+	if (!canUseAstraHirelingProtocol(isAstraClient) || getUnreadBytes(msg) != HIRELING_OUTFIT_REQUEST_SIZE) {
 		return false;
 	}
 
@@ -353,8 +352,7 @@ bool isHirelingOutfitRequestPacket(const NetworkMessage& msg, bool isAstraClient
 
 bool isHirelingOutfitChangePacket(const NetworkMessage& msg, bool isAstraClient)
 {
-	if (!canUseAstraHirelingProtocol(isAstraClient) ||
-	    getUnreadBytes(msg) != HIRELING_OUTFIT_CHANGE_SIZE) {
+	if (!canUseAstraHirelingProtocol(isAstraClient) || getUnreadBytes(msg) != HIRELING_OUTFIT_CHANGE_SIZE) {
 		return false;
 	}
 
@@ -524,9 +522,11 @@ void ProtocolGame::sendBlessingWindow()
 	bool usingAol = amulet && amulet->getID() == ITEM_AMULETOFLOSS;
 
 	if (hasSkull) {
-		msg.addByte(100); msg.addByte(100);
+		msg.addByte(100);
+		msg.addByte(100);
 	} else if (usingAol) {
-		msg.addByte(0); msg.addByte(0);
+		msg.addByte(0);
+		msg.addByte(0);
 	} else {
 		msg.addByte(static_cast<uint8_t>(player->getEquipmentLossPercent(true)));
 		msg.addByte(static_cast<uint8_t>(player->getEquipmentLossPercent(false)));
@@ -594,10 +594,7 @@ bool ProtocolGame::shouldSendQuickLootFlags() const
 	return isAstraClient && getBoolean(ConfigManager::QUICK_LOOT_ENABLED);
 }
 
-bool ProtocolGame::shouldSendContainerPagination() const
-{
-	return isOTCv8 || isAstraClient || isMehah;
-}
+bool ProtocolGame::shouldSendContainerPagination() const { return isOTCv8 || isAstraClient || isMehah; }
 
 bool ProtocolGame::shouldPaginateContainer(const Container* container) const
 {
@@ -619,10 +616,7 @@ bool ProtocolGame::canSendAstraItemState() const
 	return ownerProtocol.get() == this;
 }
 
-bool ProtocolGame::shouldSendAstraQuiverCountU16() const
-{
-	return isAstraClient;
-}
+bool ProtocolGame::shouldSendAstraQuiverCountU16() const { return isAstraClient; }
 
 bool ProtocolGame::shouldSendItemTierByte() const
 {
@@ -653,7 +647,8 @@ bool ProtocolGame::shouldSendItemTierData() const
 void ProtocolGame::login(uint32_t characterId, uint32_t accountId, OperatingSystem_t operatingSystem)
 {
 	if (CharacterBazaar::isPlayerOnActiveAuction(characterId)) {
-		disconnectClient("This character is currently listed on the Character Bazaar and cannot enter the game until the auction finishes or is cancelled.");
+		disconnectClient(
+		    "This character is currently listed on the Character Bazaar and cannot enter the game until the auction finishes or is cancelled.");
 		return;
 	}
 
@@ -790,32 +785,33 @@ void ProtocolGame::login(uint32_t characterId, uint32_t accountId, OperatingSyst
 				});
 			});
 
-			g_saveManager.drainPlayerFlushAsync(reservedGuid,
-				[self, reservedGuid, accountId, loginPlayer, operatingSystem, timeoutEventId, completed](bool drained) {
-				g_scheduler.stopEvent(timeoutEventId);
-				if (completed->exchange(true)) {
-					// Timeout already handled this login
-					return;
-				}
+			g_saveManager.drainPlayerFlushAsync(
+			    reservedGuid,
+			    [self, reservedGuid, accountId, loginPlayer, operatingSystem, timeoutEventId, completed](bool drained) {
+				    g_scheduler.stopEvent(timeoutEventId);
+				    if (completed->exchange(true)) {
+					    // Timeout already handled this login
+					    return;
+				    }
 
-				if (!drained) {
-					g_dispatcher.addTask([self, reservedGuid]() {
-						g_game.releaseLogin(reservedGuid);
-						if (self->player) {
-							self->disconnectClient(
-								"Character data is still being saved. Please try again in a few seconds.");
-						}
-					});
-					return;
-				}
+				    if (!drained) {
+					    g_dispatcher.addTask([self, reservedGuid]() {
+						    g_game.releaseLogin(reservedGuid);
+						    if (self->player) {
+							    self->disconnectClient(
+							        "Character data is still being saved. Please try again in a few seconds.");
+						    }
+					    });
+					    return;
+				    }
 
-				g_threadPool.detach_task([self, reservedGuid, accountId, loginPlayer, operatingSystem]() {
-					const bool loaded = IOLoginData::loadPlayerById(loginPlayer.get(), reservedGuid, true);
-					g_dispatcher.addTask([self, reservedGuid, accountId, loaded, operatingSystem]() {
-						self->finishLogin(reservedGuid, accountId, loaded, operatingSystem);
-					});
-				});
-			});
+				    g_threadPool.detach_task([self, reservedGuid, accountId, loginPlayer, operatingSystem]() {
+					    const bool loaded = IOLoginData::loadPlayerById(loginPlayer.get(), reservedGuid, true);
+					    g_dispatcher.addTask([self, reservedGuid, accountId, loaded, operatingSystem]() {
+						    self->finishLogin(reservedGuid, accountId, loaded, operatingSystem);
+					    });
+				    });
+			    });
 		});
 		return;
 	} else {
@@ -827,8 +823,7 @@ void ProtocolGame::login(uint32_t characterId, uint32_t accountId, OperatingSyst
 
 		auto clientRef = foundPlayer->client;
 		if (clientRef && clientRef->protocol()) {
-			clientRef->disconnectClient(
-			    "You are already logged in.\nSomeone is trying to access your account?");
+			clientRef->disconnectClient("You are already logged in.\nSomeone is trying to access your account?");
 			clientRef->disconnect();
 			clientRef->setOwner(nullptr);
 			g_scheduler.addEvent(
@@ -842,7 +837,8 @@ void ProtocolGame::login(uint32_t characterId, uint32_t accountId, OperatingSyst
 	}
 }
 
-void ProtocolGame::finishLogin(uint32_t reservedGuid, uint32_t accountId, bool loaded, OperatingSystem_t operatingSystem)
+void ProtocolGame::finishLogin(uint32_t reservedGuid, uint32_t accountId, bool loaded,
+                               OperatingSystem_t operatingSystem)
 {
 	if (!player || isConnectionExpired()) {
 		g_game.releaseLogin(reservedGuid);
@@ -909,7 +905,7 @@ void ProtocolGame::finishLogin(uint32_t reservedGuid, uint32_t accountId, bool l
 
 void ProtocolGame::spectate(const std::string& name, const std::string& password)
 {
-	//dispatcher thread
+	// dispatcher thread
 	if (isConnectionExpired()) {
 		return;
 	}
@@ -958,7 +954,6 @@ void ProtocolGame::spectate(const std::string& name, const std::string& password
 	player->resetIdleTime();
 	acceptPackets = true;
 	sendWelcomeMessage();
-
 }
 
 void ProtocolGame::connect(uint32_t playerId, OperatingSystem_t operatingSystem)
@@ -1098,10 +1093,8 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 			const uint8_t weatherOpcode = msg.getByte();
 			const uint8_t tagHigh = msg.getByte();
 			const uint8_t tagLow = msg.getByte();
-			supportsDllZoneWeather = magic == DLL_WEATHER_LOGIN_MAGIC &&
-			                         markerVersion == DLL_WEATHER_LOGIN_VERSION &&
-			                         weatherOpcode == ZONE_WEATHER_OPCODE &&
-			                         tagHigh == DLL_WEATHER_LOGIN_TAG_HIGH &&
+			supportsDllZoneWeather = magic == DLL_WEATHER_LOGIN_MAGIC && markerVersion == DLL_WEATHER_LOGIN_VERSION &&
+			                         weatherOpcode == ZONE_WEATHER_OPCODE && tagHigh == DLL_WEATHER_LOGIN_TAG_HIGH &&
 			                         tagLow == DLL_WEATHER_LOGIN_TAG_LOW;
 		}
 
@@ -1138,18 +1131,16 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 					if (msg.getBufferPosition() + sizeof(uint32_t) > msg.getLength()) {
 						break;
 					}
-					isAstraClient =
-					    msg.get<uint32_t>() ==
-					    AstraClient::generateSignature(static_cast<uint16_t>(operatingSystem), version, key,
-					                                   challengeTimestamp, challengeRandom);
+					isAstraClient = msg.get<uint32_t>() ==
+					                AstraClient::generateSignature(static_cast<uint16_t>(operatingSystem), version, key,
+					                                               challengeTimestamp, challengeRandom);
 				} else if (marker == FonticakClient::LOGIN_MARKER) {
 					if (msg.getBufferPosition() + sizeof(uint32_t) > msg.getLength()) {
 						break;
 					}
-					isFonticakClient =
-					    msg.get<uint32_t>() ==
-					    FonticakClient::generateSignature(static_cast<uint16_t>(operatingSystem), version, key,
-					                                   challengeTimestamp, challengeRandom);
+					isFonticakClient = msg.get<uint32_t>() == FonticakClient::generateSignature(
+					                                              static_cast<uint16_t>(operatingSystem), version, key,
+					                                              challengeTimestamp, challengeRandom);
 				} else {
 					break;
 				}
@@ -1205,7 +1196,9 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 	bool cast = false;
 	auto authPair = IOLoginData::gameworldAuthentication(accountName, password, characterName, cast);
 	if (cast) {
-		g_dispatcher.addTask([thisPtr = getThis(), name = std::string(characterName), pass = std::string(password)]() { thisPtr->spectate(name, pass); });
+		g_dispatcher.addTask([thisPtr = getThis(), name = std::string(characterName), pass = std::string(password)]() {
+			thisPtr->spectate(name, pass);
+		});
 		return;
 	}
 	uint32_t accountId = authPair.first;
@@ -1231,7 +1224,8 @@ void ProtocolGame::onRecvFirstMessage(NetworkMessage& msg)
 		return;
 	}
 	if (characterId != 0 && CharacterBazaar::isPlayerOnActiveAuction(characterId)) {
-		disconnectClient("This character is currently listed on the Character Bazaar and cannot enter the game until the auction finishes or is cancelled.");
+		disconnectClient(
+		    "This character is currently listed on the Character Bazaar and cannot enter the game until the auction finishes or is cancelled.");
 		return;
 	}
 
@@ -1379,7 +1373,9 @@ void ProtocolGame::parsePacketOnDispatcher(NetworkMessage_ptr& packet)
 
 	if (isSpectator) {
 		switch (recvbyte) {
-			case 0x14: disconnect(); break;
+			case 0x14:
+				disconnect();
+				break;
 			case 0x1E:
 				if (clientOperatingSystem == CLIENTOS_CUSTOM_DLL) {
 					parseCustomClientPing(msg);
@@ -1411,8 +1407,12 @@ void ProtocolGame::parsePacketOnDispatcher(NetworkMessage_ptr& packet)
 					parseSwitchCast(uint8_t(0));
 				}
 				break;
-			case 0x8C: parseLookAt(msg); break; // Look at tile/item
-			case 0x96: parseSpectatorSay(msg); break;
+			case 0x8C:
+				parseLookAt(msg);
+				break; // Look at tile/item
+			case 0x96:
+				parseSpectatorSay(msg);
+				break;
 			case 0x97:
 				sendCastChannel();
 				break;
@@ -2130,8 +2130,7 @@ void ProtocolGame::parseSetOutfit(NetworkMessage& msg)
 	if (isAstraClient) {
 		const uint16_t requestedFamiliar = msg.get<uint16_t>();
 		const auto familiar = Familiar::getFamiliarInfo(player.get());
-		newOutfit.lookFamiliar =
-		    familiar && requestedFamiliar == familiar->lookType ? requestedFamiliar : 0;
+		newOutfit.lookFamiliar = familiar && requestedFamiliar == familiar->lookType ? requestedFamiliar : 0;
 	}
 	g_game.playerChangeOutfit(player->getID(), newOutfit);
 }
@@ -2241,8 +2240,8 @@ void ProtocolGame::parseHotkeyEquip(NetworkMessage& msg)
 
 	uint8_t tier = 0;
 	bool hasTier = getBoolean(ConfigManager::ITEM_TIER_DISPLAY) &&
-	               (useItemTierByte || (getBoolean(ConfigManager::ITEM_UPGRADE_CLASSIFICATION) &&
-	                                   Item::items[itemId].classification > 0));
+	               (useItemTierByte ||
+	                (getBoolean(ConfigManager::ITEM_UPGRADE_CLASSIFICATION) && Item::items[itemId].classification > 0));
 	if (packetSize != (hasTier ? 3 : 2)) {
 		skipUnreadBytes(msg);
 		return;
@@ -2865,12 +2864,11 @@ void ProtocolGame::sendItemValues()
 	entries.reserve(Item::items.size());
 	for (size_t id = 0, size = Item::items.size(); id < size; ++id) {
 		const ItemType& itemType = Item::items.getItemType(id);
-		const uint64_t value = itemType.sellPrice > 0 ? itemType.sellPrice :
-		                       (itemType.buyPrice > 0 ? itemType.buyPrice : itemType.worth);
+		const uint64_t value =
+		    itemType.sellPrice > 0 ? itemType.sellPrice : (itemType.buyPrice > 0 ? itemType.buyPrice : itemType.worth);
 		if (itemType.id != 0 && value > 0) {
 			entries.emplace_back(
-			    itemType.id,
-			    static_cast<uint32_t>(std::min<uint64_t>(value, std::numeric_limits<uint32_t>::max())));
+			    itemType.id, static_cast<uint32_t>(std::min<uint64_t>(value, std::numeric_limits<uint32_t>::max())));
 		}
 	}
 
@@ -2900,17 +2898,38 @@ void ProtocolGame::sendImpactTracker(uint8_t analyzerType, uint32_t amount, Comb
 
 	uint8_t effect = 0;
 	switch (combatType) {
-		case COMBAT_FIREDAMAGE: effect = 1; break;
-		case COMBAT_EARTHDAMAGE: effect = 2; break;
-		case COMBAT_ENERGYDAMAGE: effect = 3; break;
-		case COMBAT_ICEDAMAGE: effect = 4; break;
-		case COMBAT_HOLYDAMAGE: effect = 5; break;
-		case COMBAT_DEATHDAMAGE: effect = 6; break;
-		case COMBAT_HEALING: effect = 7; break;
-		case COMBAT_DROWNDAMAGE: effect = 8; break;
-		case COMBAT_LIFEDRAIN: effect = 9; break;
-		case COMBAT_MANADRAIN: effect = 10; break;
-		default: break;
+		case COMBAT_FIREDAMAGE:
+			effect = 1;
+			break;
+		case COMBAT_EARTHDAMAGE:
+			effect = 2;
+			break;
+		case COMBAT_ENERGYDAMAGE:
+			effect = 3;
+			break;
+		case COMBAT_ICEDAMAGE:
+			effect = 4;
+			break;
+		case COMBAT_HOLYDAMAGE:
+			effect = 5;
+			break;
+		case COMBAT_DEATHDAMAGE:
+			effect = 6;
+			break;
+		case COMBAT_HEALING:
+			effect = 7;
+			break;
+		case COMBAT_DROWNDAMAGE:
+			effect = 8;
+			break;
+		case COMBAT_LIFEDRAIN:
+			effect = 9;
+			break;
+		case COMBAT_MANADRAIN:
+			effect = 10;
+			break;
+		default:
+			break;
 	}
 
 	NetworkMessage msg;
@@ -3255,8 +3274,8 @@ void ProtocolGame::sendContainer(uint8_t cid, const Container* container, bool h
 	}
 
 	const uint32_t maxItemsToSend = paginateContainer ? container->capacity() : 0xFF;
-	const uint32_t itemCount = firstIndex >= containerSize ? 0 :
-	                           std::min<uint32_t>(maxItemsToSend, containerSize - firstIndex);
+	const uint32_t itemCount =
+	    firstIndex >= containerSize ? 0 : std::min<uint32_t>(maxItemsToSend, containerSize - firstIndex);
 	msg.addByte(static_cast<uint8_t>(std::min<uint32_t>(0xFF, itemCount)));
 
 	const ItemDeque& itemList = container->getItemList();
@@ -3720,6 +3739,18 @@ void ProtocolGame::sendFYIBox(std::string_view message)
 // tile
 void ProtocolGame::sendMapDescription(const Position& pos)
 {
+	// Notify the client of the current viewport size before sending the map,
+	// so it keeps its aware range in sync with the server's viewport
+	// (configurable via config.lua clientViewportX/Y). Without this the client
+	// assumes the classic 18x14 and places the larger map out of alignment.
+	{
+		NetworkMessage awareMsg;
+		awareMsg.addByte(0x42); // GameServerChangeMapAwareRange
+		awareMsg.addByte(static_cast<uint8_t>(Map::maxClientViewportX * 2));
+		awareMsg.addByte(static_cast<uint8_t>(Map::maxClientViewportY * 2));
+		writeToOutputBuffer(awareMsg);
+	}
+
 	NetworkMessage msg;
 	msg.addByte(0x64);
 	msg.addPosition(spyActive_ ? spyViewportPos_ : player->getPosition());
@@ -3758,11 +3789,9 @@ void ProtocolGame::sendZoneWeather(const Position& position, bool force)
 		state.transitionMs = lastZoneWeather->transitionMs;
 	}
 
-	const bool sameClientPayload = lastZoneWeather &&
-	                               lastZoneWeather->type == state.type &&
+	const bool sameClientPayload = lastZoneWeather && lastZoneWeather->type == state.type &&
 	                               lastZoneWeather->intensity == state.intensity &&
-	                               lastZoneWeather->windX == state.windX &&
-	                               lastZoneWeather->windY == state.windY &&
+	                               lastZoneWeather->windX == state.windX && lastZoneWeather->windY == state.windY &&
 	                               lastZoneWeather->transitionMs == state.transitionMs;
 	if (!force && sameClientPayload) {
 		return;
@@ -4015,17 +4044,17 @@ void ProtocolGame::sendMoveCreature(const Creature* creature, const Position& ne
 			                  (Map::maxClientViewportX * 2) + 2, 1, msg);
 		} else if (oldPos.y < newPos.y) {
 			msg.addByte(0x67);
-			GetMapDescription(oldPos.x - Map::maxClientViewportX, newPos.y + (Map::maxClientViewportY + 1),
-			                  newPos.z, (Map::maxClientViewportX * 2) + 2, 1, msg);
+			GetMapDescription(oldPos.x - Map::maxClientViewportX, newPos.y + (Map::maxClientViewportY + 1), newPos.z,
+			                  (Map::maxClientViewportX * 2) + 2, 1, msg);
 		}
 		if (oldPos.x < newPos.x) {
 			msg.addByte(0x66);
-			GetMapDescription(newPos.x + (Map::maxClientViewportX + 1), newPos.y - Map::maxClientViewportY,
-			                  newPos.z, 1, (Map::maxClientViewportY * 2) + 2, msg);
+			GetMapDescription(newPos.x + (Map::maxClientViewportX + 1), newPos.y - Map::maxClientViewportY, newPos.z, 1,
+			                  (Map::maxClientViewportY * 2) + 2, msg);
 		} else if (oldPos.x > newPos.x) {
 			msg.addByte(0x68);
-			GetMapDescription(newPos.x - Map::maxClientViewportX, newPos.y - Map::maxClientViewportY, newPos.z,
-			                  1, (Map::maxClientViewportY * 2) + 2, msg);
+			GetMapDescription(newPos.x - Map::maxClientViewportX, newPos.y - Map::maxClientViewportY, newPos.z, 1,
+			                  (Map::maxClientViewportY * 2) + 2, msg);
 		}
 		writeToOutputBuffer(msg);
 		return;
@@ -4201,10 +4230,7 @@ void ProtocolGame::sendModalWindow(const ModalWindow& modalWindow)
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendAddContainerItem(uint8_t cid, const Item* item)
-{
-	sendAddContainerItem(cid, 0, item);
-}
+void ProtocolGame::sendAddContainerItem(uint8_t cid, const Item* item) { sendAddContainerItem(cid, 0, item); }
 
 void ProtocolGame::sendAddContainerItem(uint8_t cid, uint16_t slot, const Item* item)
 {
@@ -4234,10 +4260,7 @@ void ProtocolGame::sendUpdateContainerItem(uint8_t cid, uint16_t slot, const Ite
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendRemoveContainerItem(uint8_t cid, uint16_t slot)
-{
-	sendRemoveContainerItem(cid, slot, nullptr);
-}
+void ProtocolGame::sendRemoveContainerItem(uint8_t cid, uint16_t slot) { sendRemoveContainerItem(cid, slot, nullptr); }
 
 void ProtocolGame::sendRemoveContainerItem(uint8_t cid, uint16_t slot, const Item* lastItem)
 {
@@ -4451,7 +4474,8 @@ void ProtocolGame::sendOutfitWindow()
 	writeToOutputBuffer(msg);
 }
 
-void ProtocolGame::sendItemInspection(std::shared_ptr<Item> item, uint16_t itemId, uint8_t itemCount, uint8_t inspectionType)
+void ProtocolGame::sendItemInspection(std::shared_ptr<Item> item, uint16_t itemId, uint8_t itemCount,
+                                      uint8_t inspectionType)
 {
 	if (!isAstraClient) {
 		return;
@@ -4487,8 +4511,8 @@ void ProtocolGame::sendItemInspection(std::shared_ptr<Item> item, uint16_t itemI
 		msg.addItem(item.get(), shouldSendItemTierData(), shouldSendItemTierByte(), isOTC, shouldSendQuickLootFlags(),
 		            canSendAstraItemState(), shouldSendAstraQuiverCountU16());
 	} else {
-		msg.addItem(itemId, itemCount, shouldSendItemTierData(), shouldSendItemTierByte(),
-		            shouldSendQuickLootFlags(), canSendAstraItemState(), shouldSendAstraQuiverCountU16());
+		msg.addItem(itemId, itemCount, shouldSendItemTierData(), shouldSendItemTierByte(), shouldSendQuickLootFlags(),
+		            canSendAstraItemState(), shouldSendAstraQuiverCountU16());
 	}
 	msg.addByte(0);
 
@@ -4512,7 +4536,7 @@ void ProtocolGame::sendItemInspection(std::shared_ptr<Item> item, uint16_t itemI
 }
 
 void ProtocolGame::sendMonsterPodiumWindow(const Item* podium, const Position& position, uint16_t itemId,
-                                            uint8_t stackPos)
+                                           uint8_t stackPos)
 {
 	if (!isAstraClient || !podium) {
 		return;
@@ -4694,7 +4718,7 @@ void ProtocolGame::AddCreature(NetworkMessage& msg, const Creature* creature, bo
 
 	uint8_t direction = static_cast<uint8_t>(creature->getDirection());
 	if (direction > 3) {
-			direction = DIRECTION_SOUTH;
+		direction = DIRECTION_SOUTH;
 	}
 	msg.addByte(direction);
 
@@ -5059,8 +5083,7 @@ void ProtocolGame::parseExtendedOpcode(NetworkMessage& msg)
 
 	// process additional opcodes via lua script event
 	if (helperStateStorageKey) {
-		player->setStorageValue(*helperStateStorageKey,
-		                        std::optional<int64_t>{isEnabledHelperBuffer(buffer) ? 1 : 0});
+		player->setStorageValue(*helperStateStorageKey, std::optional<int64_t>{isEnabledHelperBuffer(buffer) ? 1 : 0});
 	}
 	g_game.parsePlayerExtendedOpcode(player->getID(), opcode, buffer);
 }
@@ -5185,17 +5208,13 @@ void ProtocolGame::spectatorTurn(uint8_t direction)
 	candidates.reserve(32);
 
 	for (const auto& player : g_game.getPlayers()) {
-		if (player->isRemoved() || !player->client->protocol())
-			continue;
+		if (player->isRemoved() || !player->client->protocol()) continue;
 
-		if (!player->client->isBroadcasting())
-			continue;
+		if (!player->client->isBroadcasting()) continue;
 
-		if (!player->client->password().empty())
-			continue;
+		if (!player->client->password().empty()) continue;
 
-		if (player->client->isBanned(getIP()))
-			continue;
+		if (player->client->isBanned(getIP())) continue;
 
 		candidates.push_back(player->getName());
 	}
@@ -5286,17 +5305,15 @@ void ProtocolGame::spectatorSay(const std::string text, uint16_t channelId)
 	player->client->spectatorSay(getThis(), text);
 }
 
-void ProtocolGame::sendCastChannel()
-{
-	sendChannel(CHANNEL_CAST, "Cast Channel");
-}
+void ProtocolGame::sendCastChannel() { sendChannel(CHANNEL_CAST, "Cast Channel"); }
 
 bool ProtocolGame::canProcessCastSwitch()
 {
 	const int64_t now = OTSYS_TIME();
 	if (now < nextCastSwitchTime) {
 		if (now >= nextCastSwitchCooldownMessageTime) {
-			sendTextMessage(MESSAGE_STATUS_SMALL, "You are switching casts too fast. Please wait before switching again.");
+			sendTextMessage(MESSAGE_STATUS_SMALL,
+			                "You are switching casts too fast. Please wait before switching again.");
 			nextCastSwitchCooldownMessageTime = nextCastSwitchTime;
 		}
 		return false;
@@ -5332,10 +5349,11 @@ void ProtocolGame::syncOpenContainers()
 
 void ProtocolGame::sendWelcomeMessage()
 {
-	std::string message = "Welcome to the Live Cast System!\n\n"
-		"Do you know you can use CTRL + ARROWS to switch casts?\n\n"
-		"Voce sabia que pode usar CTRL + SETAS para alternar casts?\n\n"
-		"Type /commands in the cast channel to see available commands.";
+	std::string message =
+	    "Welcome to the Live Cast System!\n\n"
+	    "Do you know you can use CTRL + ARROWS to switch casts?\n\n"
+	    "Voce sabia que pode usar CTRL + SETAS para alternar casts?\n\n"
+	    "Type /commands in the cast channel to see available commands.";
 	TextMessage textMessage(MESSAGE_EVENT_ADVANCE, message);
 	sendTextMessage(textMessage);
 }
@@ -5358,8 +5376,9 @@ void ProtocolGame::parseSwitchCast(uint8_t direction)
 			Player* newCaster = casters[0];
 			if (newCaster && newCaster != player.get()) {
 				player->client->removeSpectator(getThis());
-				player->client->sendCastMessage(spectator_name, spectator_name + " has left the cast.", TALKTYPE_CHANNEL_O);
-					knownCreatureSet.clear();
+				player->client->sendCastMessage(spectator_name, spectator_name + " has left the cast.",
+				                                TALKTYPE_CHANNEL_O);
+				knownCreatureSet.clear();
 				player = g_game.getCreatureSharedRef<Player>(newCaster);
 				player->client->addSpectator(getThis());
 				sendAddCreature(player.get(), player->getPosition(), 0, CONST_ME_NONE);
@@ -5367,7 +5386,8 @@ void ProtocolGame::parseSwitchCast(uint8_t direction)
 				if (shouldResyncCastChannelOnSwitch()) {
 					sendCastChannel();
 				}
-				player->client->sendCastMessage(spectator_name, spectator_name + " has joined the cast.", TALKTYPE_CHANNEL_O);
+				player->client->sendCastMessage(spectator_name, spectator_name + " has joined the cast.",
+				                                TALKTYPE_CHANNEL_O);
 				sendMagicEffect(player->getPosition(), CONST_ME_TELEPORT);
 			}
 		}
@@ -5428,14 +5448,8 @@ void ProtocolGame::sendImbuementDurations(slots_t updatedSlot, const Item* updat
 	NetworkMessage msg;
 	msg.addByte(0x5D); // GameServerImbuementDurations = 93
 
-	const slots_t slots[] = {
-		CONST_SLOT_HEAD,
-		CONST_SLOT_BACKPACK,
-		CONST_SLOT_ARMOR,
-		CONST_SLOT_RIGHT,
-		CONST_SLOT_LEFT,
-		CONST_SLOT_FEET
-	};
+	const slots_t slots[] = {CONST_SLOT_HEAD,  CONST_SLOT_BACKPACK, CONST_SLOT_ARMOR,
+	                         CONST_SLOT_RIGHT, CONST_SLOT_LEFT,     CONST_SLOT_FEET};
 
 	std::vector<std::pair<slots_t, const Item*>> trackedItems;
 	for (slots_t slot : slots) {
