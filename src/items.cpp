@@ -5,31 +5,31 @@
 
 #include "items.h"
 
+#include "configmanager.h"
+#include "itemloader.h"
+#include "logger.h"
 #include "movement.h"
 #include "pugicast.h"
 #include "script.h"
 #include "scriptmanager.h"
 #include "spells.h"
 #include "weapons.h"
-#include "logger.h"
+
+#include <cstring>
 #include <fmt/format.h>
 #include <fstream>
-#include <cstring>
-#include "configmanager.h"
-#include "itemloader.h"
 
 namespace {
 
-constexpr CombatType_t MANTRA_COMBAT_TYPES[] = {
-    COMBAT_ENERGYDAMAGE, COMBAT_FIREDAMAGE, COMBAT_EARTHDAMAGE, COMBAT_ICEDAMAGE
-};
+constexpr CombatType_t MANTRA_COMBAT_TYPES[] = {COMBAT_ENERGYDAMAGE, COMBAT_FIREDAMAGE, COMBAT_EARTHDAMAGE,
+                                                COMBAT_ICEDAMAGE};
 
 const std::unordered_map<std::string, ItemParseAttributes_t> ItemParseAttributesMap = {
     {"type", ITEM_PARSE_TYPE},
     {"description", ITEM_PARSE_DESCRIPTION},
     {"runespellname", ITEM_PARSE_RUNESPELLNAME},
-	{"weight", ITEM_PARSE_WEIGHT},
-	{"weightreduction", ITEM_PARSE_WEIGHTREDUCTION},
+    {"weight", ITEM_PARSE_WEIGHT},
+    {"weightreduction", ITEM_PARSE_WEIGHTREDUCTION},
     {"showcount", ITEM_PARSE_SHOWCOUNT},
     {"armor", ITEM_PARSE_ARMOR},
     {"defense", ITEM_PARSE_DEFENSE},
@@ -246,7 +246,7 @@ const std::unordered_map<std::string, ItemParseAttributes_t> ItemParseAttributes
     {"experienceratebonus", ITEM_PARSE_EXPERIENCERATE_BONUS},
     {"experienceratestamina", ITEM_PARSE_EXPERIENCERATE_STAMINA},
     {"reduceskillloss", ITEM_PARSE_REDUCESKILLLOSS},
-	{"drop", ITEM_PARSE_DROPBONUS},
+    {"drop", ITEM_PARSE_DROPBONUS},
     {"elementalbond", ITEM_PARSE_ELEMENTALBOND},
     {"script", ITEM_PARSE_SCRIPT},
     {"mantra", ITEM_PARSE_MANTRA},
@@ -280,20 +280,18 @@ const std::unordered_map<Augment_t, ConfigManager::Integer> AugmentDefaultConfig
     {Augment_t::StrongImpact, ConfigManager::AUGMENT_STRONG_IMPACT_PERCENT},
 };
 
-const std::unordered_map<std::string, ItemTypes_t> ItemTypesMap = {
-	{"key", ITEM_TYPE_KEY},
-	{"magicfield", ITEM_TYPE_MAGICFIELD},
-	{"container", ITEM_TYPE_CONTAINER},
-	{"depot", ITEM_TYPE_DEPOT},
-	{"mailbox", ITEM_TYPE_MAILBOX},
-	{"trashholder", ITEM_TYPE_TRASHHOLDER},
-	{"teleport", ITEM_TYPE_TELEPORT},
-	{"door", ITEM_TYPE_DOOR},
-	{"bed", ITEM_TYPE_BED},
-	{"rune", ITEM_TYPE_RUNE},
-	{"rewardchest", ITEM_TYPE_REWARDCHEST},
-	{"carpet", ITEM_TYPE_CARPET}
-};
+const std::unordered_map<std::string, ItemTypes_t> ItemTypesMap = {{"key", ITEM_TYPE_KEY},
+                                                                   {"magicfield", ITEM_TYPE_MAGICFIELD},
+                                                                   {"container", ITEM_TYPE_CONTAINER},
+                                                                   {"depot", ITEM_TYPE_DEPOT},
+                                                                   {"mailbox", ITEM_TYPE_MAILBOX},
+                                                                   {"trashholder", ITEM_TYPE_TRASHHOLDER},
+                                                                   {"teleport", ITEM_TYPE_TELEPORT},
+                                                                   {"door", ITEM_TYPE_DOOR},
+                                                                   {"bed", ITEM_TYPE_BED},
+                                                                   {"rune", ITEM_TYPE_RUNE},
+                                                                   {"rewardchest", ITEM_TYPE_REWARDCHEST},
+                                                                   {"carpet", ITEM_TYPE_CARPET}};
 
 const std::unordered_map<std::string, tileflags_t> TileStatesMap = {
     {"down", TILESTATE_FLOORCHANGE_DOWN},        {"north", TILESTATE_FLOORCHANGE_NORTH},
@@ -864,7 +862,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 							it.group = ITEM_GROUP_CONTAINER;
 						}
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown type: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown type: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -923,7 +922,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 				case ITEM_PARSE_ATTACK_SPEED: {
 					it.attackSpeed = pugi::cast<uint32_t>(valueAttribute.value());
 					if (it.attackSpeed > 0 && it.attackSpeed < 100) {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] AttackSpeed lower than 100 for item: {}", it.id));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] AttackSpeed lower than 100 for item: {}",
+						                     it.id));
 						it.attackSpeed = 100;
 					}
 					break;
@@ -976,7 +976,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					if (it2 != TileStatesMap.end()) {
 						it.floorChange |= it2->second;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown floorChange: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown floorChange: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -987,7 +988,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					if (it2 != RaceTypesMap.end()) {
 						it.corpseType = it2->second;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown corpseType: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown corpseType: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -1003,7 +1005,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					if (it2 != FluidTypesMap.end()) {
 						it.fluidSource = it2->second;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown fluidSource: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown fluidSource: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -1035,7 +1038,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					if (it2 != WeaponTypesMap.end()) {
 						it.weaponType = it2->second;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown weaponType: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown weaponType: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -1067,7 +1071,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					} else if (tmpStrValue == "hand") {
 						it.slotPosition |= SLOTP_HAND;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown slotType: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown slotType: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -1075,29 +1080,30 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 				case ITEM_PARSE_AMMOTYPE: {
 					it.ammoType = getAmmoType(asLowerCaseString(valueAttribute.as_string()));
 					if (it.ammoType == AMMO_NONE) {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown ammoType: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown ammoType: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
 
 				case ITEM_PARSE_SHOOTTYPE: {
-					ShootType_t shoot =
-					    getShootType(asLowerCaseString(valueAttribute.as_string()));
+					ShootType_t shoot = getShootType(asLowerCaseString(valueAttribute.as_string()));
 					if (shoot != CONST_ANI_NONE) {
 						it.shootType = shoot;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown shootType: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown shootType: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
 
 				case ITEM_PARSE_EFFECT: {
-					MagicEffectClasses effect =
-					    getMagicEffect(asLowerCaseString(valueAttribute.as_string()));
+					MagicEffectClasses effect = getMagicEffect(asLowerCaseString(valueAttribute.as_string()));
 					if (effect != CONST_ME_NONE) {
 						it.magicEffect = effect;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown effect: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown effect: {}",
+						                     valueAttribute.as_string()));
 					}
 					break;
 				}
@@ -1908,7 +1914,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 						conditionDamage = std::make_unique<ConditionDamage>(CONDITIONID_COMBAT, CONDITION_AGONY);
 						combatType = COMBAT_AGONYDAMAGE;
 					} else {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown field value: {}", valueAttribute.as_string()));
+						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown field value: {}",
+						                     valueAttribute.as_string()));
 					}
 
 					if (combatType != COMBAT_NONE) {
@@ -1944,12 +1951,14 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 								if (start > 0) {
 									const int32_t damageEnd = std::max<int32_t>(0, -damage);
 									const int32_t tickInterval = 1000;
-									const int32_t tickCount = std::max<int32_t>(1, static_cast<int32_t>(ticks / tickInterval));
+									const int32_t tickCount =
+									    std::max<int32_t>(1, static_cast<int32_t>(ticks / tickInterval));
 
 									conditionDamage->setInitDamage(-start);
 									for (int32_t i = 1; i <= tickCount; ++i) {
 										const int32_t damageValue = start - ((start - damageEnd) * i / tickCount);
-										conditionDamage->addDamage(1, tickInterval, -std::max<int32_t>(damageEnd, damageValue));
+										conditionDamage->addDamage(1, tickInterval,
+										                           -std::max<int32_t>(damageEnd, damageValue));
 									}
 
 									start = 0;
@@ -2095,7 +2104,9 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 				case ITEM_PARSE_WORTH: {
 					uint64_t worth = pugi::cast<uint64_t>(valueAttribute.value());
 					if (currencyItems.contains(worth)) {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Duplicated currency worth. Item {} redefines worth {}", id, worth));
+						LOG_WARN(fmt::format(
+						    "[Warning - Items::parseItemNode] Duplicated currency worth. Item {} redefines worth {}",
+						    id, worth));
 					} else {
 						currencyItems.insert(CurrencyMap::value_type(worth, id));
 						it.worth = worth;
@@ -2136,7 +2147,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 				case ITEM_PARSE_DROPBONUS: {
 					int32_t value = pugi::cast<int32_t>(valueAttribute.value());
 					if (value < 0 || value > 100) {
-						LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Drop bonus out of range (0-100) for item: {}", it.id));
+						LOG_WARN(fmt::format(
+						    "[Warning - Items::parseItemNode] Drop bonus out of range (0-100) for item: {}", it.id));
 						value = std::clamp(value, 0, 100);
 					}
 					it.dropBonus = value;
@@ -2206,14 +2218,13 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 							continue;
 						}
 
-						const std::string spellName =
-						    asLowerCaseString(spellAttribute.as_string());
-						const std::string typeName =
-						    asLowerCaseString(typeAttribute.as_string());
+						const std::string spellName = asLowerCaseString(spellAttribute.as_string());
+						const std::string typeName = asLowerCaseString(typeAttribute.as_string());
 						const auto augmentIt = AugmentTypesMap.find(typeName);
 						if (augmentIt == AugmentTypesMap.end()) {
-							LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Unknown augment type '{}' for item: {}",
-							                     typeAttribute.as_string(), it.id));
+							LOG_WARN(
+							    fmt::format("[Warning - Items::parseItemNode] Unknown augment type '{}' for item: {}",
+							                typeAttribute.as_string(), it.id));
 							continue;
 						}
 
@@ -2236,8 +2247,9 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 						}
 
 						if (!hasValue) {
-							LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Item '{}' has augment '{}' without a value",
-							                     it.name, spellName));
+							LOG_WARN(fmt::format(
+							    "[Warning - Items::parseItemNode] Item '{}' has augment '{}' without a value", it.name,
+							    spellName));
 							continue;
 						}
 
@@ -2252,7 +2264,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 					// It should not ever get to here, only if you add a new key to the map and don't configure a case
 					// for it.
 					// for it.
-					LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Not configured key value: {}", keyAttribute.as_string()));
+					LOG_WARN(fmt::format("[Warning - Items::parseItemNode] Not configured key value: {}",
+					                     keyAttribute.as_string()));
 					break;
 				}
 			}
@@ -2269,7 +2282,8 @@ void Items::parseItemNode(const pugi::xml_node& itemNode, uint16_t id)
 	}
 }
 
-void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNode, const pugi::xml_attribute& valueAttribute)
+void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNode,
+                                 const pugi::xml_attribute& valueAttribute)
 {
 	std::string scriptName = valueAttribute.as_string();
 	std::vector<std::string> tokens;
@@ -2296,12 +2310,18 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 				std::string key = asLowerCaseString(subKey.as_string());
 				if (key == "eventtype") {
 					std::string evtName = asLowerCaseString(subValue.as_string());
-					if (evtName == "stepin") eventType = MOVE_EVENT_STEP_IN;
-					else if (evtName == "stepout") eventType = MOVE_EVENT_STEP_OUT;
-					else if (evtName == "equip") eventType = MOVE_EVENT_EQUIP;
-					else if (evtName == "deequip") eventType = MOVE_EVENT_DEEQUIP;
-					else if (evtName == "additem") eventType = MOVE_EVENT_ADD_ITEM;
-					else if (evtName == "removeitem") eventType = MOVE_EVENT_REMOVE_ITEM;
+					if (evtName == "stepin")
+						eventType = MOVE_EVENT_STEP_IN;
+					else if (evtName == "stepout")
+						eventType = MOVE_EVENT_STEP_OUT;
+					else if (evtName == "equip")
+						eventType = MOVE_EVENT_EQUIP;
+					else if (evtName == "deequip")
+						eventType = MOVE_EVENT_DEEQUIP;
+					else if (evtName == "additem")
+						eventType = MOVE_EVENT_ADD_ITEM;
+					else if (evtName == "removeitem")
+						eventType = MOVE_EVENT_REMOVE_ITEM;
 					break;
 				}
 			}
@@ -2339,20 +2359,33 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 
 					if (key == "slot" && (type == MOVE_EVENT_EQUIP || type == MOVE_EVENT_DEEQUIP)) {
 						std::string slotName = asLowerCaseString(subValue.as_string());
-						if (slotName == "head") moveevent.setSlot(SLOTP_HEAD);
-						else if (slotName == "necklace") moveevent.setSlot(SLOTP_NECKLACE);
-						else if (slotName == "backpack") moveevent.setSlot(SLOTP_BACKPACK);
-						else if (slotName == "armor" || slotName == "body") moveevent.setSlot(SLOTP_ARMOR);
-						else if (slotName == "right-hand") moveevent.setSlot(SLOTP_RIGHT);
-						else if (slotName == "left-hand") moveevent.setSlot(SLOTP_LEFT);
-						else if (slotName == "hand" || slotName == "shield") moveevent.setSlot(SLOTP_RIGHT | SLOTP_LEFT);
-						else if (slotName == "legs") moveevent.setSlot(SLOTP_LEGS);
-						else if (slotName == "feet") moveevent.setSlot(SLOTP_FEET);
-						else if (slotName == "ring") moveevent.setSlot(SLOTP_RING);
-						else if (slotName == "ammo") moveevent.setSlot(SLOTP_AMMO);
-						else if (slotName == "two-handed") moveevent.setSlot(SLOTP_TWO_HAND);
+						if (slotName == "head")
+							moveevent.setSlot(SLOTP_HEAD);
+						else if (slotName == "necklace")
+							moveevent.setSlot(SLOTP_NECKLACE);
+						else if (slotName == "backpack")
+							moveevent.setSlot(SLOTP_BACKPACK);
+						else if (slotName == "armor" || slotName == "body")
+							moveevent.setSlot(SLOTP_ARMOR);
+						else if (slotName == "right-hand")
+							moveevent.setSlot(SLOTP_RIGHT);
+						else if (slotName == "left-hand")
+							moveevent.setSlot(SLOTP_LEFT);
+						else if (slotName == "hand" || slotName == "shield")
+							moveevent.setSlot(SLOTP_RIGHT | SLOTP_LEFT);
+						else if (slotName == "legs")
+							moveevent.setSlot(SLOTP_LEGS);
+						else if (slotName == "feet")
+							moveevent.setSlot(SLOTP_FEET);
+						else if (slotName == "ring")
+							moveevent.setSlot(SLOTP_RING);
+						else if (slotName == "ammo")
+							moveevent.setSlot(SLOTP_AMMO);
+						else if (slotName == "two-handed")
+							moveevent.setSlot(SLOTP_TWO_HAND);
 
-						if (type == MoveEvent_t::MOVE_EVENT_EQUIP && moveevent.getSlot() != SlotPositionBits::SLOTP_WHEREEVER) {
+						if (type == MoveEvent_t::MOVE_EVENT_EQUIP &&
+						    moveevent.getSlot() != SlotPositionBits::SLOTP_WHEREEVER) {
 							it.slotPosition = moveevent.getSlot();
 						}
 					} else if (key == "level") {
@@ -2375,8 +2408,13 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 						std::string vtoken;
 						while (std::getline(vss, vtoken, ',')) {
 							// trim
-							vtoken.erase(vtoken.begin(), std::find_if(vtoken.begin(), vtoken.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-							vtoken.erase(std::find_if(vtoken.rbegin(), vtoken.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), vtoken.end());
+							vtoken.erase(vtoken.begin(),
+							             std::find_if(vtoken.begin(), vtoken.end(),
+							                          [](unsigned char ch) { return !std::isspace(ch); }));
+							vtoken.erase(std::find_if(vtoken.rbegin(), vtoken.rend(),
+							                          [](unsigned char ch) { return !std::isspace(ch); })
+							                 .base(),
+							             vtoken.end());
 
 							// format: "vocname;true" or just "vocname"
 							std::string vocName;
@@ -2498,9 +2536,12 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 					weapon->setWieldUnproperly(subValue.as_bool());
 				} else if (key == "action") {
 					std::string action = asLowerCaseString(subValue.as_string());
-					if (action == "removecharge") weapon->action = WEAPONACTION_REMOVECHARGE;
-					else if (action == "removecount") weapon->action = WEAPONACTION_REMOVECOUNT;
-					else if (action == "move") weapon->action = WEAPONACTION_MOVE;
+					if (action == "removecharge")
+						weapon->action = WEAPONACTION_REMOVECHARGE;
+					else if (action == "removecount")
+						weapon->action = WEAPONACTION_REMOVECOUNT;
+					else if (action == "move")
+						weapon->action = WEAPONACTION_MOVE;
 				} else if (key == "breakchance") {
 					weapon->setBreakChance(std::min<uint8_t>(100, static_cast<uint8_t>(subValue.as_uint())));
 				} else if (key == "mana") {
@@ -2518,12 +2559,20 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 					toDamage = subValue.as_int();
 				} else if (key == "wandtype") {
 					std::string elementName = asLowerCaseString(subValue.as_string());
-					if (elementName == "earth") weapon->params.combatType = COMBAT_EARTHDAMAGE;
-					else if (elementName == "ice") weapon->params.combatType = COMBAT_ICEDAMAGE;
-					else if (elementName == "energy") weapon->params.combatType = COMBAT_ENERGYDAMAGE;
-					else if (elementName == "fire") weapon->params.combatType = COMBAT_FIREDAMAGE;
-					else if (elementName == "death") weapon->params.combatType = COMBAT_DEATHDAMAGE;
-					else if (elementName == "holy") weapon->params.combatType = COMBAT_HOLYDAMAGE;
+					if (elementName == "earth")
+						weapon->params.combatType = COMBAT_EARTHDAMAGE;
+					else if (elementName == "ice")
+						weapon->params.combatType = COMBAT_ICEDAMAGE;
+					else if (elementName == "energy")
+						weapon->params.combatType = COMBAT_ENERGYDAMAGE;
+					else if (elementName == "fire")
+						weapon->params.combatType = COMBAT_FIREDAMAGE;
+					else if (elementName == "death")
+						weapon->params.combatType = COMBAT_DEATHDAMAGE;
+					else if (elementName == "holy")
+						weapon->params.combatType = COMBAT_HOLYDAMAGE;
+					else if (elementName == "physical")
+						weapon->params.combatType = COMBAT_PHYSICALDAMAGE;
 				} else if (key == "slot") {
 					std::string slotName = asLowerCaseString(subValue.as_string());
 					if (slotName == "two-handed") {
@@ -2536,8 +2585,12 @@ void Items::parseScriptAttribute(ItemType& it, const pugi::xml_node& attributeNo
 					std::istringstream vss(vocations);
 					std::string vtoken;
 					while (std::getline(vss, vtoken, ',')) {
-						vtoken.erase(vtoken.begin(), std::find_if(vtoken.begin(), vtoken.end(), [](unsigned char ch) { return !std::isspace(ch); }));
-						vtoken.erase(std::find_if(vtoken.rbegin(), vtoken.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), vtoken.end());
+						vtoken.erase(vtoken.begin(), std::find_if(vtoken.begin(), vtoken.end(),
+						                                          [](unsigned char ch) { return !std::isspace(ch); }));
+						vtoken.erase(std::find_if(vtoken.rbegin(), vtoken.rend(),
+						                          [](unsigned char ch) { return !std::isspace(ch); })
+						                 .base(),
+						             vtoken.end());
 
 						std::string vocName;
 						bool showInDescription = false;
