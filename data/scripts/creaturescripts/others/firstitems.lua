@@ -9,9 +9,11 @@ local config = {
 	--Tael (no voc items)
 	[1] = {
 		items = {
+			{ 3059, 1 }, -- spellbook
 			{ 3473, 1 }, -- rolo magico (arma 1)
 			{ 3566, 1 }, -- Camisetão
 			{ 22087, 1 }, -- Pano velho
+			{3047, 1} -- light wand (luz apenas)
 		},
 
 		container = {

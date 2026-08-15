@@ -34,8 +34,8 @@ if errorlevel 1 goto :erro
 
 echo.
 echo [DONE] Build concluida.
-echo Binario esperado: "%ROOT%build\tfs.exe"
-if exist "%ROOT%build\tfs.exe" echo [OK] Arquivo encontrado.
+echo Binario esperado: "%ROOT%build\Debug\tfs.exe"
+if exist "%ROOT%build\Debug\tfs.exe" echo [OK] Arquivo encontrado.
 goto :fim
 
 :novcpkg

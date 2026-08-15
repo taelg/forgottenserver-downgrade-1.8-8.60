@@ -55,6 +55,18 @@
 		<attribute key="weight" value="1800" />	
 		<attribute key="description" value="Importante pra não ficar preso em buracos."/>
 	</item>
+	<item id="3047" article="a" name="magic light wand">
+		<attribute key="description" value="The wand glows" />
+		<attribute key="weight" value="1500" />
+	</item>
+		<item id="3059" article="a" name="spellbook">
+		<attribute key="description" value="Mostra suas magias mas tambem e um escudo." />
+		<attribute key="defense" value="5" />
+		<attribute key="weight" value="1800" />
+		<attribute key="script" value="moveevent">
+			<attribute key="slot" value="shield" />
+		</attribute>
+	</item>
 
 	<item id="48249" article="an" name="chocoin diluido">
 		<attribute key="weight" value="1" />
@@ -5827,13 +5839,6 @@
 		<attribute key="showduration" value="1" />
 		<attribute key="weight" value="1500" />
 	</item>
-	<item id="3047" article="a" name="magic light wand">
-		<attribute key="description" value="The wand glows" />
-		<attribute key="showduration" value="1" />
-		<attribute key="duration" value="3000" />
-		<attribute key="decayTo" value="0" />
-		<attribute key="weight" value="1500" />
-	</item>
 	<item id="3048" article="a" name="might ring">
 		<attribute key="showCharges" value="1" />
 		<attribute key="showAttributes" value="1" />
@@ -5931,24 +5936,6 @@
 	</item>
 	<item id="3058" article="a" name="strange symbol">
 		<attribute key="weight" value="200" />
-	</item>
-	<item id="3059" article="a" name="spellbook">
-		<attribute key="description" value="It shows your spells and can also shield against attacks when worn" />
-		<attribute key="defense" value="14" />
-		<attribute key="weight" value="1800" />
-		<attribute key="imbuementslot" value="1">
-			<attribute key="elemental protection death" value="3" />
-			<attribute key="elemental protection earth" value="3" />
-			<attribute key="elemental protection fire" value="3" />
-			<attribute key="elemental protection ice" value="3" />
-			<attribute key="elemental protection energy" value="3" />
-			<attribute key="elemental protection holy" value="3" />
-			<attribute key="skillboost shielding" value="3" />
-		</attribute>
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="shield" />
-			<attribute key="vocation" value="Sorcerer;true, Druid;true, Master Sorcerer, Elder Druid" />
-		</attribute>
 	</item>
 	<item id="3060" article="an" name="orb">
 		<attribute key="weight" value="800" />
