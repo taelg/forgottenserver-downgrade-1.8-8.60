@@ -222,3 +222,4 @@ analysis-reports/
 compile_commands.json
 *.plist
 *.sarif
+*.otbm

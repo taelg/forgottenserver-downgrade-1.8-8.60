@@ -3,7 +3,7 @@ local monster = {}
 
 monster.name = "Wasp"
 monster.description = "a wasp"
-monster.experience = 24
+monster.experience = 25
 monster.outfit = {
 	lookType = 44,
 	lookHead = 0,
@@ -38,12 +38,12 @@ monster.manaCost = 280
 
 monster.changeTarget = {
 	interval = 4000,
-	chance = 10,
+	chance = 0,
 }
 
 monster.strategiesTarget = {
-	nearest = 60,
-	random = 40,
+	nearest = 80,
+	random = 20,
 }
 
 monster.flags = {
@@ -78,7 +78,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "honeycomb", chance = 3000 },
+	{ name = "chocoin diluido", chance = 50000, maxCount = 5 },
+	{ name = "chocoin puro", chance = 5000, maxCount = 1 },
+	{ name = "honeycomb", chance = 1000 },
 }
 
 monster.attacks = {
@@ -94,8 +96,8 @@ monster.defenses = {
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },

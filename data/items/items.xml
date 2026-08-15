@@ -41,6 +41,13 @@
 		<attribute key="description" value="Importante pra não ficar preso em buracos."/>
 	</item>
 
+	<item id="48249" article="an" name="chocoin diluido">
+		<attribute key="weight" value="1" />
+	</item>
+	<item id="48250" article="a" name="chocoin puro">
+		<attribute key="weight" value="1" />
+		<attribute key="worth" value="1" />
+	</item>
 
 
 
@@ -72027,12 +72034,6 @@
 	</item>
 	<item id="48116" article="a" name="gummy rotworm" plural="gummy rotworms">
 		<attribute key="weight" value="20" />
-	</item>
-	<item id="48249" article="an" name="milk chocolate coin">
-		<attribute key="weight" value="1" />
-	</item>
-	<item id="48250" article="a" name="dark chocolate coin">
-		<attribute key="weight" value="1" />
 	</item>
 	<item id="48251" article="a" name="wafer paper flower" plural="wafer paper flowers">
 		<attribute key="weight" value="5" />

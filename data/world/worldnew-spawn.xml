@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <spawns>
+	<spawn centerx="2002" centery="1998" centerz="6" radius="2" />
+	<spawn centerx="1780" centery="2004" centerz="7" radius="10" />
+	<spawn centerx="1780" centery="2030" centerz="7" radius="10" />
 	<spawn centerx="1051" centery="969" centerz="8" radius="1">
 		<monster name="Rat" x="-1" y="1" z="8" spawntime="60" direction="2" />
 		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
@@ -63,4 +66,337 @@
 	<spawn centerx="977" centery="1011" centerz="8" radius="1" />
 	<spawn centerx="984" centery="1011" centerz="8" radius="1" />
 	<spawn centerx="1007" centery="1015" centerz="8" radius="1" />
+	<spawn centerx="2054" centery="1919" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2029" centery="1920" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2035" centery="1920" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2025" centery="1922" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1986" centery="1925" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="-1" y="1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2057" centery="1930" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2033" centery="1931" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1984" centery="1934" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2067" centery="1934" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2035" centery="1936" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2047" centery="1936" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2012" centery="1937" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2000" centery="1938" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1979" centery="1939" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2059" centery="1939" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Wasp" x="-1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2055" centery="1940" centerz="8" radius="1">
+		<monster name="Wasp" x="1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2015" centery="1947" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2067" centery="1947" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2035" centery="1949" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2047" centery="1949" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2055" centery="1950" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1983" centery="1951" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1993" centery="1953" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2011" centery="1954" centerz="8" radius="1">
+		<monster name="Bug" x="1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1991" centery="1959" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1986" centery="1960" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2017" centery="1961" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2056" centery="1961" centerz="8" radius="1">
+		<monster name="Wasp" x="-1" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2035" centery="1962" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="0" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2063" centery="1962" centerz="8" radius="1">
+		<monster name="Wasp" x="-1" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1978" centery="1966" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2011" centery="1967" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2028" centery="1969" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2048" centery="1972" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1981" centery="1973" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2063" centery="1973" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2003" centery="1975" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1996" centery="1976" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2026" centery="1978" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1988" centery="1982" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2058" centery="1983" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2031" centery="1985" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2042" centery="1986" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2007" centery="1988" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1996" centery="1991" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2057" centery="1993" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2069" centery="1993" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2024" centery="1995" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="0" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2042" centery="1996" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1984" centery="1999" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="0" y="1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2019" centery="1999" centerz="8" radius="1">
+		<monster name="Bug" x="0" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2042" centery="2003" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1988" centery="2004" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2038" centery="2005" centerz="8" radius="1">
+		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Wasp" x="1" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2066" centery="2006" centerz="8" radius="1">
+		<monster name="Wasp" x="-1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Wasp" x="1" y="-1" z="8" spawntime="60" direction="2" />
+		<monster name="Wasp" x="0" y="1" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2012" centery="2007" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2001" centery="2010" centerz="8" radius="1">
+		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1971" centery="1885" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1988" centery="1889" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2004" centery="1892" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2020" centery="1904" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1972" centery="1908" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1952" centery="1909" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1961" centery="1911" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1991" centery="1916" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2008" centery="1917" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1953" centery="1921" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2036" centery="1928" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2013" centery="1930" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1989" centery="1935" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1947" centery="1939" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1959" centery="1941" centerz="9" radius="1">
+		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2057" centery="1941" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1976" centery="1948" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1992" centery="1951" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2036" centery="1951" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1954" centery="1954" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1968" centery="1957" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1994" centery="1963" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2047" centery="1965" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2034" centery="1968" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2018" centery="1969" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2041" centery="1973" centerz="9" radius="1">
+		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1974" centery="1974" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2007" centery="1978" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1949" centery="1984" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1951" centery="1989" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1986" centery="1990" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2020" centery="1993" centerz="9" radius="1">
+		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1970" centery="2004" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
+		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
 </spawns>

@@ -3,7 +3,7 @@ local monster = {}
 
 monster.name = "Larva"
 monster.description = "a larva"
-monster.experience = 44
+monster.experience = 50
 monster.outfit = {
 	lookType = 82,
 	lookHead = 0,
@@ -27,11 +27,11 @@ monster.Bestiary = {
 	Locations = "Larva Caves, Ankrahmun Tombs, Lions Rock, Gardens of Night (unreachable)",
 }
 
-monster.health = 70
-monster.maxHealth = 70
+monster.health = 100
+monster.maxHealth = 100
 monster.race = "venom"
 monster.corpse = 6023
-monster.speed = 62
+monster.speed = 80
 monster.manaCost = 355
 
 monster.changeTarget = {
@@ -74,29 +74,30 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 63000, maxCount = 15 },
-	{ name = "meat", chance = 14666 },
+	{ name = "chocoin diluido", chance = 100000, maxCount = 6 },
+	{ name = "chocoin puro", chance = 6000, maxCount = 1 },
+	{ name = "meat", chance = 15000, maxCount = 1 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -35, condition = { type = CONDITION_POISON, totalDamage = 15, interval = 4000 } },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = 5, maxDamage = -25, condition = { type = CONDITION_POISON, totalDamage = 10, interval = 4000 } },
 }
 
 monster.defenses = {
 	defense = 10,
 	armor = 5,
-	mitigation = 0.28,
+	mitigation = 0,
 }
 
 monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
-	{ type = COMBAT_ENERGYDAMAGE, percent = 10 },
-	{ type = COMBAT_EARTHDAMAGE, percent = 100 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
+	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
-	{ type = COMBAT_ICEDAMAGE, percent = -5 },
+	{ type = COMBAT_ICEDAMAGE, percent = 0 },
 	{ type = COMBAT_HOLYDAMAGE, percent = 0 },
 	{ type = COMBAT_DEATHDAMAGE, percent = 0 },
 }

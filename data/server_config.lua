@@ -18,17 +18,17 @@ astraHirelingProtocolEnabled = true
 -- dualWieldingDamageRate = 60 means each hit deals 60% of normal damage
 -- dualWieldingMode = "allweapons" allows any melee weapon to dual-wield
 -- dualWieldingMode = "itemxml" requires <attribute key="dualwielding" value="true"/> on weapons
-allowDualWielding = false
+allowDualWielding = true
 dualWieldingSpeedRate = 200
-dualWieldingDamageRate = 60
+dualWieldingDamageRate = 100
 dualWieldingMode = "allweapons"
 
 -- Reset System
 -- Enable or disable the full reset system.
-resetssystem = true
+resetssystem = false
 
 -- Cleave System
-cleavesystem = true
+cleavesystem = false
 cleaveDefaultPercent = 30
 cleaveFistPercent = 20
 
@@ -57,7 +57,7 @@ raidSpawnFileDirection = 2
 -- Power-Law Skill System
 -- Replaces exponential formula with slow-growth power-law above thresholds.
 -- All skills and magic level share the same growth exponent.
-powerlaw = false
+powerlaw = true
 powerLawSkillThreshold = 350
-powerLawMagicThreshold = 200
+powerLawMagicThreshold = 100
 powerLawExponent = 0.3

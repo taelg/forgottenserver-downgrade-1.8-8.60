@@ -3,7 +3,7 @@ local monster = {}
 
 monster.name = "Bug"
 monster.description = "a bug"
-monster.experience = 18
+monster.experience = 12
 monster.outfit = {
 	lookType = 45,
 	lookHead = 0,
@@ -27,8 +27,8 @@ monster.Bestiary = {
 	Locations = "In many parts around Tibia, including Rookgaard.",
 }
 
-monster.health = 29
-monster.maxHealth = 29
+monster.health = 18
+monster.maxHealth = 18
 monster.race = "venom"
 monster.corpse = 5990
 monster.speed = 80
@@ -74,12 +74,13 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 51170, maxCount = 6 },
-	{ name = "cherry", chance = 2590, maxCount = 3 },
+	{ name = "cherry", chance = 50000, maxCount = 5 },
+	{ name = "chocoin diluido", chance = 50000, maxCount = 5 },
+	{ name = "chocoin puro", chance = 4000, maxCount = 1 },
 }
 
 monster.attacks = {
-	{ name = "melee", interval = 2000, chance = 100, minDamage = 0, maxDamage = -23 },
+	{ name = "melee", interval = 2000, chance = 100, minDamage = -3, maxDamage = -13 },
 }
 
 monster.defenses = {
@@ -92,7 +93,7 @@ monster.elements = {
 	{ type = COMBAT_PHYSICALDAMAGE, percent = 0 },
 	{ type = COMBAT_ENERGYDAMAGE, percent = 0 },
 	{ type = COMBAT_EARTHDAMAGE, percent = 0 },
-	{ type = COMBAT_FIREDAMAGE, percent = -10 },
+	{ type = COMBAT_FIREDAMAGE, percent = 0 },
 	{ type = COMBAT_LIFEDRAIN, percent = 0 },
 	{ type = COMBAT_MANADRAIN, percent = 0 },
 	{ type = COMBAT_DROWNDAMAGE, percent = 0 },
