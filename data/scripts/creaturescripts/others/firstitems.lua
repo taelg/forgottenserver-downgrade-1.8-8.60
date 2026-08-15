@@ -9,7 +9,7 @@ local config = {
 	--Tael (no voc items)
 	[1] = {
 		items = {
-			{ 3291, 1 }, -- faca de cozinha
+			{ 3473, 1 }, -- rolo magico (arma 1)
 			{ 3566, 1 }, -- Camisetão
 			{ 22087, 1 }, -- Pano velho
 		},

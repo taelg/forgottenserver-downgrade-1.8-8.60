@@ -1,0 +1,13 @@
+REGISTRO DE UNIQUE ID / ACTION ID
+Documento para guardar os Unique IDs e Action IDs usados no servidor com uma breve descrição do que fazem.
+
+UNIQUE IDS
+----------
+Faixa 25501-25550: Portal de escolher vocation
+  25501 = Vocation Candy Guardian
+  25502 = Vocation Pyromancer
+  25503+ = ainda não em uso
+
+ACTION IDS
+----------
+(ainda sem IDs em uso)

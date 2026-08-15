@@ -24,11 +24,26 @@
 	<item id="3291" article="a" name="faquinha">
 		<attribute key="classification" value="2" />		
 		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="smallstone" />
+		<attribute key="shootType" value="cake" />
 		<attribute key="range" value="1" />
 		<attribute key="weight" value="1900" />
 		<attribute key="script" value="moveevent;weapon">
-		<attribute key="wandType" value="earth" />
+		<attribute key="wandType" value="physical" />
+		<attribute key="level" value="1" />
+		<attribute key="mana" value="1" />
+		<attribute key="fromDamage" value="2" />
+		<attribute key="toDamage" value="5" />
+		<attribute key="slot" value="hand" />
+		</attribute>
+	</item>
+	<item id="3473" article="a" name="rolo magico">
+		<attribute key="classification" value="2" />		
+		<attribute key="weaponType" value="wand" />
+		<attribute key="shootType" value="cake" />
+		<attribute key="range" value="2" />
+		<attribute key="weight" value="1900" />
+		<attribute key="script" value="moveevent;weapon">
+		<attribute key="wandType" value="physical" />
 		<attribute key="level" value="1" />
 		<attribute key="mana" value="1" />
 		<attribute key="fromDamage" value="2" />
@@ -9601,9 +9616,6 @@
 	</item>
 	<item id="3472" article="an" name="oven spatula">
 		<attribute key="weight" value="1400" />
-	</item>
-	<item id="3473" article="a" name="rolling pin">
-		<attribute key="weight" value="500" />
 	</item>
 	<item fromid="3474" toid="3476" article="a" name="bowl">
 		<attribute key="weight" value="380" />
