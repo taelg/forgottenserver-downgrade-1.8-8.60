@@ -4848,17 +4848,20 @@ void ProtocolGame::AddPlayerStats(NetworkMessage& msg)
 	if (isOTC) {
 		msg.add<uint16_t>(player->getBaseSpeed() / 2);
 		msg.add<uint16_t>(player->getOfflineTrainingTime() / 60 / 1000);
-		if (isAstraClient) {
-			msg.add<uint16_t>(player->getXpBoostTime());
-			// 0x00 means boost is active and cannot be bought; 0x01 means the client may buy one.
-			msg.addByte(player->getXpBoostTime() > 0 ? 0x00 : 0x01);
-		}
+	}
+
+	// Field sent to the client: regeneration (ticks) applies only to
+	// the current regeneration condition, in seconds.
+	Condition* condition = player->getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT);
+	msg.add<uint16_t>(condition ? condition->getTicks() / 1000 : 0x00);
+
+	if (isAstraClient) {
+		msg.add<uint16_t>(player->getXpBoostTime());
+		// 0x00 means boost is active and cannot be bought; 0x01 means the client may buy one.
+		msg.addByte(player->getXpBoostTime() > 0 ? 0x00 : 0x01);
 	}
 
 	/*msg.add<uint16_t>(player->getBaseSpeed() / 2);
-
-	Condition* condition = player->getCondition(CONDITION_REGENERATION, CONDITIONID_DEFAULT);
-	msg.add<uint16_t>(condition ? condition->getTicks() / 1000 : 0x00);
 
 	msg.add<uint16_t>(player->getOfflineTrainingTime() / 60 / 1000);
 

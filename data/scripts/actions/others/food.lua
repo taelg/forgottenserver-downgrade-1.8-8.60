@@ -1,110 +1,124 @@
 local action = Action()
 
 local foods = {
-	[3250] = {5, "Crunch."}, -- carrot
-	[3577] = {15, "Munch."}, -- meat
-	[3578] = {12, "Munch."}, -- fish
-	[3579] = {10, "Mmmm."}, -- salmon
-	[3580] = {17, "Munch."}, -- northern pike
-	[3581] = {4, "Gulp."}, -- shrimp
-	[3582] = {30, "Chomp."}, -- ham
-	[3583] = {60, "Chomp."}, -- dragon ham
-	[3584] = {5, "Yum."}, -- pear
-	[3585] = {6, "Yum."}, -- red apple
-	[3586] = {13, "Yum."}, -- orange
-	[3587] = {8, "Yum."}, -- banana
-	[3588] = {1, "Yum."}, -- blueberry
-	[3589] = {18, "Slurp."}, -- coconut
-	[3590] = {1, "Yum."}, -- cherry
-	[3591] = {2, "Yum."}, -- strawberry
-	[3592] = {9, "Yum."}, -- grapes
-	[3593] = {20, "Yum."}, -- melon
-	[3594] = {17, "Munch."}, -- pumpkin
-	[3595] = {5, "Crunch."}, -- carrot
-	[3596] = {6, "Munch."}, -- tomato
-	[3597] = {9, "Crunch."}, -- corncob
-	[3598] = {2, "Crunch."}, -- cookie
-	[3599] = {2, "Munch."}, -- candy cane
-	[3600] = {10, "Crunch."}, -- bread
-	[3601] = {3, "Crunch."}, -- roll
-	[3602] = {8, "Crunch."}, -- brown bread
-	[3606] = {6, "Gulp."}, -- egg
-	[3607] = {9, "Smack."}, -- cheese
-	[3723] = {9, "Munch."}, -- white mushroom
-	[3724] = {4, "Munch."}, -- red mushroom
-	[3725] = {22, "Munch."}, -- brown mushroom
-	[3726] = {30, "Munch."}, -- orange mushroom
-	[3727] = {9, "Munch."}, -- wood mushroom
-	[3728] = {6, "Munch."}, -- dark mushroom
-	[3729] = {12, "Munch."}, -- some mushrooms
-	[3730] = {3, "Munch."}, -- some mushrooms
-	[3731] = {36, "Munch."}, -- fire mushroom
-	[3732] = {5, "Munch."}, -- green mushroom
-	[5096] = {4, "Yum."}, -- mango
-	[5678] = {8, "Gulp."}, -- tortoise egg
-	[6125] = {8, "Gulp."}, -- tortoise egg from Nargor
-	[6277] = {10, "Mmmm."}, -- cake
-	[6278] = {15, "Mmmm."}, -- decorated cake
-	[6392] = {12, "Mmmm."}, -- valentine's cake
-	[6393] = {15, "Mmmm."}, -- cream cake
-	[6500] = {20, "Mmmm."}, -- gingerbread man
-	[6541] = {6, "Gulp."}, -- coloured egg (yellow)
-	[6542] = {6, "Gulp."}, -- coloured egg (red)
-	[6543] = {6, "Gulp."}, -- coloured egg (blue)
-	[6544] = {6, "Gulp."}, -- coloured egg (green)
-	[6545] = {6, "Gulp."}, -- coloured egg (purple)
-	[6569] = {1, "Mmmm."}, -- candy
-	[6574] = {5, "Mmmm."}, -- bar of chocolate
-	[7158] = {15, "Munch."}, -- rainbow trout
-	[7159] = {13, "Munch."}, -- green perch
-	[229] = {2, "Yum."}, -- ice cream cone (crispy chocolate chips)
-	[7373] = {2, "Yum."}, -- ice cream cone (velvet vanilla)
-	[7374] = {2, "Yum."}, -- ice cream cone (sweet strawberry)
-	[7375] = {2, "Yum."}, -- ice cream cone (chilly cherry)
-	[7376] = {2, "Yum."}, -- ice cream cone (mellow melon)
-	[7377] = {2, "Yum."}, -- ice cream cone (blue-barian)
-	[836] = {4, "Crunch."}, -- walnut
-	[841] = {4, "Crunch."}, -- peanut
-	[901] = {60, "Munch."}, -- marlin
-	[169] = {9, "Urgh."}, -- scarab cheese
-	[8010] = {10, "Gulp."}, -- potato
-	[8011] = {5, "Yum."}, -- plum
-	[8012] = {1, "Yum."}, -- raspberry
-	[8013] = {1, "Urgh."}, -- lemon
-	[8014] = {7, "Munch."}, -- cucumber
-	[8015] = {5, "Crunch."}, -- onion
-	[8016] = {1, "Gulp."}, -- jalapeño pepper
-	[8017] = {5, "Munch."}, -- beetroot
-	[8019] = {11, "Yum."}, -- chocolate cake
-	[8177] = {7, "Slurp."}, -- yummy gummy worm
-	[8197] = {5, "Crunch."}, -- bulb of garlic
-	[9083] = {0, "Slurp."}, -- banana chocolate shake
-	[9537] = {0, "Your head begins to feel better."}, -- headache pill
-	[10329] = {15, "Yum."}, -- rice ball
-	[10453] = {3, "Urgh."}, -- terramite eggs
-	[10219] = {10, "Mmmm."}, -- crocodile steak
-	[11459] = {20, "Yum."}, -- pineapple
-	[11460] = {10, "Munch."}, -- aubergine
-	[11461] = {8, "Crunch."}, -- broccoli
-	[11462] = {9, "Crunch."}, -- cauliflower
-	[11681] = {55, "Gulp."}, -- ectoplasmic sushi
-	[11682] = {18, "Yum."}, -- dragonfruit
-	[11683] = {2, "Munch."} -- peas
+	[3590] = {3, "Yum.", 1, 1, 1}, -- cherry
+
+	[3250] = {1, "Crunch.", 1, 1, 1}, -- carrot
+	[3577] = {3, "Munch.", 4, 3, 1}, -- meat
+	[3578] = {3, "Munch.", 3, 3, 1}, -- fish
+	[3579] = {2, "Mmmm.", 3, 2, 1}, -- salmon
+	[3580] = {4, "Munch.", 5, 4, 1}, -- northern pike
+	[3581] = {1, "Gulp.", 1, 1, 1}, -- shrimp
+	[3582] = {7, "Chomp.", 8, 6, 1}, -- ham
+	[3583] = {15, "Chomp.", 18, 12, 1}, -- dragon ham
+	[3584] = {1, "Yum.", 1, 1, 1}, -- pear
+	[3585] = {1, "Yum.", 1, 1, 1}, -- red apple
+	[3586] = {3, "Yum.", 3, 3, 1}, -- orange
+	[3587] = {2, "Yum.", 1, 3, 1}, -- banana
+	[3588] = {0, "Yum.", 0, 1, 1}, -- blueberry
+	[3589] = {4, "Slurp.", 5, 4, 1}, -- coconut
+	[3591] = {0, "Yum.", 0, 1, 1}, -- strawberry
+	[3592] = {2, "Yum.", 2, 2, 1}, -- grapes
+	[3593] = {5, "Yum.", 6, 4, 1}, -- melon
+	[3594] = {4, "Munch.", 5, 4, 1}, -- pumpkin
+	[3595] = {1, "Crunch.", 1, 1, 1}, -- carrot
+	[3596] = {1, "Munch.", 1, 1, 1}, -- tomato
+	[3597] = {2, "Crunch.", 2, 2, 1}, -- corncob
+	[3598] = {0, "Crunch.", 0, 1, 1}, -- cookie
+	[3599] = {0, "Munch.", 0, 1, 1}, -- candy cane
+	[3600] = {2, "Crunch.", 3, 2, 1}, -- bread
+	[3601] = {0, "Crunch.", 1, 0, 1}, -- roll
+	[3602] = {2, "Crunch.", 2, 2, 1}, -- brown bread
+	[3606] = {1, "Gulp.", 1, 1, 1}, -- egg
+	[3607] = {2, "Smack.", 2, 2, 1}, -- cheese
+	[3723] = {2, "Munch.", 2, 2, 1}, -- white mushroom
+	[3724] = {1, "Munch.", 1, 1, 1}, -- red mushroom
+	[3725] = {5, "Munch.", 6, 4, 1}, -- brown mushroom
+	[3726] = {7, "Munch.", 8, 6, 1}, -- orange mushroom
+	[3727] = {2, "Munch.", 2, 2, 1}, -- wood mushroom
+	[3728] = {1, "Munch.", 1, 1, 1}, -- dark mushroom
+	[3729] = {3, "Munch.", 3, 3, 1}, -- some mushrooms
+	[3730] = {0, "Munch.", 0, 1, 1}, -- some mushrooms
+	[3731] = {9, "Munch.", 10, 8, 1}, -- fire mushroom
+	[3732] = {1, "Munch.", 1, 1, 1}, -- green mushroom
+	[5096] = {1, "Yum.", 1, 1, 1}, -- mango
+	[5678] = {2, "Gulp.", 2, 2, 1}, -- tortoise egg
+	[6125] = {2, "Gulp.", 2, 2, 1}, -- tortoise egg from Nargor
+	[6277] = {2, "Mmmm.", 3, 2, 1}, -- cake
+	[6278] = {3, "Mmmm.", 4, 3, 1}, -- decorated cake
+	[6392] = {3, "Mmmm.", 3, 3, 1}, -- valentine's cake
+	[6393] = {3, "Mmmm.", 4, 3, 1}, -- cream cake
+	[6500] = {5, "Mmmm.", 6, 4, 1}, -- gingerbread man
+	[6541] = {1, "Gulp.", 1, 1, 1}, -- coloured egg (yellow)
+	[6542] = {1, "Gulp.", 1, 1, 1}, -- coloured egg (red)
+	[6543] = {1, "Gulp.", 1, 1, 1}, -- coloured egg (blue)
+	[6544] = {1, "Gulp.", 1, 1, 1}, -- coloured egg (green)
+	[6545] = {1, "Gulp.", 1, 1, 1}, -- coloured egg (purple)
+	[6569] = {0, "Mmmm.", 0, 1, 1}, -- candy
+	[6574] = {1, "Mmmm.", 1, 1, 1}, -- bar of chocolate
+	[7158] = {3, "Munch.", 4, 3, 1}, -- rainbow trout
+	[7159] = {3, "Munch.", 3, 3, 1}, -- green perch
+	[229] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (crispy chocolate chips)
+	[7373] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (velvet vanilla)
+	[7374] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (sweet strawberry)
+	[7375] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (chilly cherry)
+	[7376] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (mellow melon)
+	[7377] = {0, "Yum.", 0, 1, 1}, -- ice cream cone (blue-barian)
+	[836] = {1, "Crunch.", 1, 1, 1}, -- walnut
+	[841] = {1, "Crunch.", 1, 1, 1}, -- peanut
+	[901] = {15, "Munch.", 18, 12, 1}, -- marlin
+	[169] = {2, "Urgh.", 2, 2, 1}, -- scarab cheese
+	[8010] = {2, "Gulp.", 3, 2, 1}, -- potato
+	[8011] = {1, "Yum.", 1, 1, 1}, -- plum
+	[8012] = {0, "Yum.", 0, 1, 1}, -- raspberry
+	[8013] = {0, "Urgh.", 0, 1, 1}, -- lemon
+	[8014] = {1, "Munch.", 2, 1, 1}, -- cucumber
+	[8015] = {1, "Crunch.", 1, 1, 1}, -- onion
+	[8016] = {0, "Gulp.", 0, 1, 1}, -- jalapeño pepper
+	[8017] = {1, "Munch.", 1, 1, 1}, -- beetroot
+	[8019] = {2, "Yum.", 3, 2, 1}, -- chocolate cake
+	[8177] = {1, "Slurp.", 2, 1, 1}, -- yummy gummy worm
+	[8197] = {1, "Crunch.", 1, 1, 1}, -- bulb of garlic
+	[9083] = {0, "Slurp.", 0, 0, 1}, -- banana chocolate shake
+	[9537] = {0, "Your head begins to feel better.", 0, 0, 1}, -- headache pill
+	[10329] = {3, "Yum.", 4, 3, 1}, -- rice ball
+	[10453] = {0, "Urgh.", 1, 0, 1}, -- terramite eggs
+	[10219] = {2, "Mmmm.", 3, 2, 1}, -- crocodile steak
+	[11459] = {5, "Yum.", 6, 4, 1}, -- pineapple
+	[11460] = {2, "Munch.", 3, 2, 1}, -- aubergine
+	[11461] = {2, "Crunch.", 2, 2, 1}, -- broccoli
+	[11462] = {2, "Crunch.", 2, 2, 1}, -- cauliflower
+	[11681] = {13, "Gulp.", 15, 11, 1}, -- ectoplasmic sushi
+	[11682] = {4, "Yum.", 5, 4, 1}, -- dragonfruit
+	[11683] = {0, "Munch.", 0, 1, 1} -- peas
 }
 
 function action.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	local food = foods[item.itemid]
 	if not food then return false end
 
+	local feed = food[1]
+	local sound = food[2]
+	local health = food[3]
+	local mana = food[4]
+	local minLevel = food[5]
+
+	if player:getLevel() < minLevel then
+		player:sendTextMessage(MESSAGE_STATUS_SMALL,"Essa comida exige level " .. minLevel .. ".")
+		return true
+	end
+
 	local condition = player:getCondition(CONDITION_REGENERATION,
 	                                      CONDITIONID_DEFAULT)
-	if condition and math.floor(condition:getTicks() / 1000 + (food[1] * 12)) >=
-		1200 then
-		player:sendTextMessage(MESSAGE_STATUS_SMALL, "You are full.")
+	if condition and math.floor(condition:getTicks() / 1000 + feed) >= 120 then
+		player:sendTextMessage(MESSAGE_STATUS_SMALL, "Voce está cheio para comer isso. [feed: " .. condition:getTicks() / 1000 .."/120]")
 	else
-		player:feed(food[1] * 12)
-		player:say(food[2], TALKTYPE_MONSTER_SAY)
+		player:feed(feed)
+		player:addHealth(health)
+		player:addMana(mana)
+		player:say(sound, TALKTYPE_MONSTER_SAY)
 		item:remove(1)
+		player:sendStats()
 	end
 	return true
 end
