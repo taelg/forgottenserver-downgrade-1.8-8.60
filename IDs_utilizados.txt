@@ -1,5 +1,6 @@
-REGISTRO DE UNIQUE ID / ACTION ID
-Documento para guardar os Unique IDs e Action IDs usados no servidor com uma breve descrição do que fazem.
+REGISTRO DE UNIQUE ID / ACTION ID / STORAGE ID
+Documento para guardar os Unique IDs, Action IDs e Storage IDs usados no servidor com uma breve descrição do que fazem.
+
 
 UNIQUE IDS
 ----------
@@ -7,7 +8,24 @@ Faixa 25501-25550: Portal de escolher vocation
   25501 = Vocation Candy Guardian
   25502 = Vocation Pyromancer
   25503+ = ainda não em uso
+  
+Faixa 10000-12000: Quests simples (0 ou 1 normalmente)
+  10001 = quest da leather boots
+  10002+ = ainda não em uso
 
 ACTION IDS
 ----------
-(ainda sem IDs em uso)
+Faixa 15001-18000: Misc
+  15001 = convert chocolate coin machine
+  12002+ = ainda não em uso
+
+
+STORAGE IDS
+----------
+Faixa 55000-56000: Quests principais (questlog)
+  55000 = Questline inicial
+  550001+ = ainda não em uso
+  
+Faixa 10000-12000: Quests simples (0 ou 1 normalmente)
+  10001 = quest da leather boots
+  10002+ = ainda não em uso

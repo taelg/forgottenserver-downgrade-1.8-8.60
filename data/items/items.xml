@@ -1,26 +1,124 @@
 <?xml version='1.0' encoding='utf-8'?>
 <items>
 	
+	<!-- Items Iniciais -->
+    <item id="3566" article="a" name="camisetão velho">
+        <attribute key="description" value="O manto é artisticamente bordado" />
+        <attribute key="armor" value="1" />
+        <attribute key="weight" value="2600" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="armor" />
+        </attribute>
+        <attribute key="classification" value="1" />
+    </item>
+    <item id="22087" article="a" name="pano velho">
+        <attribute key="showAttributes" value="1" />
+        <attribute key="armor" value="6" />
+        <attribute key="weight" value="1300" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="legs" />
+        </attribute>
+        <attribute key="classification" value="2" />
+    </item>
+    <item id="3473" article="a" name="rolo mágico">
+        <attribute key="classification" value="2" />		
+        <attribute key="weaponType" value="wand" />
+        <attribute key="shootType" value="cake" />
+        <attribute key="range" value="2" />
+        <attribute key="weight" value="1900" />
+        <attribute key="script" value="moveevent;weapon">
+        <attribute key="wandType" value="physical" />
+        <attribute key="level" value="1" />
+        <attribute key="mana" value="1" />
+        <attribute key="fromDamage" value="2" />
+        <attribute key="toDamage" value="5" />
+        <attribute key="slot" value="hand" />
+        </attribute>
+    </item>
+    <item id="3047" article="a" name="varinha de luz">
+        <attribute key="description" value="A varinha brilha" />
+        <attribute key="weight" value="1500" />
+    </item>
+        <item id="3059" article="a" name="livro de magias">
+        <attribute key="description" value="Mostra suas magias mas tambem e um escudo." />
+        <attribute key="defense" value="5" />
+        <attribute key="weight" value="1800" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="shield" />
+        </attribute>
+    </item>
+    <item id="3003" article="a" name="corda">	
+        <attribute key="weight" value="1800" />	
+        <attribute key="description" value="Importante pra não ficar preso em buracos."/>
+    </item>
 
-	
-	<item id="3566" article="a" name="camisetão velho">
-		<attribute key="description" value="The robe is artfully embroidered" />
-		<attribute key="armor" value="1" />
-		<attribute key="weight" value="2600" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="armor" />
-		</attribute>
-		<attribute key="classification" value="1" />
+    <!-- Items Bololandia Geral -->
+    <item id="48249" article="a" name="chocoin diluido">
+        <attribute key="weight" value="1" />
+    </item>
+    <item id="48250" article="a" name="chocoin puro">
+        <attribute key="weight" value="1" />
+    </item>
+	<item fromid="5468" toid="5469" article="a" name="chocolate extractor">
 	</item>
-	<item id="22087" article="a" name="pano velho">
-		<attribute key="showAttributes" value="1" />
-		<attribute key="armor" value="6" />
-		<attribute key="weight" value="1300" />
+
+    <!-- Items Gnomelvis (vendedor de utilidade) -->
+    <item id="3457" article="a" name="pá">
+        <attribute key="weight" value="3500" />
+    </item>
+    <item id="3456" article="a" name="picareta">
+        <attribute key="weight" value="4500" />
+    </item>
+    <item id="3455" article="a" name="enxada">
+        <attribute key="weight" value="2800" />
+    </item>
+    <item id="3460" article="a" name="martelo">
+        <attribute key="weight" value="1150" />
+    </item>
+    <item id="3461" article="a" name="serrote">
+        <attribute key="weight" value="1000" />
+    </item>
+    <item id="3453" article="a" name="foice">
+        <attribute key="weight" value="3000" />
+    </item>
+
+<!-- Set de Couro (vendedor de utilidade) -->
+    <item id="3355" article="a" name="elmo de couro">
+        <attribute key="armor" value="1" />
+        <attribute key="weight" value="2200" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="head" />
+        </attribute>
+        <attribute key="classification" value="1" />
+    </item>
+    <item id="3361" article="a" name="armadura de couro">
+        <attribute key="armor" value="4" />
+        <attribute key="weight" value="6000" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="armor" />
+        </attribute>
+        <attribute key="classification" value="1" />
+    </item>
+    <item id="3559" name="perneiras de couro">
+        <attribute key="armor" value="1" />
+        <attribute key="weight" value="1800" />
+        <attribute key="script" value="moveevent">
+            <attribute key="slot" value="legs" />
+        </attribute>
+        <attribute key="classification" value="1" />
+    </item>
+    <item id="3552" name="botas de couro">
+		<attribute key="showAttributes" value="0" />
+        <attribute key="description" value="+50 velocidade"/>
+        <attribute key="speed" value="50" />
+        <attribute key="weight" value="1000" />
 		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="legs" />
+			<attribute key="slot" value="feet" />
 		</attribute>
-		<attribute key="classification" value="2" />
-	</item>
+    </item>
+
+
+
 	<item id="3291" article="a" name="faquinha">
 		<attribute key="classification" value="2" />		
 		<attribute key="weaponType" value="wand" />
@@ -36,48 +134,6 @@
 		<attribute key="slot" value="hand" />
 		</attribute>
 	</item>
-	<item id="3473" article="a" name="rolo magico">
-		<attribute key="classification" value="2" />		
-		<attribute key="weaponType" value="wand" />
-		<attribute key="shootType" value="cake" />
-		<attribute key="range" value="2" />
-		<attribute key="weight" value="1900" />
-		<attribute key="script" value="moveevent;weapon">
-		<attribute key="wandType" value="physical" />
-		<attribute key="level" value="1" />
-		<attribute key="mana" value="1" />
-		<attribute key="fromDamage" value="2" />
-		<attribute key="toDamage" value="5" />
-		<attribute key="slot" value="hand" />
-		</attribute>
-	</item>
-	<item id="3003" article="a" name="corda">	
-		<attribute key="weight" value="1800" />	
-		<attribute key="description" value="Importante pra não ficar preso em buracos."/>
-	</item>
-	<item id="3047" article="a" name="magic light wand">
-		<attribute key="description" value="The wand glows" />
-		<attribute key="weight" value="1500" />
-	</item>
-		<item id="3059" article="a" name="spellbook">
-		<attribute key="description" value="Mostra suas magias mas tambem e um escudo." />
-		<attribute key="defense" value="5" />
-		<attribute key="weight" value="1800" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="shield" />
-		</attribute>
-	</item>
-
-	<item id="48249" article="an" name="chocoin diluido">
-		<attribute key="weight" value="1" />
-	</item>
-	<item id="48250" article="a" name="chocoin puro">
-		<attribute key="weight" value="1" />
-		<attribute key="worth" value="1" />
-	</item>
-
-
-
 	<item id="1" name="water" />
 	<item id="2" name="wine" />
 	<item id="3" name="beer" />
@@ -8377,14 +8433,6 @@
 		</attribute>
 		<attribute key="classification" value="1" />
 	</item>
-	<item id="3355" article="a" name="leather helmet">
-		<attribute key="armor" value="1" />
-		<attribute key="weight" value="2200" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="head" />
-		</attribute>
-		<attribute key="classification" value="1" />
-	</item>
 	<item id="3356" article="a" name="devil helmet">
 		<attribute key="armor" value="7" />
 		<attribute key="weight" value="5000" />
@@ -8443,14 +8491,6 @@
 			<attribute key="vocation" value="Knight;true, Paladin;true, Elite Knight, Royal Paladin" />
 		</attribute>
 		<attribute key="classification" value="2" />
-	</item>
-	<item id="3361" article="a" name="leather armor">
-		<attribute key="armor" value="4" />
-		<attribute key="weight" value="6000" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="armor" />
-		</attribute>
-		<attribute key="classification" value="1" />
 	</item>
 	<item id="3362" name="studded legs">
 		<attribute key="armor" value="2" />
@@ -9536,39 +9576,13 @@
 	<item id="3452" article="a" name="rake">
 		<attribute key="weight" value="1500" />
 	</item>
-	<item id="3453" article="a" name="scythe">
-		<attribute key="classification" value="1" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="slotType" value="two-handed" />
-		<attribute key="attack" value="8" />
-		<attribute key="defense" value="3" />
-		<attribute key="weight" value="3000" />
-		<attribute key="script" value="moveevent;weapon">
-			<attribute key="weaponType" value="club" />
-		</attribute>
-	</item>
 	<item id="3454" article="a" name="broom">
 		<attribute key="weight" value="1100" />
-	</item>
-	<item id="3455" article="a" name="hoe">
-		<attribute key="weight" value="2800" />
-	</item>
-	<item id="3456" article="a" name="pick">
-		<attribute key="weight" value="4500" />
-	</item>
-	<item id="3457" article="a" name="shovel">
-		<attribute key="weight" value="3500" />
 	</item>
 	<item id="3458" article="an" name="anvil">
 	</item>
 	<item id="3459" article="a" name="wooden hammer">
 		<attribute key="weight" value="600" />
-	</item>
-	<item id="3460" article="a" name="hammer">
-		<attribute key="weight" value="1150" />
-	</item>
-	<item id="3461" article="a" name="saw">
-		<attribute key="weight" value="1000" />
 	</item>
 	<item id="3462" article="a" name="small axe">
 		<attribute key="weight" value="2000" />
@@ -9784,18 +9798,7 @@
 			<attribute key="slot" value="feet" />
 		</attribute>
 	</item>
-	<item id="3552" name="leather boots">
-		<attribute key="armor" value="1" />
-		<attribute key="weight" value="900" />
-		<attribute key="imbuementslot" value="1">
-			<attribute key="increase speed" value="3" />
-			<attribute key="paralysis removal" value="3" />
-		</attribute>
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="feet" />
-		</attribute>
-		<attribute key="classification" value="1" />
-	</item>
+
 	<item id="3553" name="bunnyslippers">
 		<attribute key="weight" value="600" />
 		<attribute key="imbuementslot" value="1">
@@ -9853,14 +9856,6 @@
 	<item id="3558" name="chain legs">
 		<attribute key="armor" value="3" />
 		<attribute key="weight" value="3500" />
-		<attribute key="script" value="moveevent">
-			<attribute key="slot" value="legs" />
-		</attribute>
-		<attribute key="classification" value="1" />
-	</item>
-	<item id="3559" name="leather legs">
-		<attribute key="armor" value="1" />
-		<attribute key="weight" value="1800" />
 		<attribute key="script" value="moveevent">
 			<attribute key="slot" value="legs" />
 		</attribute>
@@ -13354,8 +13349,6 @@
 	<item id="5467" article="a" name="fire bug">
 		<attribute key="description" value="This strange creature has the tendency to set certain things on fire" />
 		<attribute key="weight" value="3050" />
-	</item>
-	<item fromid="5468" toid="5469" article="a" name="distilling machine">
 	</item>
 	<item id="5470" article="a" name="sugar cane">
 		<attribute key="duration" value="240" />
