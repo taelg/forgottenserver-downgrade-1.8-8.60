@@ -83,7 +83,7 @@ monster.loot = {
 	{ name = "gold coin", chance = 53850, maxCount = 30 },
 	{ id = 3052, chance = 200 }, -- life ring
 	{ id = 3114, chance = 240 }, -- skull
-	{ name = "knife", chance = 15380 },
+	-- { name = "knife", chance = 15380 },
 	{ name = "brass helmet", chance = 23000 },
 	{ name = "viking helmet", chance = 1000 },
 	{ name = "scale armor", chance = 1000 },

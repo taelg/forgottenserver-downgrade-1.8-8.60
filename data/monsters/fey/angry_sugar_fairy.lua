@@ -93,7 +93,7 @@ monster.loot = {
 	{ name = "wafer paper flower", chance = 1650 },
 	{ name = "spellbook of enlightenment", chance = 960 },
 	{ name = "butterfly ring", chance = 760 },
-	{ name = "milk chocolate coin", chance = 760, maxCount = 10 },
+	-- { name = "milk chocolate coin", chance = 760, maxCount = 10 },
 	{ id = 3098, chance = 730 }, -- ring of healing
 	{ name = "hibiscus dress", chance = 360 },
 	{ id = 3040, chance = 230 }, -- gold nugget

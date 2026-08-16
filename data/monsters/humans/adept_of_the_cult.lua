@@ -94,7 +94,7 @@ monster.loot = {
 	{ name = "silver amulet", chance = 1020 },
 	{ name = "hailstorm rod", chance = 220 },
 	{ name = "clerical mace", chance = 1260 },
-	{ name = "red robe", chance = 80 },
+	-- { name = "red robe", chance = 80 },
 	{ name = "pirate voodoo doll", chance = 1730 },
 	{ id = 6089, chance = 700 }, -- music sheet
 	{ name = "lunar staff", chance = 120 },

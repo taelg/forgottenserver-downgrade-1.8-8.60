@@ -86,8 +86,8 @@ monster.loot = {
 	{ name = "dagger", chance = 18280 },
 	{ name = "short sword", chance = 8900 },
 	{ name = "bone club", chance = 5000 },
-	{ name = "leather helmet", chance = 10180 },
-	{ name = "leather armor", chance = 7700 },
+	-- { name = "leather helmet", chance = 10180 },
+	-- { name = "leather armor", chance = 7700 },
 	{ name = "small axe", chance = 9790 },
 	{ id = 3578, chance = 13640 }, -- fish
 }

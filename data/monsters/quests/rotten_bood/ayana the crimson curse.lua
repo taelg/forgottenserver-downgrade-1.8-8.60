@@ -74,7 +74,7 @@ monster.loot = {
 	{ name = "blank rune", chance = 26250, maxCount = 2 },
 	{ name = "golden sickle", chance = 350 },
 	{ name = "skull staff", chance = 1520 },
-	{ name = "scythe", chance = 3000 },
+	-- { name = "scythe", chance = 3000 },
 	{ name = "bunch of wheat", chance = 50000 },
 	{ name = "soul orb", chance = 23720 },
 	{ id = 6299, chance = 1410 },

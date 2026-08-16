@@ -85,7 +85,7 @@ monster.loot = {
 	{ name = "platinum coin", chance = 5200, maxCount = 4 },
 	{ id = 3046, chance = 4850 }, -- magic light wand
 	{ name = "dark shield", chance = 3000 },
-	{ name = "scythe", chance = 9000 },
+	-- { name = "scythe", chance = 9000 },
 	{ name = "orichalcum pearl", chance = 1400, maxCount = 4 },
 	{ id = 6299, chance = 330 }, -- death ring
 	{ name = "demonic essence", chance = 10600 },

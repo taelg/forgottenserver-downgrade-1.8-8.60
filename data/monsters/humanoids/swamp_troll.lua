@@ -83,7 +83,7 @@ monster.loot = {
 	{ name = "mouldy cheese", chance = 10000 },
 	{ name = "spear", chance = 13000 },
 	{ name = "fishing rod", chance = 60 },
-	{ name = "leather boots", chance = 9500 },
+	-- { name = "leather boots", chance = 9500 },
 	{ id = 3578, chance = 60000 }, -- fish
 	{ name = "troll green", chance = 1200 },
 	{ id = 5901, chance = 2140 }, -- wood

@@ -80,10 +80,10 @@ monster.loot = {
 	{ id = 3046, chance = 84510 }, -- magic light wand
 	{ name = "gold coin", chance = 70420, maxCount = 10 },
 	{ id = 2920, chance = 26760, maxCount = 2 }, -- torch
-	{ name = "leather legs", chance = 14080 },
+	-- { name = "leather legs", chance = 14080 },
 	{ id = 3595, chance = 4230 }, -- carrot
-	{ name = "leather helmet", chance = 5630 },
-	{ name = "knife", chance = 12680 },
+	-- { name = "leather helmet", chance = 5630 },
+	-- { name = "knife", chance = 12680 },
 	{ id = 3577, chance = 25500 }, -- meat
 }
 

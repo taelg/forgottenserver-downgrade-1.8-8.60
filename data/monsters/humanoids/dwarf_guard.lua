@@ -86,7 +86,7 @@ monster.loot = {
 	{ name = "steel helmet", chance = 1600 },
 	{ name = "scale armor", chance = 9200 },
 	{ name = "battle shield", chance = 6000 },
-	{ name = "leather boots", chance = 40000 },
+	-- { name = "leather boots", chance = 40000 },
 	{ name = "white mushroom", chance = 55000, maxCount = 2 },
 	{ name = "iron ore", chance = 510 },
 	{ name = "health potion", chance = 380 },

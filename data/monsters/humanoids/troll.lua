@@ -86,9 +86,9 @@ monster.loot = {
 	{ name = "hand axe", chance = 18000 },
 	{ name = "spear", chance = 13000 },
 	{ name = "studded club", chance = 5000 },
-	{ name = "leather helmet", chance = 12000 },
+	-- { name = "leather helmet", chance = 12000 },
 	{ id = 3412, chance = 4730 }, -- wooden shield
-	{ name = "leather boots", chance = 10000 },
+	-- { name = "leather boots", chance = 10000 },
 	{ name = "meat", chance = 15000 },
 	{ name = "bunch of troll hair", chance = 1000 },
 	{ id = 23986, chance = 1000 }, -- heavy old tome

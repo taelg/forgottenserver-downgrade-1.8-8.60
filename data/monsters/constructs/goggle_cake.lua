@@ -93,7 +93,7 @@ monster.loot = {
 	{ name = "churro heart", chance = 1520 },
 	{ name = "glacier amulet", chance = 1020 },
 	{ id = 3606, chance = 1000 }, -- egg
-	{ name = "milk chocolate coin", chance = 780, maxCount = 15 },
+	-- { name = "milk chocolate coin", chance = 780, maxCount = 15 },
 	{ name = "flour", chance = 690 },
 	{ name = "cookie", chance = 520, maxCount = 2 },
 	{ name = "glacier robe", chance = 500 },

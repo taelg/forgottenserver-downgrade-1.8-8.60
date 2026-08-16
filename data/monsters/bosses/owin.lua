@@ -87,7 +87,7 @@ monster.loot = {
     { name = "Strong Health Potion", chance = 76440, maxCount = 5 },
     { name = "Furry Club", chance = 40230, maxCount = 1 },
     { name = "Ultimate Health Potion", chance = 22990, maxCount = 2 },
-    { name = "Wereboar Loincloth", chance = 21260, maxCount = 1 },
+    -- { name = "Wereboar Loincloth", chance = 21260, maxCount = 1 },
     { name = "Stone Skin Amulet", chance = 17240, maxCount = 1 },
     { name = "Berserk Potion", chance = 5170, maxCount = 1 },
     { name = "Fur Armor", chance = 4600, maxCount = 1 },

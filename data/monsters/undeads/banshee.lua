@@ -100,7 +100,7 @@ monster.loot = {
 	{ id = 3098, chance = 730 }, -- ring of healing
 	{ id = 2949, chance = 910 }, -- lyre
 	{ name = "poison dagger", chance = 1350 },
-	{ name = "red robe", chance = 150 },
+	-- { name = "red robe", chance = 150 },
 	{ name = "blue robe", chance = 700 },
 	{ name = "simple dress", chance = 6050 },
 	{ name = "strong mana potion", chance = 680 },

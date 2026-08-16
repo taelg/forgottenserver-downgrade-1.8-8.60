@@ -88,7 +88,7 @@ monster.loot = {
 	{ name = "spiked squelcher", chance = 13600000 },
 	{ name = "stone skin amulet", chance = 13600000 },
 	{ name = "wereboar hooves", chance = 13600000, maxCount = 2 },
-	{ name = "wereboar loincloth", chance = 13600000, maxCount = 2 },
+	-- { name = "wereboar loincloth", chance = 13600000, maxCount = 2 },
 	{ name = "wereboar tusks", chance = 13600000, maxCount = 2 },
 	{ name = "dreaded cleaver", chance = 400 },
 	{ name = "fur armor", chance = 400 },

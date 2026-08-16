@@ -86,7 +86,7 @@ monster.loot = {
 	{ name = "garlic necklace", chance = 1000 },
 	{ name = "silver dagger", chance = 500 },
 	{ name = "sickle", chance = 3910 },
-	{ name = "leather boots", chance = 4950 },
+	-- { name = "leather boots", chance = 4950 },
 	{ name = "coat", chance = 2010 },
 	{ name = "cape", chance = 4870 },
 	{ name = "cookie", chance = 29750, maxCount = 8 },

@@ -72,7 +72,7 @@ monster.loot = {
 	{ name = "ham", chance = 53750 },
 	{ name = "dirty cape", chance = 47500 },
 	{ id = 3114, chance = 28750 }, -- skull
-	{ name = "knife", chance = 25000 },
+	-- { name = "knife", chance = 25000 },
 	{ name = "broken helmet", chance = 23750 },
 	{ name = "dark armor", chance = 18750 },
 	{ name = "bug meat", chance = 12500 },

@@ -86,7 +86,7 @@ monster.loot = {
 	{ name = "two handed sword", chance = 7400 },
 	{ name = "seeds", chance = 8600 },
 	{ id = 3307, chance = 6800 }, -- scimitar
-	{ name = "knife", chance = 6600 },
+	-- { name = "knife", chance = 6600 },
 	{ name = "dragon necklace", chance = 7150 },
 	{ name = "magma amulet", chance = 5500 },
 	{ name = "wand of dragonbreath", chance = 4800 },

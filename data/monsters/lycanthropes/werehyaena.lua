@@ -79,7 +79,7 @@ monster.loot = {
 	{ name = "great health potion", chance = 49970, maxCount = 3 },
 	{ name = "meat", chance = 19070 },
 	{ name = "axe", chance = 16810 },
-	{ name = "knife", chance = 16620 },
+	-- { name = "knife", chance = 16620 },
 	{ name = "werehyaena nose", chance = 12670 },
 	{ name = "halberd", chance = 11480 },
 	{ name = "red crystal fragment", chance = 9540 },

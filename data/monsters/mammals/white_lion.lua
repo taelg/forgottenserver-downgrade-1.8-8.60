@@ -78,7 +78,7 @@ monster.loot = {
 	{ name = "green crystal fragment", chance = 1500 },
 	{ name = "terra boots", chance = 5000 },
 	{ name = "axe", chance = 5000 },
-	{ name = "leather boots", chance = 5000 },
+	-- { name = "leather boots", chance = 5000 },
 	{ name = "twin hooks", chance = 5000 },
 	{ name = "war hammer", chance = 1500 },
 	{ name = "combat knife", chance = 1500 },

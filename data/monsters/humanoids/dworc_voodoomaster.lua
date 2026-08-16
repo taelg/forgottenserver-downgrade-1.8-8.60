@@ -85,7 +85,7 @@ monster.loot = {
 	{ id = 3115, chance = 5800 }, -- bone
 	{ id = 3116, chance = 3000 }, -- big bone
 	{ name = "poison dagger", chance = 1000 },
-	{ name = "leather armor", chance = 10000 },
+	-- { name = "leather armor", chance = 10000 },
 	{ id = 3002, chance = 130 }, -- voodoo doll
 	{ name = "tribal mask", chance = 500 },
 	{ name = "health potion", chance = 600 },

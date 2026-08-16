@@ -89,7 +89,7 @@ monster.loot = {
 	{ name = "hailstorm rod", chance = 9650 },
 	{ name = "hexagonal ruby", chance = 880 },
 	{ name = "ice rapier", chance = 18420 },
-	{ name = "knife", chance = 12280 },
+	-- { name = "knife", chance = 12280 },
 	{ name = "life crystal", chance = 10530 },
 	{ name = "lightning pendant", chance = 2630 },
 	{ name = "moonlight rod", chance = 5260 },

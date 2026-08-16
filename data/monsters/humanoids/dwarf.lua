@@ -84,7 +84,7 @@ monster.loot = {
 	{ name = "copper shield", chance = 10000 },
 	{ id = 3456, chance = 10000 }, -- pick
 	{ id = 3505, chance = 8000 }, -- letter
-	{ name = "leather legs", chance = 10000 },
+	-- { name = "leather legs", chance = 10000 },
 	{ name = "white mushroom", chance = 50000 },
 	{ name = "iron ore", chance = 700 },
 }
