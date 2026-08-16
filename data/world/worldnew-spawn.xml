@@ -9,7 +9,6 @@
 	<spawn centerx="2017" centery="1985" centerz="7" radius="2">
 		<npc name="Gnomelvis" x="-2" y="0" z="7" spawntime="60" direction="2" />
 	</spawn>
-	<spawn centerx="1780" centery="2004" centerz="7" radius="10" />
 	<spawn centerx="1965" centery="2007" centerz="7" radius="1">
 		<npc name="Guard Senet" x="0" y="1" z="7" spawntime="60" direction="2" />
 	</spawn>

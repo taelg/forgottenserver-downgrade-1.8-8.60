@@ -1,18 +1,14 @@
 <?xml version="1.0"?>
 <houses>
-	<house name="" houseid="4" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="0" />
-	<house name="" houseid="5" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="0" />
 	<house name="Bololandia Casa #1" houseid="6" entryx="2038" entryy="1946" entryz="7" rent="0" townid="1" size="76" />
 	<house name="Bololandia Casa #2" houseid="7" entryx="2043" entryy="1945" entryz="7" rent="0" townid="1" size="97" />
 	<house name="Bololandia Casa #3" houseid="8" entryx="2045" entryy="1946" entryz="7" rent="0" townid="1" size="84" />
 	<house name="Bololandia Casa #4" houseid="9" entryx="2045" entryy="1948" entryz="7" rent="0" townid="1" size="82" />
 	<house name="Bololandia Casa #5" houseid="10" entryx="2044" entryy="1948" entryz="7" rent="0" townid="1" size="88" />
 	<house name="Bololandia Casa #6" houseid="11" entryx="2037" entryy="1947" entryz="7" rent="0" townid="1" size="71" />
-	<house name="Bololandia Casa #7" houseid="12" entryx="2017" entryy="1942" entryz="7" rent="0" townid="1" size="49" />
-	<house name="Bololandia Casa #8" houseid="13" entryx="2003" entryy="1935" entryz="7" rent="0" townid="1" size="52" />
-	<house name="Bololandia Casa #9" houseid="14" entryx="1993" entryy="1933" entryz="7" rent="0" townid="1" size="51" />
-	<house name="Bololandia Casa #10" houseid="15" entryx="1983" entryy="1948" entryz="7" rent="0" townid="1" size="65" />
-	<house name="Bololandia Casa #11" houseid="16" entryx="2009" entryy="1952" entryz="7" rent="0" townid="1" size="53" />
-	<house name="" houseid="3193" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="14" />
-	<house name="" houseid="3218" entryx="0" entryy="0" entryz="0" rent="0" townid="0" size="1" />
+	<house name="Bololandia Casa #7" houseid="12" entryx="2017" entryy="1942" entryz="7" rent="0" townid="1" size="47" />
+	<house name="Bololandia Casa #8" houseid="13" entryx="2003" entryy="1935" entryz="7" rent="0" townid="1" size="50" />
+	<house name="Bololandia Casa #9" houseid="14" entryx="1993" entryy="1933" entryz="7" rent="0" townid="1" size="49" />
+	<house name="Bololandia Casa #10" houseid="15" entryx="1983" entryy="1948" entryz="7" rent="0" townid="1" size="63" />
+	<house name="Bololandia Casa #11" houseid="16" entryx="2009" entryy="1952" entryz="7" rent="0" townid="1" size="51" />
 </houses>

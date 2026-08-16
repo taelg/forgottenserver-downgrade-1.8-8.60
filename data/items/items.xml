@@ -108,8 +108,6 @@
         <attribute key="classification" value="1" />
     </item>
     <item id="3552" name="botas de couro">
-		<attribute key="showAttributes" value="0" />
-        <attribute key="description" value="+50 velocidade"/>
         <attribute key="speed" value="50" />
         <attribute key="weight" value="1000" />
 		<attribute key="script" value="moveevent">

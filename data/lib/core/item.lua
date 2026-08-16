@@ -712,7 +712,7 @@ do
 
 		-- speed
 		if abilities.speed ~= 0 then
-			descriptions[#descriptions + 1] = fmt("speed %+d", math.floor(abilities.speed / 2))
+			descriptions[#descriptions + 1] = fmt("speed %+d", math.floor(abilities.speed))
 		end
 
 		-- drop bonus

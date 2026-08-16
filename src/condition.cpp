@@ -44,10 +44,7 @@ bool Condition::setParam(ConditionParam_t param, int32_t value)
 	}
 }
 
-bool Condition::setPositionParam(ConditionParam_t, const Position&)
-{
-	return false;
-}
+bool Condition::setPositionParam(ConditionParam_t, const Position&) { return false; }
 
 int32_t Condition::getParam(ConditionParam_t param) const
 {
@@ -266,7 +263,8 @@ Condition_ptr Condition::createCondition(ConditionId_t id, ConditionType_t type,
 			return std::make_unique<ConditionSpellGroupCooldown>(id, type, ticks, buff, subId, aggressive);
 
 		case CONDITION_DRUNK:
-			return std::make_unique<ConditionDrunk>(id, type, ticks, buff, subId, static_cast<uint8_t>(param), aggressive);
+			return std::make_unique<ConditionDrunk>(id, type, ticks, buff, subId, static_cast<uint8_t>(param),
+			                                        aggressive);
 
 		case CONDITION_INFIGHT:
 		case CONDITION_EXHAUST_WEAPON:
@@ -369,8 +367,8 @@ Condition_ptr Condition::createCondition(PropStream& propStream)
 		return nullptr;
 	}
 
-	auto condition = createCondition(static_cast<ConditionId_t>(id), static_cast<ConditionType_t>(type),
-	                                               ticks, 0, buff != 0, subId, aggressive);
+	auto condition = createCondition(static_cast<ConditionId_t>(id), static_cast<ConditionType_t>(type), ticks, 0,
+	                                 buff != 0, subId, aggressive);
 
 	if (!condition) {
 		return nullptr;
@@ -488,7 +486,8 @@ void ConditionAttributes::addCondition(Creature* creature, const Condition* cond
 		std::copy_n(conditionAttrs.skillsPercent, SKILL_LAST + 1, skillsPercent);
 		std::copy_n(conditionAttrs.stats, STAT_LAST + 1, stats);
 		std::copy_n(conditionAttrs.statsPercent, STAT_LAST + 1, statsPercent);
-		std::copy_n(conditionAttrs.experienceRate, static_cast<size_t>(ExperienceRateType::STAMINA) + 1, experienceRate);
+		std::copy_n(conditionAttrs.experienceRate, static_cast<size_t>(ExperienceRateType::STAMINA) + 1,
+		            experienceRate);
 		disableDefense = conditionAttrs.disableDefense;
 
 		if (Player* player = creature->getPlayer()) {
@@ -1074,10 +1073,6 @@ bool ConditionRegeneration::executeCondition(Creature* creature, int32_t interva
 	internalHealthTicks += interval;
 	internalManaTicks += interval;
 
-	if (creature->getZone() == ZONE_PROTECTION) {
-		return ConditionGeneric::executeCondition(creature, interval);
-	}
-
 	if (internalHealthTicks >= healthTicks) {
 		internalHealthTicks = 0;
 
@@ -1597,10 +1592,11 @@ bool ConditionDamage::doDamage(Creature* creature, int32_t healthChange)
 
 	if (!creature->isAttackable() || Combat::canDoCombat(attacker, creature) != RETURNVALUE_NOERROR) {
 		if (!creature->isInGhostMode()) {
-			const Position &creaturePos = creature->getPosition();
+			const Position& creaturePos = creature->getPosition();
 			SpectatorVec spectators;
 			g_game.map.getSpectators(spectators, creaturePos, true, true);
-			InstanceUtils::sendMagicEffectToInstance(spectators, creaturePos, field ? CONST_ME_BLOCKHIT : CONST_ME_POFF, creature->getInstanceID());
+			InstanceUtils::sendMagicEffectToInstance(spectators, creaturePos, field ? CONST_ME_BLOCKHIT : CONST_ME_POFF,
+			                                         creature->getInstanceID());
 		}
 		return false;
 	}
@@ -1723,10 +1719,7 @@ uint64_t ConditionDamage::getIcons() const
 	return icons;
 }
 
-ConditionDamage::~ConditionDamage()
-{
-	damageList.clear();
-}
+ConditionDamage::~ConditionDamage() { damageList.clear(); }
 
 void ConditionDamage::generateDamageList(int32_t amount, int32_t start, std::list<int32_t>& list)
 {
@@ -2017,7 +2010,7 @@ bool ConditionFeared::getFleePath(const std::shared_ptr<Creature>& creature, std
 	const int32_t offsetY = creaturePos.getOffsetY(fleeingFromPos);
 
 	if (offsetX == 0 && offsetY == 0) {
-		directions = {DIRECTION_NORTH, DIRECTION_EAST, DIRECTION_SOUTH, DIRECTION_WEST,
+		directions = {DIRECTION_NORTH,     DIRECTION_EAST,      DIRECTION_SOUTH,     DIRECTION_WEST,
 		              DIRECTION_NORTHEAST, DIRECTION_SOUTHEAST, DIRECTION_SOUTHWEST, DIRECTION_NORTHWEST};
 	} else {
 		if (offsetY < 0) {
