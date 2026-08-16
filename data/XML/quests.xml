@@ -11,4 +11,16 @@
 			<missionstate id="5" description="Example description 2" />
 		</mission>
 	</quest>
+
+	<quest name="Main Quests" startstorageid="55000" startstoragevalue="0">
+		<mission name="Encontre sua bota" storageid="55100" startvalue="0" endvalue="1" ignoreendvalue="true">
+			<missionstate id="0" description="Voce perdeu suas botas enquanto fugia de criaturas no bueiro de Bololandia, voce lembra que elas cairam na parte sul, perto de uma ponte." />
+			<missionstate id="1" description="Perfeito, voce conseguiu achar suas botas de volta!" />
+		</mission>
+		<mission name="Armadura de pano" storageid="55100" startvalue="1" endvalue="2">
+			<missionstate id="4" description="Voce sente que se tivesse roupas mais resistentes nao precisaria fugir desses insetos e nao perderia sua bota, " />
+		</mission>
+	</quest>
+
+
 </quests>

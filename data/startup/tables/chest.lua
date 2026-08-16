@@ -49,4 +49,12 @@ ChestUnique = {
 	-- Demon armor
 	-- example
 	-- [5000] = {itemId = 1740, itemPos = {x = 16795, y = 17669, z = 13}, reward = {{2494, 1}}, storage = Storage.Quests.TheAnnihilator.Reward},
+
+	-- Leather boots quest (unique 12001, item 3552)
+	-- The chest is already placed on the map with unique 12001
+	[10001] = {
+		itemId = 3552,
+		storage = 10001,
+		reward = {{3552, 1}}
+	},
 }

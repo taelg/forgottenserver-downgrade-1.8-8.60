@@ -1,71 +1,110 @@
 <?xml version="1.0"?>
 <spawns>
-	<spawn centerx="2002" centery="1998" centerz="6" radius="2" />
+	<spawn centerx="2002" centery="1998" centerz="6" radius="2">
+		<npc name="Lorietta" x="1" y="-1" z="6" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1998" centery="1944" centerz="7" radius="1">
+		<npc name="Myzzi" x="0" y="-1" z="7" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2017" centery="1985" centerz="7" radius="2">
+		<npc name="Gnomelvis" x="-2" y="0" z="7" spawntime="60" direction="2" />
+	</spawn>
 	<spawn centerx="1780" centery="2004" centerz="7" radius="10" />
-	<spawn centerx="1780" centery="2030" centerz="7" radius="10" />
-	<spawn centerx="1051" centery="969" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
+	<spawn centerx="1965" centery="2007" centerz="7" radius="1">
+		<npc name="Guard Senet" x="0" y="1" z="7" spawntime="60" direction="2" />
 	</spawn>
-	<spawn centerx="981" centery="972" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="1" y="1" z="8" spawntime="60" direction="2" />
+	<spawn centerx="1780" centery="2030" centerz="7" radius="15">
+		<monster name="Snake" x="-9" y="-9" z="7" spawntime="60" direction="2" />
+		<npc name="Ferryman Kamil" x="2" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Nah'bob" x="4" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Lee'Delle" x="5" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Cornelia" x="6" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Hairycles" x="7" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Miraia" x="8" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Pugwah" x="9" y="-8" z="7" spawntime="60" direction="2" />
+		<npc name="Maryza" x="2" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Billy" x="3" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Captain Waverider" x="4" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Captain Haba" x="5" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Captain Pelagia" x="6" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Atur" x="7" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Znozel" x="8" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Redward" x="9" y="-6" z="7" spawntime="60" direction="2" />
+		<npc name="Cruleo" x="2" y="-4" z="7" spawntime="60" direction="2" />
+		<npc name="Golem Guardian" x="4" y="-4" z="7" spawntime="60" direction="2" />
+		<npc name="Kais" x="6" y="-4" z="7" spawntime="60" direction="2" />
+		<npc name="Jean Pierre" x="8" y="-4" z="7" spawntime="60" direction="2" />
+		<npc name="Auron" x="9" y="-4" z="7" spawntime="60" direction="2" />
+		<npc name="Harog" x="5" y="-3" z="7" spawntime="60" direction="2" />
+		<npc name="A Tortured Soul" x="2" y="-2" z="7" spawntime="60" direction="2" />
+		<npc name="Irea" x="3" y="-2" z="7" spawntime="60" direction="2" />
+		<npc name="Ghostly Wolf" x="7" y="-2" z="7" spawntime="60" direction="2" />
+		<npc name="Garamond" x="8" y="-1" z="7" spawntime="60" direction="2" />
+		<npc name="Frosty" x="9" y="-1" z="7" spawntime="60" direction="2" />
+		<npc name="Aurita" x="-6" y="0" z="7" spawntime="60" direction="2" />
+		<npc name="Archery" x="-4" y="0" z="7" spawntime="60" direction="2" />
+		<npc name="A Swan" x="-2" y="0" z="7" spawntime="60" direction="2" />
+		<npc name="Bright Percht Sleigh" x="-6" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Broken Servant Sentry" x="-4" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Captain Harava" x="-2" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomux" x="2" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomus" x="3" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomole" x="4" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnommander" x="5" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomission" x="6" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnominus" x="7" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomincia" x="9" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomilly" x="10" y="2" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomillion" x="2" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomewart" x="3" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomette" x="4" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomespector" x="5" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomerrow" x="6" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomerik" x="7" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomercy" x="8" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomeral" x="9" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomenursey" x="10" y="3" z="7" spawntime="60" direction="2" />
+		<npc name="Cerebrir" x="-8" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Chartan" x="-6" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Chuckles" x="-4" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Corym Servant" x="-2" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomelvis" x="3" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomejam" x="4" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomegica" x="5" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnome Trooper" x="6" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnome" x="7" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnombold" x="8" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomaticus" x="9" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomargery" x="10" y="4" z="7" spawntime="60" direction="2" />
+		<npc name="Cranky Lizard Crone" x="-8" y="5" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomally" x="2" y="5" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomailion" x="3" y="5" z="7" spawntime="60" direction="2" />
+		<npc name="Gnomad" x="4" y="5" z="7" spawntime="60" direction="2" />
+		<npc name="Dreadeye" x="-6" y="6" z="7" spawntime="60" direction="2" />
+		<npc name="Emberwing" x="-4" y="6" z="7" spawntime="60" direction="2" />
+		<npc name="Frosty" x="-2" y="6" z="7" spawntime="60" direction="2" />
+		<npc name="Mugruu" x="-10" y="7" z="7" spawntime="60" direction="2" />
+		<npc name="Grubokk" x="-8" y="7" z="7" spawntime="60" direction="2" />
+		<npc name="Guardian of the Deep Seas" x="-6" y="8" z="7" spawntime="60" direction="2" />
+		<npc name="King Tibianus" x="-4" y="8" z="7" spawntime="60" direction="2" />
+		<npc name="Lesser Messenger of Heaven" x="-2" y="8" z="7" spawntime="60" direction="2" />
+		<npc name="Maelyrra" x="-9" y="9" z="7" spawntime="60" direction="2" />
+		<npc name="Lightfoot" x="-8" y="9" z="7" spawntime="60" direction="2" />
+		<npc name="Zarifan" x="-10" y="10" z="7" spawntime="60" direction="2" />
+		<npc name="Maeryn" x="-6" y="10" z="7" spawntime="60" direction="2" />
+		<npc name="Mr Brandon" x="-4" y="10" z="7" spawntime="60" direction="2" />
+		<npc name="Myzzi" x="-2" y="10" z="7" spawntime="60" direction="2" />
+		<npc name="Nibble" x="-9" y="11" z="7" spawntime="60" direction="2" />
+		<npc name="Queen Eloise" x="-7" y="11" z="7" spawntime="60" direction="2" />
+		<npc name="Rafzan" x="-5" y="11" z="7" spawntime="60" direction="2" />
+		<npc name="Sane Mage" x="-3" y="11" z="7" spawntime="60" direction="2" />
+		<npc name="Sinatuki" x="-8" y="12" z="7" spawntime="60" direction="2" />
+		<npc name="Vanys" x="-10" y="13" z="7" spawntime="60" direction="2" />
+		<npc name="Undal" x="-9" y="13" z="7" spawntime="60" direction="2" />
+		<npc name="The Empress" x="-6" y="13" z="7" spawntime="60" direction="2" />
+		<npc name="The Librarian" x="-4" y="13" z="7" spawntime="60" direction="2" />
+		<npc name="Ursula" x="-2" y="13" z="7" spawntime="60" direction="2" />
 	</spawn>
-	<spawn centerx="1044" centery="972" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="983" centery="976" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="-1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1002" centery="979" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="1" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1036" centery="979" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1029" centery="983" centerz="8" radius="1">
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="1" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="994" centery="986" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="981" centery="988" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="997" centery="993" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="-1" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1020" centery="993" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1011" centery="996" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="0" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1033" centery="999" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="-1" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="-1" y="0" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="999" centery="1001" centerz="8" radius="1">
-		<monster name="Rat" x="1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="-1" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="1012" centery="1009" centerz="8" radius="1">
-		<monster name="Rat" x="-1" y="0" z="8" spawntime="60" direction="2" />
-		<monster name="Rat" x="1" y="1" z="8" spawntime="60" direction="2" />
-	</spawn>
-	<spawn centerx="977" centery="1011" centerz="8" radius="1" />
-	<spawn centerx="984" centery="1011" centerz="8" radius="1" />
-	<spawn centerx="1007" centery="1015" centerz="8" radius="1" />
 	<spawn centerx="2054" centery="1919" centerz="8" radius="1">
 		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
 	</spawn>
@@ -398,5 +437,76 @@
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2028" centery="1961" centerz="10" radius="1">
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2009" centery="1962" centerz="10" radius="3">
+		<monster name="Snake" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-3" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1992" centery="1963" centerz="10" radius="1">
+		<monster name="Snake" x="1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2014" centery="1970" centerz="10" radius="3">
+		<monster name="Snake" x="0" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1989" centery="1975" centerz="10" radius="3">
+		<monster name="Snake" x="-2" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2033" centery="1976" centerz="10" radius="3">
+		<monster name="Snake" x="0" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2010" centery="1984" centerz="10" radius="3">
+		<monster name="Snake" x="1" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-2" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="2" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="2" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1995" centery="1985" centerz="10" radius="1">
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="2026" centery="1987" centerz="10" radius="1">
+		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
 	</spawn>
 </spawns>

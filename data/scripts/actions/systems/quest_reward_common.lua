@@ -28,6 +28,32 @@ local achievementTable = {
 	[6088] = "Annihilator"
 }
 
+-- Verifica se o jogador tem slot livre na mochila e cap livre para carregar a recompensa.
+-- Parametros:
+--   player     - o jogador
+--   itemWeight - peso total da recompensa, em oz (gramas brutas / 100)
+--   message    - (opcional) mensagem de contexto
+-- Retorna true se tiver espaco, false caso contrario.
+function checkWeightAndBackpackRoom(player, itemWeight, message)
+	if not player then
+		return false
+	end
+
+	-- getFreeCapacity() retorna a capacidade livre em centesimos de oz,
+	-- entao multiplicamos o peso (em oz) por 100 para comparar.
+	if player:getFreeCapacity() < itemWeight * 100 then
+		return false
+	end
+
+	-- Verifica se ha slot livre na mochila principal.
+	local backpack = player:getSlotItem(CONST_SLOT_BACKPACK)
+	if not backpack or backpack:getEmptySlots(true) < 1 then
+		return false
+	end
+
+	return true
+end
+
 local function playerAddItem(params, item)
 	local player = params.player
 	if not checkWeightAndBackpackRoom(player, params.weight, params.message) then
