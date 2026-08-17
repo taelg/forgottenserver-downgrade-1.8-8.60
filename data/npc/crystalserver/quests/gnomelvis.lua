@@ -26,12 +26,12 @@ npcConfig.flags = {
 local itemsTable = {
 	["ferramentas"] = {
 		{ itemName = "corda", clientId = 3003, buy = 10 },
-		{ itemName = "shovel", clientId = 3457, buy = 20 },
-		{ itemName = "pick", clientId = 3456, buy = 35 },
-		{ itemName = "scythe", clientId = 3453, buy = 20 },
-		{ itemName = "hoe", clientId = 3455, buy = 20 },
-		{ itemName = "hammer", clientId = 3470, buy = 25 },
-		{ itemName = "saw", clientId = 3461, buy = 25 },
+		{ itemName = "pá", clientId = 3457, buy = 20 },
+		{ itemName = "picareta", clientId = 3456, buy = 35 },
+		{ itemName = "foice", clientId = 3453, buy = 20 },
+		{ itemName = "enxada", clientId = 3455, buy = 20 },
+		{ itemName = "martelo", clientId = 3470, buy = 25 },
+		{ itemName = "serra", clientId = 3461, buy = 25 },
 		{ itemName = "watering can", clientId = 650, buy = 25 },
 		{ itemName = "rolling pin", clientId = 3473, buy = 10 },
 	},
@@ -99,6 +99,52 @@ keywordHandler:addKeyword({ "extrator", "extractor", "chocolate extractor", "cho
 	text = "O {chocolate extractor} é o coração da nossa coleta, |PLAYERNAME|. Todo o chocolate que os bichos mineram e você coletou lá embaixo, nas minas do subsolo, alimentam o crescimento da cidade. Bololandia agradece cada esforço seu! Basta usar a máquina para depositar {1 chocolate coin pura} ou {10 chocolate coin diluídas}. Ela transforma tudo isso em recompensas: no mínimo {1 moeda de ouro} a cada uso, e se a sorte sorrir, prêmios bem raros! Continue minerando, |PLAYERNAME|, sua contribuição faz a Bololandia prosperar.",
 })
 
+keywordHandler:addKeyword({ "roupas" }, StdModule.say, {
+	npcHandler = npcHandler,
+	text = "A princesa está dando um incentivo para vender roupas de qualidade a preço baixo, por isso eu como seu representante local, aceito 3 chocoins puros em troca de um conjunto de {set de couro} completo. Basta dizer {set de couro} que trocaremos.",
+})
+
+-- Troca do set de couro: 3x chocoin puro (48250) por uma mochila (2854)
+-- com os itens de couro dentro (3361, 3559, 3355)
+local LEATHER_BACKPACK_ID = 2854
+local LEATHER_SET_ITEMS = { 3361, 3559, 3355 }
+local PURE_CHOCOIN_ID = 48250
+local LEATHER_SET_COST = 3
+
+-- Match exato: só dispara quando o jogador digita exatamente "set de couro"
+keywordHandler:addKeyword({
+	callback = function(keys, message)
+		return message:lower() == "set de couro"
+	end,
+}, function(cid, message, keywords, parameters, node)
+	if not npcHandler:isFocused(cid) then
+		return false
+	end
+
+	local player = Player(cid)
+	local playerName = player:getName()
+
+	if player:getItemCount(PURE_CHOCOIN_ID) < LEATHER_SET_COST then
+		npcHandler:say("Você precisa de 3 chocoins puros para fechar essa troca. Vá minerar mais um pouco, " .. playerName .. "!", cid)
+		return true
+	end
+
+	-- Cria a mochila já com os itens dentro
+	local backpack = Game.createItem(LEATHER_BACKPACK_ID, 1)
+	for _, itemId in ipairs(LEATHER_SET_ITEMS) do
+		backpack:addItem(itemId, 1)
+	end
+
+	if player:addItemEx(backpack, true, CONST_SLOT_BACKPACK) ~= RETURNVALUE_NOERROR then
+		npcHandler:say("Você não tem espaço na mochila principal para a troca. Libere um slot e digite 'set de couro' de novo.", cid)
+		return true
+	end
+
+	player:removeItem(PURE_CHOCOIN_ID, LEATHER_SET_COST)
+	npcHandler:say("Fechado! Um set de couro completo pra você, " .. playerName .. ". A princesa ficará orgulhosa!", cid)
+	return true
+end, { npcHandler = npcHandler })
+
 local function creatureSayCallback(npc, creature, type, message)
 	local player = Player(creature)
 
@@ -117,7 +163,7 @@ local function creatureSayCallback(npc, creature, type, message)
 end
 
 npcHandler:setCallback(CALLBACK_MESSAGE_DEFAULT, creatureSayCallback)
-npcHandler:setMessage(MESSAGE_GREET, "Olá, |PLAYERNAME|! Bem-vindo à Terra do Doce! Precisa de alguma {utilidade} para o dia a dia? E se trouxe chocolate das minas, pode alimentar o meu chocolate {extractor} ali da sala, é só perguntar!")
+npcHandler:setMessage(MESSAGE_GREET, "Olá, |PLAYERNAME|! Bem-vindo à Bololândia! Precisa de alguma {utilidade} para o dia a dia? E se trouxe chocolate das minas, pode alimentar o meu chocolate {extractor} ali da sala ou trocar comigo por {roupas} de couro!")
 npcHandler:setMessage(MESSAGE_FAREWELL, "Até logo, |PLAYERNAME|. Volte sempre!")
 npcHandler:setMessage(MESSAGE_WALKAWAY, "Até logo, |PLAYERNAME|. Bom trabalho!")
 npcHandler:setMessage(MESSAGE_SENDTRADE, "Claro, pode olhar tudo com calma. Ou talvez queira ver apenas " .. GetFormattedShopCategoryNames(itemsTable) .. ".")
