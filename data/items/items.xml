@@ -126,9 +126,11 @@
 
     <!-- Armas sem classe -->
 	<item id="3286" article="a" name="mace">
-        <attribute key="classification" value="2" />		
+        <attribute key="description" value="min: 4 | max: 9 | mana: 1" />
+        <attribute key="classification" value="2" />	
+		<attribute key="showAttributes" value="1" />	
         <attribute key="weaponType" value="wand" />
-        <attribute key="shootType" value="club" />
+        <attribute key="shootType" value="whirlwindclub" />
         <attribute key="range" value="1" />
         <attribute key="weight" value="3000" />
         <attribute key="script" value="moveevent;weapon">
