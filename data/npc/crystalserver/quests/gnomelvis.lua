@@ -25,21 +25,18 @@ npcConfig.flags = {
 
 local itemsTable = {
 	["ferramentas"] = {
-		{ itemName = "corda", clientId = 3003, buy = 20 },
-		{ itemName = "shovel", clientId = 3457, buy = 40 },
-		{ itemName = "pick", clientId = 3456, buy = 70 },
-		{ itemName = "scythe", clientId = 3453, buy = 35 },
-		{ itemName = "hoe", clientId = 3455, buy = 65 },
-		{ itemName = "hammer", clientId = 3470, buy = 50 },
-		{ itemName = "saw", clientId = 3461, buy = 35 },
-		{ itemName = "watering can", clientId = 650, buy = 40 },
-		{ itemName = "rolling pin", clientId = 3473, buy = 12 },
+		{ itemName = "corda", clientId = 3003, buy = 10 },
+		{ itemName = "shovel", clientId = 3457, buy = 20 },
+		{ itemName = "pick", clientId = 3456, buy = 35 },
+		{ itemName = "scythe", clientId = 3453, buy = 20 },
+		{ itemName = "hoe", clientId = 3455, buy = 20 },
+		{ itemName = "hammer", clientId = 3470, buy = 25 },
+		{ itemName = "saw", clientId = 3461, buy = 25 },
+		{ itemName = "watering can", clientId = 650, buy = 25 },
+		{ itemName = "rolling pin", clientId = 3473, buy = 10 },
 	},
 	["armaduras de couro"] = {
 		{ itemName = "botas de couro", clientId = 3552, buy = 100, sell = 25 },
-		{ itemName = "elmo de couro", clientId = 3355, buy = 35 },
-		{ itemName = "perneiras de couro", clientId = 3559, buy = 35 },
-		{ itemName = "armadura de couro", clientId = 3361, buy = 35 },
 	},
 }
 

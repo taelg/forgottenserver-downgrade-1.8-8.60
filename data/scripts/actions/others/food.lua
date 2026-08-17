@@ -1,7 +1,8 @@
 local action = Action()
 
 local foods = {
-	[3590] = {3, "Yum.", 1, 1, 1}, -- cherry
+	[3590] = {5, "Yum.", 2, 2, 1}, -- cherry
+	[48249] = {50, "Gulp.", 50, 50, 1}, -- chocolate coin diluido
 
 	[3250] = {1, "Crunch.", 1, 1, 1}, -- carrot
 	[3577] = {3, "Munch.", 4, 3, 1}, -- meat

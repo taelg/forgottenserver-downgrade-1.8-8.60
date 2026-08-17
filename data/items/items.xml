@@ -29,7 +29,7 @@
         <attribute key="script" value="moveevent;weapon">
         <attribute key="wandType" value="physical" />
         <attribute key="level" value="1" />
-        <attribute key="mana" value="1" />
+        <attribute key="mana" value="0" />
         <attribute key="fromDamage" value="2" />
         <attribute key="toDamage" value="5" />
         <attribute key="slot" value="hand" />
@@ -54,9 +54,11 @@
 
     <!-- Items Bololandia Geral -->
     <item id="48249" article="a" name="chocoin diluido">
+        <attribute key="description" value="Pode ser comido ou vendido. feed: 50 | health: 50 | mana: 50" />
         <attribute key="weight" value="1" />
     </item>
     <item id="48250" article="a" name="chocoin puro">
+        <attribute key="description" value="~Melhor eu não comer isso, posso usar no extrator de chocolate, na loja de utilidades~" />
         <attribute key="weight" value="1" />
     </item>
 	<item fromid="5468" toid="5469" article="a" name="chocolate extractor">
@@ -81,6 +83,13 @@
     <item id="3453" article="a" name="foice">
         <attribute key="weight" value="3000" />
     </item>
+
+	
+    <!-- Comidas -->
+	<item id="3590" article="a" name="cherry" plural="cherries">
+        <attribute key="description" value="feed: 5 | health: 2 | mana: 2" />
+		<attribute key="weight" value="20" />
+	</item>
 
 <!-- Set de Couro (vendedor de utilidade) -->
     <item id="3355" article="a" name="elmo de couro">
@@ -115,7 +124,22 @@
 		</attribute>
     </item>
 
-
+    <!-- Armas sem classe -->
+	<item id="3286" article="a" name="mace">
+        <attribute key="classification" value="2" />		
+        <attribute key="weaponType" value="wand" />
+        <attribute key="shootType" value="club" />
+        <attribute key="range" value="1" />
+        <attribute key="weight" value="3000" />
+        <attribute key="script" value="moveevent;weapon">
+        <attribute key="wandType" value="physical" />
+        <attribute key="level" value="5" />
+        <attribute key="mana" value="1" />
+        <attribute key="fromDamage" value="4" />
+        <attribute key="toDamage" value="9" />
+        <attribute key="slot" value="hand" />
+        </attribute>
+	</item>
 
 	<item id="3291" article="a" name="faquinha">
 		<attribute key="classification" value="2" />		
@@ -7399,17 +7423,6 @@
 			<attribute key="slot" value="hand" />
 		</attribute>
 	</item>
-	<item id="3286" article="a" name="mace">
-		<attribute key="classification" value="1" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="attack" value="16" />
-		<attribute key="defense" value="11" />
-		<attribute key="weight" value="3800" />
-		<attribute key="script" value="moveevent;weapon">
-			<attribute key="weaponType" value="club" />
-			<attribute key="slot" value="hand" />
-		</attribute>
-	</item>
 	<item id="3287" article="a" name="throwing star">
 		<attribute key="weaponType" value="distance" />
 		<attribute key="shootType" value="throwingstar" />
@@ -10044,9 +10057,6 @@
 	</item>
 	<item id="3589" article="a" name="coconut" plural="coconuts">
 		<attribute key="weight" value="480" />
-	</item>
-	<item id="3590" article="a" name="cherry" plural="cherries">
-		<attribute key="weight" value="20" />
 	</item>
 	<item id="3591" article="a" name="strawberry" plural="strawberries">
 		<attribute key="weight" value="20" />

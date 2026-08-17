@@ -50,11 +50,17 @@ ChestUnique = {
 	-- example
 	-- [5000] = {itemId = 1740, itemPos = {x = 16795, y = 17669, z = 13}, reward = {{2494, 1}}, storage = Storage.Quests.TheAnnihilator.Reward},
 
-	-- Leather boots quest (unique 12001, item 3552)
+	-- Leather boots quest (unique 12001, item 2480)
 	-- The chest is already placed on the map with unique 12001
 	[10001] = {
-		itemId = 3552,
+		itemId = 2480,
 		storage = 10001,
 		reward = {{3552, 1}}
+	},
+	-- The Mace Quest (dead body) (unique 10002, item 4311)
+	[10002] = {
+		itemId = 4311,
+		storage = 10002,
+		reward = {{3286, 1}}
 	},
 }

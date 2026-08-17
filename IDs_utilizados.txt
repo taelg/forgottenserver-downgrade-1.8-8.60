@@ -11,7 +11,8 @@ Faixa 25501-25550: Portal de escolher vocation
   
 Faixa 10000-12000: Quests simples (0 ou 1 normalmente)
   10001 = quest da leather boots
-  10002+ = ainda não em uso
+  10002 = quest da mace
+  10003+ = ainda não em uso
 
 ACTION IDS
 ----------
@@ -28,4 +29,5 @@ Faixa 55000-56000: Quests principais (questlog)
   
 Faixa 10000-12000: Quests simples (0 ou 1 normalmente)
   10001 = quest da leather boots
-  10002+ = ainda não em uso
+  10002 = quest da mace
+  10003+ = ainda não em uso
