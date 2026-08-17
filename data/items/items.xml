@@ -141,6 +141,30 @@
         </attribute>
 	</item>
 
+    <!-- Outros -->
+	<item id="1822" article="a" name="pilha de pedras (use a pá)">
+	</item>
+	<item id="1080" article="a" name="um buraco temporário (60s)">
+		<attribute key="duration" value="60" />
+		<attribute key="decayTo" value="1822" />
+		<attribute key="floorchange" value="down" />
+	</item>
+	<item id="1066" article="a" name="definitivamente não é um buraco">
+		<attribute key="floorchange" value="down" />
+	</item>
+	<item id="1067" article="a" name="um buraco">
+		<attribute key="floorchange" value="down" />
+		<attribute key="duration" value="60" />
+		<attribute key="decayTo" value="1066" />
+	</item>
+
+
+
+
+
+
+
+
 	<item id="3291" article="a" name="faquinha">
 		<attribute key="classification" value="2" />		
 		<attribute key="weaponType" value="wand" />
@@ -2983,23 +3007,12 @@
 	<item id="1053" name="earth" />
 	<item fromid="1054" toid="1065" name="jungle grass">
 	</item>
-	<item id="1066" article="a" name="mud stain">
-		<attribute key="floorchange" value="down" />
-	</item>
-	<item id="1067" article="a" name="pitfall">
-		<attribute key="floorchange" value="down" />
-		<attribute key="duration" value="60" />
-		<attribute key="decayTo" value="1066" />
-	</item>
 	<item id="1068" article="an" name="ant trail">
 	</item>
 	<item id="1069" article="a" name="bug tral" />
 	<item fromid="1070" toid="1078" article="an" name="ant trail">
 	</item>
 	<item id="1079" article="an" name="ant-hill">
-	</item>
-	<item id="1080" article="a" name="pitfall">
-		<attribute key="floorchange" value="down" />
 	</item>
 	<item fromid="1081" toid="1086" article="a" name="mountain">
 	</item>
@@ -3467,8 +3480,6 @@
 	</item>
 	<item fromid="1783" toid="1793" article="a" name="stone" />
 	<item fromid="1794" toid="1821" name="debris">
-	</item>
-	<item id="1822" article="a" name="stone pile">
 	</item>
 	<item fromid="1823" toid="1839" name="debris">
 	</item>

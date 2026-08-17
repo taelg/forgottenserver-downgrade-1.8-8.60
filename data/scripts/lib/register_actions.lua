@@ -21,6 +21,7 @@ local Itemsgrinder = {
 }
 
 local shovelHoles = {
+	[1822] = 1080,
 	[593] = 594,
 	[606] = 607,
 	[608] = 609,
