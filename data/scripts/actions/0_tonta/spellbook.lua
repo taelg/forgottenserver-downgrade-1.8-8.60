@@ -1,11 +1,36 @@
 local spellbook = Action()
 
+-- Mapa de vocacoes -> lista de spells (palavras mágicas / spell:words)
+-- Adicione/edite abaixo conforme as classes
+local CLASS_SPELLS = {
+	["all"] = {
+		"utevo lux",
+	},
+	["Candy Guardian"] = {
+		"utura infir",
+		"exori cake",
+	},
+	["Pyromancer"] = {
+		"exori flam",
+	},
+
+}
+
 function spellbook.onUse(player, item, fromPosition, target, toPosition,
                          isHotkey)
+	local vocationName = player:getVocation():getName()
+
+	-- Lista permitida: "all" + spells da vocacao do player
+	local allowed = {}
+	local allSpells = CLASS_SPELLS["all"] or {}
+	local classSpells = CLASS_SPELLS[vocationName] or {}
+	for _, s in ipairs(allSpells) do allowed[s] = true end
+	for _, s in ipairs(classSpells) do allowed[s] = true end
+
 	local text = {}
 	local spells = {}
 	for _, spell in ipairs(player:getInstantSpells()) do
-		if spell.level ~= 0 then
+		if spell.level ~= 0 and allowed[spell.words] then
 			if spell.manapercent > 0 then spell.mana = spell.manapercent .. "%" end
 			if spell.params > 0 then spell.words = spell.words .. " para" end
 			spells[#spells + 1] = spell

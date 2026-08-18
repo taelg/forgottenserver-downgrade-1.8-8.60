@@ -383,7 +383,6 @@
 	<spawn centerx="1994" centery="1963" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
-		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="2047" centery="1965" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
@@ -411,7 +410,6 @@
 	<spawn centerx="2007" centery="1978" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
-		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="1949" centery="1984" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
@@ -424,18 +422,18 @@
 		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="1986" centery="1990" centerz="9" radius="1">
+		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
-		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="2020" centery="1993" centerz="9" radius="1">
+		<monster name="Larva" x="-1" y="-1" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="1970" centery="2004" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
-		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="2028" centery="1961" centerz="10" radius="1">
 		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />

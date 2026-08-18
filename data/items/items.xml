@@ -21,7 +21,7 @@
         <attribute key="classification" value="2" />
     </item>
     <item id="3473" article="a" name="rolo mágico">
-        <attribute key="classification" value="2" />		
+        <attribute key="description" value="min: 2 | max: 5 | mana: 1" />
         <attribute key="weaponType" value="wand" />
         <attribute key="shootType" value="cake" />
         <attribute key="range" value="2" />
@@ -29,7 +29,7 @@
         <attribute key="script" value="moveevent;weapon">
         <attribute key="wandType" value="physical" />
         <attribute key="level" value="1" />
-        <attribute key="mana" value="0" />
+        <attribute key="mana" value="1" />
         <attribute key="fromDamage" value="2" />
         <attribute key="toDamage" value="5" />
         <attribute key="slot" value="hand" />
@@ -63,6 +63,7 @@
     </item>
 	<item fromid="5468" toid="5469" article="a" name="chocolate extractor">
 	</item>
+	<item id="45045" article="a" name="Fonte de Morangolate (bebível)" />
 
     <!-- Items Gnomelvis (vendedor de utilidade) -->
     <item id="3457" article="a" name="pá">

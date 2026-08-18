@@ -11,14 +11,16 @@
 #include "databasetasks.h"
 #include "game.h"
 #include "imbuement.h"
-#include "outfit.h"
 #include "logger.h"
+#include "lua.hpp"
+#include "luascript.h"
 #include "mapcache.h"
+#include "outfit.h"
 #include "outputmessage.h"
-#include "protocollogin.h"
-#include "protocoladmin.h"
-#include "protocolstatus.h"
 #include "performance_metrics.h"
+#include "protocoladmin.h"
+#include "protocollogin.h"
+#include "protocolstatus.h"
 #include "reactor.h"
 #include "rsa.h"
 #include "save_manager.h"
@@ -28,14 +30,12 @@
 #include "server.h"
 #include "signals.h"
 #include "startup_progress.h"
-#include "luascript.h"
-#include "lua.hpp"
 #include "thread_pool.h"
-#include "zoneweather.h"
 #include "zones.h"
+#include "zoneweather.h"
 
-#include <fmt/format.h>
 #include <fmt/color.h>
+#include <fmt/format.h>
 #include <future>
 #if __has_include("gitmetadata.h")
 #include "gitmetadata.h"
@@ -54,7 +54,8 @@ namespace {
 
 std::optional<double> startupMapLoadSeconds;
 
-struct BootstrapOptions {
+struct BootstrapOptions
+{
 	bool logToFile = false;
 	LogLevel logLevel = LogLevel::INFO;
 	bool startupProgressBar = true;
@@ -62,7 +63,8 @@ struct BootstrapOptions {
 	bool consoleColors = true;
 };
 
-struct StartupRuntimeState {
+struct StartupRuntimeState
+{
 	bool threadPoolStarted = false;
 	bool databaseTasksStarted = false;
 	bool statsStarted = false;
@@ -130,7 +132,8 @@ BootstrapOptions getBootstrapOptions(const std::string& configFile)
 		if (luaL_dofile(L, serverConfigFile) == 0) {
 			readOptions();
 		} else {
-			fmt::print(stderr, "Warning: Failed to parse server config '{}': {}\n", serverConfigFile, lua_tostring(L, -1));
+			fmt::print(stderr, "Warning: Failed to parse server config '{}': {}\n", serverConfigFile,
+			           lua_tostring(L, -1));
 		}
 	}
 
@@ -217,34 +220,36 @@ void printDatabaseConnectionFailure(const Database::ConnectionError& error)
 	std::string persisted = fmt::format(
 	    "DATABASE CONNECTION FAILED\n"
 	    "Host: {}\nPort: {}\nDatabase: {}\nUser: {}\nMySQL Error: {}\n\n{}\n\nRequired steps:\n",
-	    getString(ConfigManager::MYSQL_HOST), getInteger(ConfigManager::SQL_PORT),
-	    getString(ConfigManager::MYSQL_DB), getString(ConfigManager::MYSQL_USER), errorMessage, explanation);
+	    getString(ConfigManager::MYSQL_HOST), getInteger(ConfigManager::SQL_PORT), getString(ConfigManager::MYSQL_DB),
+	    getString(ConfigManager::MYSQL_USER), errorMessage, explanation);
 	for (size_t index = 0; index < steps.size(); ++index) {
 		persisted += fmt::format("{}. {}\n", index + 1, steps[index]);
 	}
 	persisted += "\nServer startup was safely aborted.";
 
-	g_logger().writeConsoleBlock([&]() {
-		consolePrint(red_b, "\n    ✖  DATABASE CONNECTION FAILED\n");
-		consolePrint(dark_gray, "    ──────────────────────────────────────────────────────\n");
-		consolePrint(gray, "    {:<20}", "Host");
-		consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_HOST));
-		consolePrint(gray, "    {:<20}", "Port");
-		consolePrint(white_b, "{}\n", getInteger(ConfigManager::SQL_PORT));
-		consolePrint(gray, "    {:<20}", "Database");
-		consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_DB));
-		consolePrint(gray, "    {:<20}", "User");
-		consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_USER));
-		consolePrint(gray, "    {:<20}", "MySQL Error");
-		consolePrint(red_b, "{}\n\n", errorMessage);
-		consolePrint(white_b, "    {}\n\n", explanation);
-		consolePrint(white_b, "    Required steps:\n");
-		for (size_t index = 0; index < steps.size(); ++index) {
-			consolePrint(gray, "    {}. ", index + 1);
-			consolePrint(white_b, "{}\n", steps[index]);
-		}
-		consolePrint(red_b, "\n    Server startup was safely aborted.\n\n");
-	}, persisted);
+	g_logger().writeConsoleBlock(
+	    [&]() {
+		    consolePrint(red_b, "\n    ✖  DATABASE CONNECTION FAILED\n");
+		    consolePrint(dark_gray, "    ──────────────────────────────────────────────────────\n");
+		    consolePrint(gray, "    {:<20}", "Host");
+		    consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_HOST));
+		    consolePrint(gray, "    {:<20}", "Port");
+		    consolePrint(white_b, "{}\n", getInteger(ConfigManager::SQL_PORT));
+		    consolePrint(gray, "    {:<20}", "Database");
+		    consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_DB));
+		    consolePrint(gray, "    {:<20}", "User");
+		    consolePrint(white_b, "{}\n", getString(ConfigManager::MYSQL_USER));
+		    consolePrint(gray, "    {:<20}", "MySQL Error");
+		    consolePrint(red_b, "{}\n\n", errorMessage);
+		    consolePrint(white_b, "    {}\n\n", explanation);
+		    consolePrint(white_b, "    Required steps:\n");
+		    for (size_t index = 0; index < steps.size(); ++index) {
+			    consolePrint(gray, "    {}. ", index + 1);
+			    consolePrint(white_b, "{}\n", steps[index]);
+		    }
+		    consolePrint(red_b, "\n    Server startup was safely aborted.\n\n");
+	    },
+	    persisted);
 }
 
 #ifdef STATS_ENABLED
@@ -433,13 +438,12 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 	startupProgress().complete("configuration loaded");
 	startupProgress().begin(StartupStage::RUNTIME, "map cache fingerprint");
 	if (caseInsensitiveEqual(getString(ConfigManager::MAP_CACHE_MODE), "auto")) {
-		MapCache::precomputeFingerprint(
-		    fmt::format("data/world/{}.otbm", getString(ConfigManager::MAP_NAME)));
+		MapCache::precomputeFingerprint(fmt::format("data/world/{}.otbm", getString(ConfigManager::MAP_NAME)));
 	}
 	startupProgress().update(1, 3, "map cache ready");
 
-	const auto workerThreads = static_cast<uint32_t>(
-		std::clamp<int64_t>(getInteger(ConfigManager::NETWORK_THREADS), 1, 64));
+	const auto workerThreads =
+	    static_cast<uint32_t>(std::clamp<int64_t>(getInteger(ConfigManager::NETWORK_THREADS), 1, 64));
 	g_threadPool.start(workerThreads);
 	runtimeState.threadPoolStarted = true;
 	startupProgress().update(2, 3, "worker pool started");
@@ -493,8 +497,7 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 	DatabaseManager::updateDatabase();
 	startupProgress().update(4, 5, "migrations checked");
 
-	if (const auto guildCountResult = Database::getInstance().storeQuery(
-	        "SELECT COUNT(*) AS `count` FROM `guilds`")) {
+	if (const auto guildCountResult = Database::getInstance().storeQuery("SELECT COUNT(*) AS `count` FROM `guilds`")) {
 		runtimeState.guildCount = guildCountResult->getNumber<uint64_t>("count");
 	}
 
@@ -530,7 +533,7 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 	}
 	startupProgress().update(3, 6, "items OTB");
 	LOG_INFO(fmt::format(">> OTB v{:d}.{:d}.{:d}", Item::items.majorVersion, Item::items.minorVersion,
-	                         Item::items.buildNumber));
+	                     Item::items.buildNumber));
 
 	if (!Item::items.loadFromXml()) {
 		startupErrorMessage("Unable to load items (XML)!");
@@ -545,7 +548,9 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 			return false;
 		}
 	}
-	startupProgress().update(5, 6, ConfigManager::getBoolean(ConfigManager::IMBUEMENT_SYSTEM_ENABLED) ? "imbuements" : "imbuements disabled");
+	startupProgress().update(
+	    5, 6,
+	    ConfigManager::getBoolean(ConfigManager::IMBUEMENT_SYSTEM_ENABLED) ? "imbuements" : "imbuements disabled");
 
 	LOG_INFO(">> Preparing native OTBM zones");
 	if (!Zones::load()) {
@@ -595,7 +600,6 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 	runtimeState.revScriptsLoaded = true;
 	startupProgress().complete("Lua scripts ready");
 	startupProgress().begin(StartupStage::NPC_SCRIPTS, "discovering files");
-
 
 	LOG_INFO(">> Loading lua npcs");
 	if (!Npcs::loadScripts(false)) {
@@ -676,8 +680,7 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 	startupProgress().update(1, 5, "ports bound");
 
 	RentPeriod_t rentPeriod;
-	auto strRentPeriod =
-		asLowerCaseString(std::string{getString(ConfigManager::HOUSE_RENT_PERIOD)});
+	auto strRentPeriod = asLowerCaseString(std::string{getString(ConfigManager::HOUSE_RENT_PERIOD)});
 
 	if (strRentPeriod == "yearly" || strRentPeriod == "annual") {
 		rentPeriod = RENTPERIOD_YEARLY;
@@ -700,7 +703,9 @@ bool mainLoader(const std::shared_ptr<ServiceManager>& services, StartupRuntimeS
 
 #ifndef _WIN32
 	if (getuid() == 0 || geteuid() == 0) {
-		LOG_INFO(fmt::format("> Warning: {} has been executed as root user, please consider running it as a normal user.", STATUS_SERVER_NAME));
+		LOG_INFO(
+		    fmt::format("> Warning: {} has been executed as root user, please consider running it as a normal user.",
+		                STATUS_SERVER_NAME));
 	}
 #endif
 
@@ -751,9 +756,8 @@ int startServer()
 		g_performanceMetrics.setEnabled(getBoolean(ConfigManager::PERFORMANCE_METRICS_ENABLED));
 
 		LOG_INFO(">> Reactor limits: maxTasks={}, timeBudget={}ms, maxInbox={}",
-		    getInteger(ConfigManager::REACTOR_MAX_TASKS_PER_CYCLE),
-		    getInteger(ConfigManager::REACTOR_TIME_BUDGET_MS),
-		    getInteger(ConfigManager::REACTOR_MAX_INBOX_SIZE));
+		         getInteger(ConfigManager::REACTOR_MAX_TASKS_PER_CYCLE),
+		         getInteger(ConfigManager::REACTOR_TIME_BUDGET_MS), getInteger(ConfigManager::REACTOR_MAX_INBOX_SIZE));
 
 		const auto networkThreads = std::clamp<int64_t>(getInteger(ConfigManager::NETWORK_THREADS), 1, 64);
 #ifdef STATS_ENABLED
@@ -780,205 +784,203 @@ int startServer()
 			LOG_STARTUP("Startup completed in {:.3f} s", startupProgress().elapsedSeconds());
 		}
 		if (serviceManager->is_running()) {
-		g_logger().writeConsoleBlock([&]() {
-		using namespace ConsoleStyle;
+			g_logger().writeConsoleBlock([&]() {
+				using namespace ConsoleStyle;
 
-		// ── Server Config ──
-		consolePrint(cyan_b, "    ⚙  SERVER CONFIG\n");
-		consolePrint(dark_gray, "    ────────────────────────────────────────\n");
-		consolePrint(gray, "    {:<20}", "World Map");
-		consolePrint(white_b, "{}\n", getString(ConfigManager::MAP_NAME));
-		consolePrint(gray, "    {:<20}", "World Size");
-		consolePrint(white_b, "{}x{}\n", g_game.map.getWidth(), g_game.map.getHeight());
-		consolePrint(gray, "    {:<20}", "Map Load Time");
-		if (startupMapLoadSeconds) {
-			consolePrint(green_b, "{:.3f} s \u2714\n", *startupMapLoadSeconds);
-		} else {
-			consolePrint(dark_gray, "unavailable\n");
-		}
-		consolePrint(gray, "    {:<20}", "World Type");
-		consolePrint(white_b, "{}\n", getString(ConfigManager::WORLD_TYPE));
-		consolePrint(gray, "    {:<20}", "Account Manager");
-		consolePrint(white_b, "{}\n", getBoolean(ConfigManager::ACCOUNT_MANAGER) ? "enabled" : "disabled");
-		consolePrint(gray, "    {:<20}", "Game Port");
-		consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::GAME_PORT));
-		consolePrint(gray, "    {:<20}", "Login Port");
-		consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::LOGIN_PORT));
-		consolePrint(gray, "    {:<20}", "Status Port");
-		consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::STATUS_PORT));
-		fmt::print("\n");
+				// ── Server Config ──
+				consolePrint(cyan_b, "    ⚙  SERVER CONFIG\n");
+				consolePrint(dark_gray, "    ────────────────────────────────────────\n");
+				consolePrint(gray, "    {:<20}", "World Map");
+				consolePrint(white_b, "{}\n", getString(ConfigManager::MAP_NAME));
+				consolePrint(gray, "    {:<20}", "World Size");
+				consolePrint(white_b, "{}x{}\n", g_game.map.getWidth(), g_game.map.getHeight());
+				consolePrint(gray, "    {:<20}", "Map Load Time");
+				if (startupMapLoadSeconds) {
+					consolePrint(green_b, "{:.3f} s \u2714\n", *startupMapLoadSeconds);
+				} else {
+					consolePrint(dark_gray, "unavailable\n");
+				}
+				consolePrint(gray, "    {:<20}", "World Type");
+				consolePrint(white_b, "{}\n", getString(ConfigManager::WORLD_TYPE));
+				consolePrint(gray, "    {:<20}", "Account Manager");
+				consolePrint(white_b, "{}\n", getBoolean(ConfigManager::ACCOUNT_MANAGER) ? "enabled" : "disabled");
+				consolePrint(gray, "    {:<20}", "Game Port");
+				consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::GAME_PORT));
+				consolePrint(gray, "    {:<20}", "Login Port");
+				consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::LOGIN_PORT));
+				consolePrint(gray, "    {:<20}", "Status Port");
+				consolePrint(white_b, "{} ✔\n", getInteger(ConfigManager::STATUS_PORT));
+				fmt::print("\n");
 
-		// ── Threads ──
-		consolePrint(cyan_b, "    ⚙  THREADS\n");
-		consolePrint(dark_gray, "    ────────────────────────────────────────\n");
-		consolePrint(gray, "    {:<20}", "Network I/O");
-		consolePrint(white_b, "{}\n", networkThreads);
-		consolePrint(gray, "    {:<20}", "ThreadPool Workers");
-		consolePrint(white_b, "{}\n", g_threadPool.get_thread_count());
-		consolePrint(gray, "    {:<20}", "Dispatcher");
-		consolePrint(white_b, "1\n");
-		consolePrint(gray, "    {:<20}", "Scheduler");
-		consolePrint(white_b, "1\n");
-		consolePrint(gray, "    {:<20}", "DB Tasks");
-		consolePrint(white_b, "1\n");
-		fmt::print("\n");
+				// ── Threads ──
+				consolePrint(cyan_b, "    ⚙  THREADS\n");
+				consolePrint(dark_gray, "    ────────────────────────────────────────\n");
+				consolePrint(gray, "    {:<20}", "Network I/O");
+				consolePrint(white_b, "{}\n", networkThreads);
+				consolePrint(gray, "    {:<20}", "ThreadPool Workers");
+				consolePrint(white_b, "{}\n", g_threadPool.get_thread_count());
+				consolePrint(gray, "    {:<20}", "Dispatcher");
+				consolePrint(white_b, "1\n");
+				consolePrint(gray, "    {:<20}", "Scheduler");
+				consolePrint(white_b, "1\n");
+				consolePrint(gray, "    {:<20}", "DB Tasks");
+				consolePrint(white_b, "1\n");
+				fmt::print("\n");
 
 #ifdef STATS_ENABLED
-		printStatsStatus();
-		fmt::print("\n");
+				printStatsStatus();
+				fmt::print("\n");
 #endif
 
-		// ── Game Data ──
-		consolePrint(cyan_b, "    ⚙  GAME DATA\n");
-		consolePrint(dark_gray, "    ────────────────────────────────────────\n");
-		const auto printCount = [](std::string_view label, size_t count) {
-			consolePrint(gray, "    {:<20}", label);
-			consolePrint(white_b, "{} ", count);
-			consolePrint(green_b, "✔\n");
-		};
-		printCount("Items", Item::items.size());
-		printCount("Vocations", g_vocations.getVocations().size());
-		consolePrint(gray, "    {:<20}", "Outfits");
-		consolePrint(white_b, "{} (M) + {} (F) ",
-		             Outfits::getInstance().getOutfits(PLAYERSEX_MALE).size(),
-		             Outfits::getInstance().getOutfits(PLAYERSEX_FEMALE).size());
-		consolePrint(green_b, "✔\n");
-		printCount("NPCs", g_game.getNpcs().size());
-		printCount("Monsters", g_monsters.monsters.size());
-		consolePrint(gray, "    {:<20}", "Guilds");
-		if (runtimeState.guildCount) {
-			consolePrint(white_b, "{} ", *runtimeState.guildCount);
-			consolePrint(green_b, "✔\n");
-		} else {
-			consolePrint(dark_gray, "unavailable\n");
-		}
-		printCount("Zones", Zones::count());
-		const auto printEngineStatus = [](std::string_view label, std::string_view engine, bool loaded) {
-			consolePrint(gray, "    {:<20}", label);
-			if (loaded) {
-				consolePrint(white_b, "{} ", engine);
+				// ── Game Data ──
+				consolePrint(cyan_b, "    ⚙  GAME DATA\n");
+				consolePrint(dark_gray, "    ────────────────────────────────────────\n");
+				const auto printCount = [](std::string_view label, size_t count) {
+					consolePrint(gray, "    {:<20}", label);
+					consolePrint(white_b, "{} ", count);
+					consolePrint(green_b, "✔\n");
+				};
+				printCount("Items", Item::items.size());
+				printCount("Vocations", g_vocations.getVocations().size());
+				consolePrint(gray, "    {:<20}", "Outfits");
+				consolePrint(white_b, "{} (M) + {} (F) ", Outfits::getInstance().getOutfits(PLAYERSEX_MALE).size(),
+				             Outfits::getInstance().getOutfits(PLAYERSEX_FEMALE).size());
 				consolePrint(green_b, "✔\n");
-			} else {
-				consolePrint(red_b, "Not loaded\n");
-			}
-		};
-		const bool castSystemLoaded = g_scripts && g_scripts->isFileLoaded(
-		    "data/scripts/talkactions/player/misc/cast_system.lua");
-		printEngineStatus("Cast System", "Loaded", castSystemLoaded);
-		printEngineStatus("Script Engine", "RevScripts",
-		                  runtimeState.scriptEngineLoaded && runtimeState.revScriptsLoaded);
-		if (g_scripts) {
-			printCount("Lua Scripts", g_scripts->getLoadedFileCount());
-		} else {
-			consolePrint(gray, "    {:<20}", "Lua Scripts");
-			consolePrint(red_b, "Not loaded\n");
-		}
-		printEngineStatus("NPC Engine", "Loaded", runtimeState.npcEngineLoaded && Npcs::isLoaded());
-		consolePrint(gray, "    {:<20}", "Map");
-		consolePrint(green_b, "Loaded ✔\n");
-		const auto printMapLoadStatus = [](std::string_view name, MapLoadStatus status) {
-			consolePrint(gray, "    {:<20}", name);
-			switch (status) {
-				case MapLoadStatus::LOADED:
-					consolePrint(green_b, "Loaded ✔\n");
-					break;
-				case MapLoadStatus::SKIPPED:
-					consolePrint(dark_gray, "Skipped\n");
-					break;
-				case MapLoadStatus::FAILED:
-					consolePrint(red_b, "Failed\n");
-					break;
-			}
-		};
-		printMapLoadStatus("Houses", g_game.map.getHouseLoadStatus());
-		printMapLoadStatus("Spawns", g_game.map.getSpawnLoadStatus());
-		fmt::print("\n");
+				printCount("NPCs", g_game.getNpcs().size());
+				printCount("Monsters", g_monsters.monsters.size());
+				consolePrint(gray, "    {:<20}", "Guilds");
+				if (runtimeState.guildCount) {
+					consolePrint(white_b, "{} ", *runtimeState.guildCount);
+					consolePrint(green_b, "✔\n");
+				} else {
+					consolePrint(dark_gray, "unavailable\n");
+				}
+				printCount("Zones", Zones::count());
+				const auto printEngineStatus = [](std::string_view label, std::string_view engine, bool loaded) {
+					consolePrint(gray, "    {:<20}", label);
+					if (loaded) {
+						consolePrint(white_b, "{} ", engine);
+						consolePrint(green_b, "✔\n");
+					} else {
+						consolePrint(red_b, "Not loaded\n");
+					}
+				};
+				const bool castSystemLoaded =
+				    g_scripts && g_scripts->isFileLoaded("data/scripts/talkactions/player/misc/cast_system.lua");
+				printEngineStatus("Cast System", "Loaded", castSystemLoaded);
+				printEngineStatus("Script Engine", "RevScripts",
+				                  runtimeState.scriptEngineLoaded && runtimeState.revScriptsLoaded);
+				if (g_scripts) {
+					printCount("Lua Scripts", g_scripts->getLoadedFileCount());
+				} else {
+					consolePrint(gray, "    {:<20}", "Lua Scripts");
+					consolePrint(red_b, "Not loaded\n");
+				}
+				printEngineStatus("NPC Engine", "Loaded", runtimeState.npcEngineLoaded && Npcs::isLoaded());
+				consolePrint(gray, "    {:<20}", "Map");
+				consolePrint(green_b, "Loaded ✔\n");
+				const auto printMapLoadStatus = [](std::string_view name, MapLoadStatus status) {
+					consolePrint(gray, "    {:<20}", name);
+					switch (status) {
+						case MapLoadStatus::LOADED:
+							consolePrint(green_b, "Loaded ✔\n");
+							break;
+						case MapLoadStatus::SKIPPED:
+							consolePrint(dark_gray, "Skipped\n");
+							break;
+						case MapLoadStatus::FAILED:
+							consolePrint(red_b, "Failed\n");
+							break;
+					}
+				};
+				printMapLoadStatus("Houses", g_game.map.getHouseLoadStatus());
+				printMapLoadStatus("Spawns", g_game.map.getSpawnLoadStatus());
+				fmt::print("\n");
 
-		// Real ConfigManager toggles only; no inferred or hardcoded feature state.
-		consolePrint(cyan_b, "    ⚙  SERVER FEATURES\n");
-		consolePrint(dark_gray, "    ────────────────────────────────────────\n");
-		const std::array featureRows{
-		    std::pair{"Forge", ConfigManager::FORGE_SYSTEM_ENABLED},
-		    std::pair{"Imbuements", ConfigManager::IMBUEMENT_SYSTEM_ENABLED},
-		    std::pair{"Wheel", ConfigManager::WHEEL_SYSTEM_ENABLED},
-		    std::pair{"Bestiary", ConfigManager::BESTIARY_SYSTEM_ENABLED},
-		    std::pair{"Market", ConfigManager::MARKET_SYSTEM_ENABLED},
-		    std::pair{"Prey", ConfigManager::PREY_SYSTEM_ENABLED},
-		    std::pair{"Battle Pass", ConfigManager::BATTLEPASS_SYSTEM_ENABLED},
-		    std::pair{"Weapon Proficiency", ConfigManager::WEAPON_PROFICIENCY_SYSTEM_ENABLED},
-		    std::pair{"Augments", ConfigManager::AUGMENT_SYSTEM_ENABLED},
-		    std::pair{"Monk Vocation", ConfigManager::MONK_VOCATION_ENABLED},
-		    std::pair{"Familiars", ConfigManager::FAMILIAR_SYSTEM_ENABLED},
-		    std::pair{"Hirelings", ConfigManager::HIRELING_SYSTEM_ENABLED},
-		    std::pair{"Monster Levels", ConfigManager::MONSTER_LEVEL_ENABLED},
-		    std::pair{"Monster Factions", ConfigManager::MONSTER_FACTION_SYSTEM},
-		    std::pair{"Chain Combat", ConfigManager::CHAIN_SYSTEM_ENABLED},
-		    std::pair{"Quick Loot", ConfigManager::QUICK_LOOT_ENABLED},
-		    std::pair{"Autoloot", ConfigManager::AUTOLOOT_ENABLED},
-		    std::pair{"Task Hunting", ConfigManager::TASK_HUNTING_SYSTEM_ENABLED},
-		    std::pair{"Bounty Tasks", ConfigManager::BOUNTY_TASKS_ENABLED},
-		    std::pair{"Weekly Tasks", ConfigManager::WEEKLY_TASKS_ENABLED},
-		    std::pair{"Soulpit", ConfigManager::SOULPIT_SYSTEM_ENABLED},
-		    std::pair{"Soulseals", ConfigManager::SOULSEALS_SYSTEM_ENABLED},
-		    std::pair{"Cleave", ConfigManager::CLEAVE_SYSTEM_ENABLED},
-		    std::pair{"Character Bazaar", ConfigManager::CHARACTER_BAZAAR_ENABLED},
-		    std::pair{"Reset/Reborn", ConfigManager::RESET_SYSTEM_ENABLED},
-		};
-		const auto printFeatureColumn = [=](const auto& feature) {
-			const auto& [name, key] = feature;
-			const bool enabled = ConfigManager::getBoolean(key);
-			consolePrint(gray, "{:<24}", name);
-			consolePrint(enabled ? green_b : red_b, "{:<3}", enabled ? "ON" : "OFF");
-		};
+				// Real ConfigManager toggles only; no inferred or hardcoded feature state.
+				consolePrint(cyan_b, "    ⚙  SERVER FEATURES\n");
+				consolePrint(dark_gray, "    ────────────────────────────────────────\n");
+				const std::array featureRows{
+				    std::pair{"Forge", ConfigManager::FORGE_SYSTEM_ENABLED},
+				    std::pair{"Imbuements", ConfigManager::IMBUEMENT_SYSTEM_ENABLED},
+				    std::pair{"Wheel", ConfigManager::WHEEL_SYSTEM_ENABLED},
+				    std::pair{"Bestiary", ConfigManager::BESTIARY_SYSTEM_ENABLED},
+				    std::pair{"Market", ConfigManager::MARKET_SYSTEM_ENABLED},
+				    std::pair{"Prey", ConfigManager::PREY_SYSTEM_ENABLED},
+				    std::pair{"Battle Pass", ConfigManager::BATTLEPASS_SYSTEM_ENABLED},
+				    std::pair{"Weapon Proficiency", ConfigManager::WEAPON_PROFICIENCY_SYSTEM_ENABLED},
+				    std::pair{"Augments", ConfigManager::AUGMENT_SYSTEM_ENABLED},
+				    std::pair{"Monk Vocation", ConfigManager::MONK_VOCATION_ENABLED},
+				    std::pair{"Familiars", ConfigManager::FAMILIAR_SYSTEM_ENABLED},
+				    std::pair{"Hirelings", ConfigManager::HIRELING_SYSTEM_ENABLED},
+				    std::pair{"Monster Levels", ConfigManager::MONSTER_LEVEL_ENABLED},
+				    std::pair{"Monster Factions", ConfigManager::MONSTER_FACTION_SYSTEM},
+				    std::pair{"Chain Combat", ConfigManager::CHAIN_SYSTEM_ENABLED},
+				    std::pair{"Quick Loot", ConfigManager::QUICK_LOOT_ENABLED},
+				    std::pair{"Autoloot", ConfigManager::AUTOLOOT_ENABLED},
+				    std::pair{"Task Hunting", ConfigManager::TASK_HUNTING_SYSTEM_ENABLED},
+				    std::pair{"Bounty Tasks", ConfigManager::BOUNTY_TASKS_ENABLED},
+				    std::pair{"Weekly Tasks", ConfigManager::WEEKLY_TASKS_ENABLED},
+				    std::pair{"Soulpit", ConfigManager::SOULPIT_SYSTEM_ENABLED},
+				    std::pair{"Soulseals", ConfigManager::SOULSEALS_SYSTEM_ENABLED},
+				    std::pair{"Cleave", ConfigManager::CLEAVE_SYSTEM_ENABLED},
+				    std::pair{"Character Bazaar", ConfigManager::CHARACTER_BAZAAR_ENABLED},
+				    std::pair{"Reset/Reborn", ConfigManager::RESET_SYSTEM_ENABLED},
+				};
+				const auto printFeatureColumn = [=](const auto& feature) {
+					const auto& [name, key] = feature;
+					const bool enabled = ConfigManager::getBoolean(key);
+					consolePrint(gray, "{:<24}", name);
+					consolePrint(enabled ? green_b : red_b, "{:<3}", enabled ? "ON" : "OFF");
+				};
 
-		for (size_t index = 0; index < featureRows.size(); index += 2) {
-			consolePrint(gray, "    ");
-			printFeatureColumn(featureRows[index]);
-			if (index + 1 < featureRows.size()) {
-				consolePrint(gray, "{:6}", "");
-				printFeatureColumn(featureRows[index + 1]);
-			}
-			fmt::print("\n");
-		}
-		fmt::print("\n");
+				for (size_t index = 0; index < featureRows.size(); index += 2) {
+					consolePrint(gray, "    ");
+					printFeatureColumn(featureRows[index]);
+					if (index + 1 < featureRows.size()) {
+						consolePrint(gray, "{:6}", "");
+						printFeatureColumn(featureRows[index + 1]);
+					}
+					fmt::print("\n");
+				}
+				fmt::print("\n");
 
-		// ── Server info ──
-		consolePrint(cyan_b, "    ◈  SERVER INFO\n");
-		consolePrint(dark_gray, "    ────────────────────────────────────────\n");
-		consolePrint(gray, "    {:<16}", "TFS Version");
-		consolePrint(white_b, "{:<14}", STATUS_SERVER_VERSION);
-		consolePrint(gray, "{:<12}", "Protocol");
-		consolePrint(white_b, "{}\n", CLIENT_VERSION_STR);
-		consolePrint(gray, "    {:<16}", "IP Address");
-		consolePrint(white_b, "{:<14}", getString(ConfigManager::IP));
-		consolePrint(gray, "{:<12}", "Ports");
-		consolePrint(white_b, "{} / {}\n\n",
-		             getInteger(ConfigManager::LOGIN_PORT),
-		             getInteger(ConfigManager::GAME_PORT));
+				// ── Server info ──
+				consolePrint(cyan_b, "    ◈  SERVER INFO\n");
+				consolePrint(dark_gray, "    ────────────────────────────────────────\n");
+				consolePrint(gray, "    {:<16}", "TFS Version");
+				consolePrint(white_b, "{:<14}", STATUS_SERVER_VERSION);
+				consolePrint(gray, "{:<12}", "Protocol");
+				consolePrint(white_b, "{}\n", CLIENT_VERSION_STR);
+				consolePrint(gray, "    {:<16}", "IP Address");
+				consolePrint(white_b, "{:<14}", getString(ConfigManager::IP));
+				consolePrint(gray, "{:<12}", "Ports");
+				consolePrint(white_b, "{} / {}\n\n", getInteger(ConfigManager::LOGIN_PORT),
+				             getInteger(ConfigManager::GAME_PORT));
 
-		// ── Online ──
-		consolePrint(dark_gray, "    ─────────────────────────────────────────────────────────\n");
-		consolePrint(green_b, "    ◆ ");
-		consolePrint(white_b, "{}", getString(ConfigManager::SERVER_NAME));
-		consolePrint(gray, " — ");
-		consolePrint(green_b, "SERVER ONLINE");
-		consolePrint(green_b, " ◆\n");
-		consolePrint(dark_gray, "    ─────────────────────────────────────────────────────────\n");
-		fmt::print("\n");
-		std::fflush(stdout);
-		});
+				// ── Online ──
+				consolePrint(dark_gray, "    ─────────────────────────────────────────────────────────\n");
+				consolePrint(green_b, "    ◆ ");
+				consolePrint(white_b, "{}", getString(ConfigManager::SERVER_NAME));
+				consolePrint(gray, " — ");
+				consolePrint(green_b, "SERVER ONLINE");
+				consolePrint(green_b, " ◆\n");
+				consolePrint(dark_gray, "    ─────────────────────────────────────────────────────────\n");
+				fmt::print("\n");
+				std::fflush(stdout);
+			});
 
-		// Restore console output now that all startup printing is done
-		g_logger().setConsoleLevel(parseLogLevel(getString(ConfigManager::LOG_LEVEL)));
+			// Restore console output now that all startup printing is done
+			g_logger().setConsoleLevel(parseLogLevel(getString(ConfigManager::LOG_LEVEL)));
 
 #ifdef STATS_ENABLED
-		if (statsEnabled) {
-			g_stats.start();
-			runtimeState.statsStarted = true;
-		}
+			if (statsEnabled) {
+				g_stats.start();
+				runtimeState.statsStarted = true;
+			}
 #endif
-		startupCompleted = true;
-		g_reactor.runLoop();
+			startupCompleted = true;
+			g_reactor.runLoop();
 		}
 	} else {
 		if (startupLoaded) {
@@ -1046,28 +1048,23 @@ int startServer()
 
 void printServerVersion()
 {
-	using fmt::fg;
 	using fmt::emphasis;
+	using fmt::fg;
 
-	const auto purple      = fg(fmt::color::medium_purple);
+	const auto purple = fg(fmt::color::medium_purple);
 	using namespace ConsoleStyle;
 
-	const auto magenta_b   = fg(fmt::color::magenta) | emphasis::bold;
+	const auto magenta_b = fg(fmt::color::magenta) | emphasis::bold;
 
 	// ── ASCII Banner ──
 	fmt::print("\n");
-	consolePrint(purple | emphasis::bold,
-		"    ████████╗███████╗███████╗    ██████╗  ██████╗ ██╗    ██╗███╗   ██╗\n");
+	consolePrint(purple | emphasis::bold, "    ████████╗███████╗███████╗    ██████╗  ██████╗ ██╗    ██╗███╗   ██╗\n");
 	consolePrint(fg(fmt::color::medium_orchid),
-		"    ╚══██╔══╝██╔════╝██╔════╝    ██╔══██╗██╔═══██╗██║    ██║████╗  ██║\n");
-	consolePrint(fg(fmt::color::orchid),
-		"       ██║   █████╗  ███████╗    ██║  ██║██║   ██║██║ █╗ ██║██╔██╗ ██║\n");
-	consolePrint(fg(fmt::color::violet),
-		"       ██║   ██╔══╝  ╚════██║    ██║  ██║██║   ██║██║███╗██║██║╚██╗██║\n");
-	consolePrint(cyan_b,
-		"       ██║   ██║     ███████║    ██████╔╝╚██████╔╝╚███╔███╔╝██║ ╚████║\n");
-	consolePrint(fg(fmt::color::dark_cyan),
-		"       ╚═╝   ╚═╝     ╚══════╝    ╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝\n");
+	             "    ╚══██╔══╝██╔════╝██╔════╝    ██╔══██╗██╔═══██╗██║    ██║████╗  ██║\n");
+	consolePrint(fg(fmt::color::orchid), "       ██║   █████╗  ███████╗    ██║  ██║██║   ██║██║ █╗ ██║██╔██╗ ██║\n");
+	consolePrint(fg(fmt::color::violet), "       ██║   ██╔══╝  ╚════██║    ██║  ██║██║   ██║██║███╗██║██║╚██╗██║\n");
+	consolePrint(cyan_b, "       ██║   ██║     ███████║    ██████╔╝╚██████╔╝╚███╔███╔╝██║ ╚████║\n");
+	consolePrint(fg(fmt::color::dark_cyan), "       ╚═╝   ╚═╝     ╚══════╝    ╚═════╝  ╚═════╝  ╚══╝╚══╝ ╚═╝  ╚═══╝\n");
 	fmt::print("\n");
 
 	// ── Version bar ──
@@ -1115,7 +1112,7 @@ void printServerVersion()
 	consolePrint(gray, "    ► Downgraded by ");
 	consolePrint(magenta_b, "Nekiro / MillhioreBT\n");
 	consolePrint(gray, "    ► Custom fork by ");
-	consolePrint(red_b, "Mateuzkl\n");
+	consolePrint(red_b, "Taelgalli\n");
 	consolePrint(dark_gray, "    ─────────────────────────────────────────────────────────\n");
 	fmt::print("\n");
 
