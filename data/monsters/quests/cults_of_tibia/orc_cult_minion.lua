@@ -85,7 +85,7 @@ monster.loot = {
 	{ name = "cultish robe", chance = 19360 },
 	{ name = "red mushroom", chance = 6250, maxCount = 3 },
 	{ name = "berserk potion", chance = 860, maxCount = 2 },
-	{ name = "meat", chance = 4780 },
+	-- { name = "meat", chance = 4780 },
 }
 
 monster.attacks = {

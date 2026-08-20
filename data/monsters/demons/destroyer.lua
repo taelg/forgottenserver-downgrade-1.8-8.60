@@ -92,7 +92,7 @@ monster.loot = {
 	{ id = 3449, chance = 8350, maxCount = 12 }, -- burst arrow
 	{ id = 3456, chance = 4850 }, -- pick
 	{ name = "steel boots", chance = 300 },
-	{ name = "meat", chance = 40000, maxCount = 6 },
+	-- { name = "meat", chance = 40000, maxCount = 6 },
 	{ name = "skull helmet", chance = 10 },
 	{ name = "soul orb", chance = 5350 },
 	{ id = 6299, chance = 250 }, -- death ring

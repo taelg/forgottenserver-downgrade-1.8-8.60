@@ -74,9 +74,11 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "chocoin diluido", chance = 100000, maxCount = 6 },
-	{ name = "chocoin puro", chance = 6000, maxCount = 1 },
-	{ name = "meat", chance = 15000, maxCount = 1 },
+	{ name = "cereja", chance = 75000, maxCount = 10 },
+	{ name = "frutinhazul", chance = 75000, maxCount = 10 },
+	{ name = "chocoin diluido", chance = 75000, maxCount = 7 },
+	{ name = "chocoin puro", chance = 8000, maxCount = 1 },
+	{ name = "coxinha", chance = 5000, maxCount = 1 },
 }
 
 monster.attacks = {

@@ -78,7 +78,7 @@ monster.loot = {
 	{ name = "platinum coin", chance = 100000, maxCount = 13 },
 	{ name = "weretiger tooth", chance = 10800 },
 	{ name = "furry club", chance = 6230 },
-	{ name = "meat", chance = 5500, maxCount = 4 },
+	-- { name = "meat", chance = 5500, maxCount = 4 },
 	{ name = "violet crystal shard", chance = 3370 },
 	{ name = "moonlight crystals", chance = 2550 },
 	{ id = 3041, chance = 1200 }, -- blue gem

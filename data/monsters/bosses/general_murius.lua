@@ -87,7 +87,7 @@ monster.loot = {
 	{ name = "brass armor", chance = 70590 },
 	{ name = "double axe", chance = 85290 },
 	{ name = "piercing bolt", chance = 35290, maxCount = 11 },
-	{ name = "meat", chance = 20590 },
+	-- { name = "meat", chance = 20590 },
 	{ name = "battle shield", chance = 29410 },
 	{ name = "chain legs", chance = 11760 },
 	{ id = 7401, chance = 20590 }, -- minotaur trophy

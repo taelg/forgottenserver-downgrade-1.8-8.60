@@ -75,7 +75,7 @@ monster.loot = {
 	{ name = "small enchanted sapphire", chance = 5000, maxCount = 2 },
 	{ name = "black pearl", chance = 5000, maxCount = 2 },
 	{ name = "ham", chance = 5000, maxCount = 2 },
-	{ name = "meat", chance = 5000, maxCount = 2 },
+	-- { name = "meat", chance = 5000, maxCount = 2 },
 	{ name = "soul orb", chance = 5000, maxCount = 2 },
 	{ name = "white pearl", chance = 1500, maxCount = 2 },
 	{ name = "ankh", chance = 5000 },

@@ -98,7 +98,7 @@ monster.loot = {
 	{ name = "mino lance", chance = 1810 },
 	{ name = "warrior helmet", chance = 570 },
 	{ id = 3039, chance = 170 }, -- red gem
-	{ name = "meat", chance = 8020 },
+	-- { name = "meat", chance = 8020 },
 	{ name = "minotaur leather", chance = 11530 },
 	{ name = "minotaur horn", chance = 14550, maxCount = 2 },
 }

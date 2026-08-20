@@ -76,7 +76,7 @@ monster.loot = {
 	{ name = "royal spear", chance = 57140, maxCount = 3 },
 	{ name = "shiny stone", chance = 47620 },
 	{ name = "strong mana potion", chance = 42860, maxCount = 3 },
-	{ name = "blueberry", chance = 40480, maxCount = 22 },
+	-- { name = "blueberry", chance = 40480, maxCount = 22 },
 	{ name = "mystic turban", chance = 33330 },
 	{ name = "small sapphire", chance = 14290, maxCount = 2 },
 	{ name = "seeds", chance = 7140 },

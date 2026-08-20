@@ -118,7 +118,7 @@ monster.loot = {
 	{ name = "scarf", chance = 4000 },
 	{ name = "red apple", chance = 700, maxCount = 3 },
 	{ name = "orange", chance = 7000, maxCount = 3 },
-	{ name = "cherry", chance = 7000, maxCount = 4 },
+	-- { name = "cherry", chance = 7000, maxCount = 4 },
 	{ name = "cookie", chance = 7000, maxCount = 5 },
 	{ name = "candy cane", chance = 5000, maxCount = 3 },
 	{ id = 3606, chance = 5000, maxCount = 2 }, -- egg

@@ -68,7 +68,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "meat", chance = 52940, maxCount = 4 },
+	-- { name = "meat", chance = 52940, maxCount = 4 },
 	{ name = "ham", chance = 35290, maxCount = 2 },
 	{ name = "wolf paw", chance = 5880, maxCount = 2 },
 	{ id = 7394, chance = 35290 }, -- wolf trophy

@@ -101,7 +101,7 @@ monster.loot = {
 	{ name = "golden armor", chance = 240 },
 	{ id = 3509, chance = 1000 }, -- inkwell
 	{ name = "blue robe", chance = 1410 },
-	{ name = "cherry", chance = 19000, maxCount = 4 },
+	-- { name = "cherry", chance = 19000, maxCount = 4 },
 	{ name = "bread", chance = 9000 },
 	{ name = "dark mushroom", chance = 3000 },
 	{ name = "assassin star", chance = 3500, maxCount = 4 },

@@ -75,7 +75,7 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "meat", chance = 77890, maxCount = 4 },
+	-- { name = "meat", chance = 77890, maxCount = 4 },
 	{ name = "ham", chance = 46770 },
 	-- { name = "tender venison", chance = 25850 },
 	{ id = 10297, chance = 1700 }, -- antlers

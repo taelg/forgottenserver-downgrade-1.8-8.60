@@ -75,7 +75,7 @@ monster.loot = {
 	{ name = "great mana potion", chance = 33950, maxCount = 9 },
 	{ name = "great spirit potion", chance = 40120, maxCount = 9 },
 	{ name = "ham", chance = 53700, maxCount = 9 },
-	{ name = "meat", chance = 46300, maxCount = 9 },
+	-- { name = "meat", chance = 46300, maxCount = 9 },
 	{ name = "minotaur leather", chance = 100000, maxCount = 1 },
 	{ name = "moohtant horn", chance = 100000, maxCount = 3 },
 	{ name = "small diamond", chance = 14200, maxCount = 9 },

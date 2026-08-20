@@ -78,8 +78,9 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "chocoin diluido", chance = 50000, maxCount = 5 },
-	{ name = "chocoin puro", chance = 5000, maxCount = 1 },
+	{ name = "frutinhazul", chance = 75000, maxCount = 5 },
+	{ name = "chocoin diluido", chance = 60000, maxCount = 5 },
+	{ name = "chocoin puro", chance = 6000, maxCount = 1 },
 	{ name = "honeycomb", chance = 1000 },
 }
 

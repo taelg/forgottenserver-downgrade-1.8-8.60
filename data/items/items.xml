@@ -4,7 +4,7 @@
 	<!-- Items Iniciais -->
     <item id="3566" article="a" name="camisetão velho">
         <attribute key="description" value="O manto é artisticamente bordado" />
-        <attribute key="armor" value="1" />
+        <attribute key="armor" value="2" />
         <attribute key="weight" value="2600" />
         <attribute key="script" value="moveevent">
             <attribute key="slot" value="armor" />
@@ -13,7 +13,7 @@
     </item>
     <item id="22087" article="a" name="pano velho">
         <attribute key="showAttributes" value="1" />
-        <attribute key="armor" value="6" />
+        <attribute key="armor" value="2" />
         <attribute key="weight" value="1300" />
         <attribute key="script" value="moveevent">
             <attribute key="slot" value="legs" />
@@ -87,9 +87,18 @@
 
 	
     <!-- Comidas -->
-	<item id="3590" article="a" name="cherry" plural="cherries">
+	<item id="3590" article="a" name="cereja" plural="cerejas">
         <attribute key="description" value="feed: 5 | health: 2 | mana: 2" />
 		<attribute key="weight" value="20" />
+	</item>
+	<item id="3588" article="a" name="frutinhazul" plural="frutinhazuis">
+        <attribute key="description" value="feed: 5 | health: 0 | mana: 4" />
+		<attribute key="weight" value="20" />
+	</item>
+	<item id="3577" name="coxinha" plural="coxinhas">
+        <attribute key="description" value="feed: 35 | health: 75 | mana: 75" />
+		<attribute key="showCount" value="0" />
+		<attribute key="weight" value="100" />
 	</item>
 
 <!-- Set de Couro (vendedor de utilidade) -->
@@ -102,7 +111,7 @@
         <attribute key="classification" value="1" />
     </item>
     <item id="3361" article="a" name="armadura de couro">
-        <attribute key="armor" value="4" />
+        <attribute key="armor" value="3" />
         <attribute key="weight" value="6000" />
         <attribute key="script" value="moveevent">
             <attribute key="slot" value="armor" />
@@ -110,7 +119,7 @@
         <attribute key="classification" value="1" />
     </item>
     <item id="3559" name="perneiras de couro">
-        <attribute key="armor" value="1" />
+        <attribute key="armor" value="3" />
         <attribute key="weight" value="1800" />
         <attribute key="script" value="moveevent">
             <attribute key="slot" value="legs" />
@@ -10027,10 +10036,6 @@
 			<attribute key="slot" value="head" />
 		</attribute>
 	</item>
-	<item id="3577" name="meat" plural="meat">
-		<attribute key="showCount" value="0" />
-		<attribute key="weight" value="1300" />
-	</item>
 	<item id="3578" article="a" name="fish" plural="fish">
 		<attribute key="weight" value="520" />
 	</item>
@@ -10065,9 +10070,6 @@
 	</item>
 	<item id="3587" article="a" name="banana" plural="bananas">
 		<attribute key="weight" value="180" />
-	</item>
-	<item id="3588" article="a" name="blueberry" plural="blueberries">
-		<attribute key="weight" value="20" />
 	</item>
 	<item id="3589" article="a" name="coconut" plural="coconuts">
 		<attribute key="weight" value="480" />

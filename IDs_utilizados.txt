@@ -18,6 +18,8 @@ ACTION IDS
 ----------
 Faixa 15001-18000: Misc
   15001 = convert chocolate coin machine
+  15002 = convert 10 diluido to 1 puro
+  15003 = convert 1 puro em 10 diluido
   12002+ = ainda não em uso
 
 

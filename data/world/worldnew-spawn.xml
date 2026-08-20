@@ -6,6 +6,9 @@
 	<spawn centerx="1998" centery="1944" centerz="7" radius="1">
 		<npc name="Myzzi" x="0" y="-1" z="7" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="1993" centery="1981" centerz="7" radius="2">
+		<npc name="Gnomillion" x="0" y="1" z="7" spawntime="60" direction="2" />
+	</spawn>
 	<spawn centerx="2017" centery="1985" centerz="7" radius="2">
 		<npc name="Gnomelvis" x="-2" y="0" z="7" spawntime="60" direction="2" />
 	</spawn>
@@ -14,6 +17,7 @@
 	</spawn>
 	<spawn centerx="1780" centery="2030" centerz="7" radius="15">
 		<monster name="Snake" x="-9" y="-9" z="7" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-5" y="-9" z="7" spawntime="60" direction="2" />
 		<npc name="Ferryman Kamil" x="2" y="-8" z="7" spawntime="60" direction="2" />
 		<npc name="Nah'bob" x="4" y="-8" z="7" spawntime="60" direction="2" />
 		<npc name="Lee'Delle" x="5" y="-8" z="7" spawntime="60" direction="2" />
@@ -54,7 +58,6 @@
 		<npc name="Gnominus" x="7" y="2" z="7" spawntime="60" direction="2" />
 		<npc name="Gnomincia" x="9" y="2" z="7" spawntime="60" direction="2" />
 		<npc name="Gnomilly" x="10" y="2" z="7" spawntime="60" direction="2" />
-		<npc name="Gnomillion" x="2" y="3" z="7" spawntime="60" direction="2" />
 		<npc name="Gnomewart" x="3" y="3" z="7" spawntime="60" direction="2" />
 		<npc name="Gnomette" x="4" y="3" z="7" spawntime="60" direction="2" />
 		<npc name="Gnomespector" x="5" y="3" z="7" spawntime="60" direction="2" />
@@ -130,6 +133,7 @@
 	<spawn centerx="2033" centery="1931" centerz="8" radius="1">
 		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="2024" centery="1933" centerz="8" radius="1" />
 	<spawn centerx="1984" centery="1934" centerz="8" radius="1">
 		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
 	</spawn>
@@ -150,6 +154,7 @@
 	</spawn>
 	<spawn centerx="1979" centery="1939" centerz="8" radius="1">
 		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="1" z="8" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="2059" centery="1939" centerz="8" radius="1">
 		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
@@ -175,6 +180,7 @@
 	</spawn>
 	<spawn centerx="1983" centery="1951" centerz="8" radius="1">
 		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
+		<monster name="Bug" x="1" y="0" z="8" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="1993" centery="1953" centerz="8" radius="1">
 		<monster name="Bug" x="-1" y="0" z="8" spawntime="60" direction="2" />
@@ -283,6 +289,7 @@
 		<monster name="Wasp" x="0" y="-1" z="8" spawntime="60" direction="2" />
 		<monster name="Wasp" x="1" y="1" z="8" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="2054" centery="2006" centerz="8" radius="1" />
 	<spawn centerx="2066" centery="2006" centerz="8" radius="1">
 		<monster name="Wasp" x="-1" y="-1" z="8" spawntime="60" direction="2" />
 		<monster name="Wasp" x="1" y="-1" z="8" spawntime="60" direction="2" />
@@ -405,7 +412,6 @@
 	<spawn centerx="1974" centery="1974" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
-		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="2007" centery="1978" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
@@ -422,10 +428,10 @@
 		<monster name="Larva" x="0" y="1" z="9" spawntime="60" direction="2" />
 	</spawn>
 	<spawn centerx="1986" centery="1990" centerz="9" radius="1">
-		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="-1" y="0" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="1" y="0" z="9" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="1977" centery="1992" centerz="9" radius="1" />
 	<spawn centerx="2020" centery="1993" centerz="9" radius="1">
 		<monster name="Larva" x="-1" y="-1" z="9" spawntime="60" direction="2" />
 		<monster name="Larva" x="0" y="-1" z="9" spawntime="60" direction="2" />
@@ -485,6 +491,10 @@
 		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
 		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="1959" centery="1984" centerz="10" radius="3">
+		<monster name="Scarab" x="-2" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
 	<spawn centerx="2010" centery="1984" centerz="10" radius="3">
 		<monster name="Snake" x="1" y="-2" z="10" spawntime="60" direction="2" />
 		<monster name="Snake" x="0" y="-1" z="10" spawntime="60" direction="2" />
@@ -501,9 +511,61 @@
 		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
 		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
 	</spawn>
+	<spawn centerx="1919" centery="1987" centerz="10" radius="3">
+		<monster name="Scarab" x="-2" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="0" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-2" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
 	<spawn centerx="2026" centery="1987" centerz="10" radius="1">
 		<monster name="Snake" x="-1" y="0" z="10" spawntime="60" direction="2" />
 		<monster name="Snake" x="0" y="1" z="10" spawntime="60" direction="2" />
 		<monster name="Snake" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1937" centery="1990" centerz="10" radius="3">
+		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1978" centery="1994" centerz="10" radius="3">
+		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="1" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1954" centery="1998" centerz="10" radius="3">
+		<monster name="Scarab" x="2" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="0" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1963" centery="2000" centerz="10" radius="3">
+		<monster name="Scarab" x="1" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1912" centery="2002" centerz="10" radius="3">
+		<monster name="Scarab" x="1" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1931" centery="2002" centerz="10" radius="3">
+		<monster name="Scarab" x="-2" y="-3" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="0" y="2" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1941" centery="2011" centerz="10" radius="3">
+		<monster name="Scarab" x="-1" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="-2" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="1" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1973" centery="2013" centerz="10" radius="3">
+		<monster name="Scarab" x="-2" y="0" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="2" y="0" z="10" spawntime="60" direction="2" />
+	</spawn>
+	<spawn centerx="1922" centery="2019" centerz="10" radius="3">
+		<monster name="Scarab" x="-1" y="-1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="-1" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="3" y="1" z="10" spawntime="60" direction="2" />
+		<monster name="Scarab" x="0" y="2" z="10" spawntime="60" direction="2" />
 	</spawn>
 </spawns>

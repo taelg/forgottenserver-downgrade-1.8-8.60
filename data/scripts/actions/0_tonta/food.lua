@@ -2,10 +2,11 @@ local action = Action()
 
 local foods = {
 	[3590] = {5, "Yum.", 2, 2, 1}, -- cherry
+	[3588] = {0, "Yum.", 0, 5, 1}, -- blueberry
 	[48249] = {50, "Gulp.", 50, 50, 1}, -- chocolate coin diluido
+	[3577] = {3, "Munch.", 75, 75, 35}, -- meat
 
 	[3250] = {1, "Crunch.", 1, 1, 1}, -- carrot
-	[3577] = {3, "Munch.", 4, 3, 1}, -- meat
 	[3578] = {3, "Munch.", 3, 3, 1}, -- fish
 	[3579] = {2, "Mmmm.", 3, 2, 1}, -- salmon
 	[3580] = {4, "Munch.", 5, 4, 1}, -- northern pike
@@ -16,7 +17,6 @@ local foods = {
 	[3585] = {1, "Yum.", 1, 1, 1}, -- red apple
 	[3586] = {3, "Yum.", 3, 3, 1}, -- orange
 	[3587] = {2, "Yum.", 1, 3, 1}, -- banana
-	[3588] = {0, "Yum.", 0, 1, 1}, -- blueberry
 	[3589] = {4, "Slurp.", 5, 4, 1}, -- coconut
 	[3591] = {0, "Yum.", 0, 1, 1}, -- strawberry
 	[3592] = {2, "Yum.", 2, 2, 1}, -- grapes

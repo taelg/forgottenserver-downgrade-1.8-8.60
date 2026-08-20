@@ -82,7 +82,7 @@ monster.loot = {
 	{ name = "platinum coin", chance = 100000, maxCount = 11 },
 	{ name = "werepanther claw", chance = 12780 },
 	{ name = "golden sickle", chance = 5120 },
-	{ name = "meat", chance = 5500, maxCount = 2 },
+	-- { name = "meat", chance = 5500, maxCount = 2 },
 	{ name = "small topaz", chance = 7120, maxCount = 4 },
 	{ name = "moonlight crystals", chance = 2550 },
 	{ id = 3037, chance = 5130 }, -- yellow gem

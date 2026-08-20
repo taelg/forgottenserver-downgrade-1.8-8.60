@@ -12,13 +12,18 @@
 		</mission>
 	</quest>
 
-	<quest name="Main Quests" startstorageid="55000" startstoragevalue="0">
-		<mission name="Encontre sua bota" storageid="55100" startvalue="0" endvalue="1" ignoreendvalue="true">
-			<missionstate id="0" description="Voce perdeu suas botas enquanto fugia de criaturas no bueiro de Bololandia, voce lembra que elas cairam na parte sul, perto de uma ponte." />
-			<missionstate id="1" description="Perfeito, voce conseguiu achar suas botas de volta!" />
+	<quest name="Main Quests" startstorageid="10001" startstoragevalue="0">
+		<mission name="Encontre sua bota" storageid="10001" startvalue="0" endvalue="1" ignoreendvalue="true">
+			<missionstate id="0" description="Você perdeu suas botas enquanto fugia de criaturas no bueiro de Bololandia, você lembra que elas caíram na parte sul, perto de uma ponte. Vá até lá e encontre suas botas." />
+			<missionstate id="1" description="[Concluído] (Você perdeu suas botas enquanto fugia de criaturas no bueiro de Bololandia, você lembra que elas caíram na parte sul, perto de uma ponte. Vá até lá e encontre suas botas." />
 		</mission>
-		<mission name="Armadura de pano" storageid="55100" startvalue="1" endvalue="2">
-			<missionstate id="4" description="Voce sente que se tivesse roupas mais resistentes nao precisaria fugir desses insetos e nao perderia sua bota, " />
+		<mission name="Armadura de pano" storageid="10001" startvalue="1" endvalue="2" ignoreendvalue="true">
+			<missionstate id="1" description="Se tivesse roupas mais resistentes nao precisaria estar fugindo desses insetos, logo, não perderia suas botas, fale com Gnomelvis e troque 3 chocoins puros por um set de couro. (Elas podem ser dropadas de Bugs no esgoto da cidade, 10 moedas diluidas podem ser trocadas no banco por uma pura)" />
+			<missionstate id="2" description="[Concluído] (Se tivesse roupas mais resistentes nao precisaria estar fugindo desses insetos, logo, não perderia suas botas, fale com Gnomelvis e troque 3 chocoins puros por um set de couro. (Elas podem ser dropadas de Bugs no esgoto da cidade, 10 moedas diluidas podem ser trocadas no banco por uma pura))" />
+		</mission>
+		<mission name="Missao 3" storageid="10001" startvalue="2" endvalue="3" ignoreendvalue="true">
+			<missionstate id="2" description="missao 3" />
+			<missionstate id="3" description="missao 3" />
 		</mission>
 	</quest>
 
