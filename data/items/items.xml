@@ -54,15 +54,14 @@
 
     <!-- Items Bololandia Geral -->
     <item id="48249" article="a" name="chocoin diluido">
-        <attribute key="description" value="Pode ser comido ou vendido. feed: 50 | health: 50 | mana: 50" />
+        <attribute key="description" value="Pode ser comido ou vendido. feed: 35 | health: 50 | mana: 50" />
         <attribute key="weight" value="1" />
     </item>
     <item id="48250" article="a" name="chocoin puro">
-        <attribute key="description" value="~Melhor eu não comer isso, posso usar no extrator de chocolate, na loja de utilidades~" />
+        <attribute key="description" value="feed: 35 | health: 100 | mana: 100 |  lv: 8" />
         <attribute key="weight" value="1" />
     </item>
-	<item fromid="5468" toid="5469" article="a" name="chocolate extractor">
-	</item>
+	<item fromid="5468" toid="5469" article="a" name="chocolate extractor"/>
 	<item id="45045" article="a" name="Fonte de Morangolate (bebível)" />
 
     <!-- Items Gnomelvis (vendedor de utilidade) -->
@@ -96,7 +95,7 @@
 		<attribute key="weight" value="20" />
 	</item>
 	<item id="3577" name="coxinha" plural="coxinhas">
-        <attribute key="description" value="feed: 35 | health: 75 | mana: 75" />
+        <attribute key="description" value="feed: 35 | health: 75 | mana: 75 | lv: 5" />
 		<attribute key="showCount" value="0" />
 		<attribute key="weight" value="100" />
 	</item>
@@ -149,6 +148,23 @@
         <attribute key="mana" value="1" />
         <attribute key="fromDamage" value="4" />
         <attribute key="toDamage" value="9" />
+        <attribute key="slot" value="hand" />
+        </attribute>
+	</item>
+	<item id="3327" article="a" name="daramian mace">
+        <attribute key="description" value="min: 6 | max: 13 | mana: 1" />
+        <attribute key="classification" value="2" />	
+		<attribute key="showAttributes" value="1" />	
+        <attribute key="weaponType" value="wand" />
+        <attribute key="shootType" value="whirlwindclub" />
+        <attribute key="range" value="1" />
+        <attribute key="weight" value="4500" />
+        <attribute key="script" value="moveevent;weapon">
+        <attribute key="wandType" value="physical" />
+        <attribute key="level" value="8" />
+        <attribute key="mana" value="1" />
+        <attribute key="fromDamage" value="6" />
+        <attribute key="toDamage" value="13" />
         <attribute key="slot" value="hand" />
         </attribute>
 	</item>
@@ -8052,17 +8068,6 @@
 			<attribute key="level" value="30" />
 			<attribute key="unproperly" value="true" />
 			<attribute key="weaponType" value="sword" />
-			<attribute key="slot" value="hand" />
-		</attribute>
-	</item>
-	<item id="3327" article="a" name="daramian mace">
-		<attribute key="classification" value="1" />
-		<attribute key="weaponType" value="club" />
-		<attribute key="attack" value="21" />
-		<attribute key="defense" value="12" />
-		<attribute key="weight" value="6800" />
-		<attribute key="script" value="moveevent;weapon">
-			<attribute key="weaponType" value="club" />
 			<attribute key="slot" value="hand" />
 		</attribute>
 	</item>

@@ -3,7 +3,7 @@ local monster = {}
 
 monster.name = "Scarab"
 monster.description = "a scarab"
-monster.experience = 120
+monster.experience = 100
 monster.outfit = {
 	lookType = 83,
 	lookHead = 0,
@@ -28,7 +28,7 @@ monster.Bestiary = {
 		the path leading to Chor, beneath Fenrock, Lion's Rock.",
 }
 
-monster.health = 320
+monster.health = 300
 monster.maxHealth = 320
 monster.race = "venom"
 monster.corpse = 6024
@@ -75,13 +75,12 @@ monster.voices = {
 }
 
 monster.loot = {
-	{ name = "gold coin", chance = 86800, maxCount = 52 },
-	{ name = "small emerald", chance = 413 },
-	{ name = "small amethyst", chance = 540 },
-	{ name = "scarab coin", chance = 1098 },
-	{ name = "daramian mace", chance = 245 },
-	-- { name = "meat", chance = 40000, maxCount = 2 },
-	{ name = "piece of scarab shell", chance = 4950 },
+	{ name = "cereja", chance = 100000, maxCount = 10 },
+	{ name = "frutinhazul", chance = 100000, maxCount = 10 },
+	{ name = "chocoin diluido", chance = 100000, maxCount = 8 },
+	{ name = "chocoin puro", chance = 15000, maxCount = 1 },
+	{ name = "scarab coin", chance = 1000 },
+	{ name = "daramian mace", chance = 250 },
 }
 
 monster.attacks = {
